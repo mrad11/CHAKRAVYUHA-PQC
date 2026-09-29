@@ -1,0 +1,15 @@
+# Core Cryptographic & Mathematics Dependencies
+cryptography>=41.0.0
+pycryptodome>=3.19.0
+numpy>=1.24.0
+
+# Document & Steganographic Image Processing
+Pillow>=10.0.0
+pymupdf>=1.23.0
+
+# Air-Gapped Mission Command Dashboard & Desktop GUI
+pywebview>=4.4.1
+bottle>=0.12.25
+
+# Testing & Quality Assurance
+pytest>=7.4.0
