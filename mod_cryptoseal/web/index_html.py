@@ -4,13 +4,28 @@ Deep-Ops Threat Matrix Forensic Attribution Console
 100% Self-Contained, Air-Gapped, Zero-Dependency Native 3D WebGL / Canvas Engine
 """
 
+import os
+
 def get_dashboard_html() -> str:
-    return """<!DOCTYPE html>
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    icon_b64_file = os.path.join(base_dir, "app_icon_128_b64.txt")
+    if os.path.exists(icon_b64_file):
+        with open(icon_b64_file, "r") as f:
+            icon_data_uri = f"data:image/png;base64,{f.read().strip()}"
+    else:
+        icon_data_uri = "/app_icon.png"
+
+    html = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX v2.0</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" href="__ICON_DATA_URI__">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="__ICON_DATA_URI__">
+
   <style>
     :root {
       --bg-abyssal: #080A0D;
@@ -74,14 +89,13 @@ def get_dashboard_html() -> str:
 
     .brand-sigil {
       width: 44px; height: 44px;
-      background: rgba(16, 185, 129, 0.12);
       border: 2px solid var(--phosphor-emerald);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--phosphor-emerald);
-      font-weight: 900; font-size: 24px;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
     }
+
 
     .brand-meta h1 {
       font-size: 16px;
@@ -416,12 +430,13 @@ def get_dashboard_html() -> str:
   <!-- Top Tactical Command Header -->
   <header class="command-header">
     <div class="brand-section">
-      <div class="brand-sigil">Ψ</div>
+      <img src="__ICON_DATA_URI__" class="brand-sigil" alt="CHAKRAVYUHA PQC Sovereign Lion Logo" />
       <div class="brand-meta">
         <h1>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX</h1>
         <p>MINISTRY OF DEFENCE // PROBLEM STATEMENT 237 // CLASSIFICATION: TOP SECRET</p>
       </div>
     </div>
+
     <div class="telemetry-badges">
       <span class="t-badge badge-emerald">
         <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10B981;"></span>
@@ -977,3 +992,5 @@ def get_dashboard_html() -> str:
 </body>
 </html>
 """
+    return html.replace("__ICON_DATA_URI__", icon_data_uri)
+

@@ -6,9 +6,11 @@ Ministry of Defence - Problem Statement 237
 Runs as a standalone desktop window application with zero browser tabs needed.
 """
 
+import os
 import sys
 import time
 import threading
+import ctypes
 import webview
 from mod_cryptoseal.web.server import app
 
@@ -16,6 +18,17 @@ def run_server():
     app.run(host="127.0.0.1", port=8080, quiet=True)
 
 if __name__ == "__main__":
+    # Tell Windows to treat this as an independent desktop application on the Taskbar
+    if sys.platform == "win32":
+        try:
+            app_id = "gov.mod.chakravyuha.pqc.threatmatrix.v2"
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+        except Exception:
+            pass
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    icon_path = os.path.join(base_dir, "app_icon.ico")
+
     # Start offline backend server in background thread
     t = threading.Thread(target=run_server, daemon=True)
     t.start()
@@ -31,5 +44,9 @@ if __name__ == "__main__":
         resizable=True,
         min_size=(1024, 700),
     )
-    # private_mode=True bypasses all local WebView2 cache
-    webview.start(private_mode=True)
+    # private_mode=True bypasses all local WebView2 cache, icon= sets the window & taskbar icon
+    if os.path.exists(icon_path):
+        webview.start(private_mode=True, icon=icon_path)
+    else:
+        webview.start(private_mode=True)
+

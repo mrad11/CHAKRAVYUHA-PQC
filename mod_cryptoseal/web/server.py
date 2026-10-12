@@ -317,12 +317,21 @@ def download_screenshot(art_id):
 # Web UI Dashboard Route
 from .index_html import get_dashboard_html
 
+@app.route("/favicon.ico")
+def serve_favicon():
+    return static_file("favicon.ico", root=BASE_DIR, mimetype="image/x-icon")
+
+@app.route("/app_icon.png")
+def serve_app_icon():
+    return static_file("app_icon.png", root=BASE_DIR, mimetype="image/png")
+
 @app.route("/")
 def index():
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "0"
     return get_dashboard_html()
+
 
 
 def start_server(host="127.0.0.1", port=8080):
