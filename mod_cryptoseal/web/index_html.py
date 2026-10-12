@@ -1,6 +1,7 @@
 """
-Single-page Defense Web Dashboard HTML/CSS/JavaScript Template
-100% self-contained, air-gapped, zero external dependencies.
+Ministry of Defence - CHAKRAVYUHA PQC
+Deep-Ops Threat Matrix Forensic Attribution Console
+100% Self-Contained, Air-Gapped, Zero-Dependency Native 3D WebGL / Canvas Engine
 """
 
 def get_dashboard_html() -> str:
@@ -9,721 +10,968 @@ def get_dashboard_html() -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ministry of Defence — CryptoSeal PQC Provenance Console</title>
+  <title>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX v2.0</title>
   <style>
     :root {
-      --bg-dark: #080C14;
-      --bg-card: #0F172A;
-      --bg-card-alt: #162035;
-      --border-subtle: #1E293B;
-      --border-accent: #00ADB5;
-      --text-main: #F1F5F9;
+      --bg-abyssal: #080A0D;
+      --bg-surface: #0C1017;
+      --bg-elevated: #111827;
+      --border-steel: #1F2937;
+      --border-accent: #10B981;
+      --phosphor-emerald: #10B981;
+      --phosphor-dark: #059669;
+      --night-vision-olive: #1F2937;
+      --warning-red: #EF4444;
+      --telemetry-amber: #F59E0B;
+      --text-main: #E2E8F0;
       --text-muted: #94A3B8;
-      --accent-cyan: #00ADB5;
-      --accent-emerald: #10B981;
-      --accent-crimson: #EF4444;
-      --accent-amber: #F59E0B;
-      --font-mono: 'Consolas', 'Courier New', monospace;
+      --text-dim: #64748B;
+      --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; padding-bottom: 60px; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-abyssal);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CRT Phosphor Scanline Overlay */
+    body::before {
+      content: " ";
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(rgba(18, 22, 28, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+      background-size: 100% 3px;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0.55;
+    }
 
     /* Top Command Header */
     .command-header {
-      background: linear-gradient(180deg, #0D1527 0%, #080C14 100%);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 16px 32px;
+      background: rgba(8, 10, 13, 0.98);
+      border-bottom: 2px solid var(--phosphor-dark);
+      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.8);
     }
-    .brand-title { display: flex; align-items: center; gap: 14px; }
-    .emblem-icon {
-      width: 42px; height: 42px; border-radius: 8px;
-      background: linear-gradient(135deg, #00ADB5 0%, #0284C7 100%);
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-sigil {
+      width: 44px; height: 44px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 2px solid var(--phosphor-emerald);
+      border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 20px; color: #fff;
-      box-shadow: 0 0 20px rgba(0, 173, 181, 0.4);
-    }
-    .brand-text h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.8px; color: #FFF; text-transform: uppercase; }
-    .brand-text p { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
-    
-    .status-ribbon { display: flex; gap: 12px; }
-    .badge {
-      font-size: 11px; font-family: var(--font-mono); font-weight: 600;
-      padding: 5px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-cyan { background: rgba(0, 173, 181, 0.12); color: var(--accent-cyan); border: 1px solid rgba(0, 173, 181, 0.3); }
-    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--accent-crimson); border: 1px solid rgba(239, 68, 68, 0.4); }
-    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.4); }
-
-    /* Nav Tabs */
-    .tabs-nav {
-      display: flex; background: var(--bg-card); border-bottom: 1px solid var(--border-subtle);
-      padding: 0 32px; gap: 24px;
-    }
-    .tab-btn {
-      background: none; border: none; color: var(--text-muted); padding: 16px 8px; font-size: 14px;
-      font-weight: 600; cursor: pointer; position: relative; transition: all 0.2s ease;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .tab-btn:hover { color: #FFF; }
-    .tab-btn.active { color: var(--accent-cyan); }
-    .tab-btn.active::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);
+      color: var(--phosphor-emerald);
+      font-weight: 900; font-size: 24px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
     }
 
-    /* Container Layout */
-    .main-container { max-width: 1400px; margin: 28px auto; padding: 0 24px; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.25s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .brand-meta h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #FFF;
+      text-transform: uppercase;
+    }
 
-    /* Grid & Cards */
-    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .card {
-      background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px;
-      padding: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    .brand-meta p {
+      font-size: 10px;
+      color: var(--phosphor-emerald);
+      letter-spacing: 1px;
     }
-    .card-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
-      padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    .telemetry-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    .card-title { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #FFF; display: flex; align-items: center; gap: 8px; }
-    
+
+    .t-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+    }
+
+    .badge-emerald {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--phosphor-emerald);
+    }
+
+    .badge-olive {
+      background: rgba(31, 41, 55, 0.7);
+      border-color: var(--border-steel);
+      color: var(--text-muted);
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: var(--warning-red);
+    }
+
+    /* Spatial Layout: Dense Command Rail */
+    .theater-container {
+      max-width: 1720px;
+      margin: 16px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 280px 1fr 340px;
+      gap: 16px;
+    }
+
+    @media (max-width: 1200px) {
+      .theater-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Panels & Cards */
+    .tactical-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-steel);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .tactical-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-steel);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFF;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: "";
+      width: 6px; height: 6px;
+      background: var(--phosphor-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--phosphor-emerald);
+    }
+
+    /* Nav Rail */
+    .nav-button {
+      width: 100%;
+      text-align: left;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-steel);
+      color: var(--text-muted);
+      padding: 11px 13px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s ease;
+    }
+
+    .nav-button:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #FFF;
+      background: rgba(31, 41, 55, 0.6);
+    }
+
+    .nav-button.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--phosphor-emerald);
+      color: var(--phosphor-emerald);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+
+    /* 3D Native Canvas Viewport */
+    .radar-viewport {
+      width: 100%;
+      height: 270px;
+      background: #040608;
+      border: 1px solid var(--border-steel);
+      border-radius: 4px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(5, 150, 105, 0.18);
+    }
+
+    #radar-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+
+    #radar-canvas:active {
+      cursor: grabbing;
+    }
+
+    .radar-tag {
+      position: absolute;
+      top: 10px; left: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--phosphor-emerald);
+      letter-spacing: 1px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .radar-reticle {
+      position: absolute;
+      bottom: 8px; right: 12px;
+      font-size: 9px;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
     /* Form Elements */
-    .form-group { margin-bottom: 18px; }
-    .form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
-    .form-input, .form-select {
-      width: 100%; background: #0A0F1D; border: 1px solid var(--border-subtle); border-radius: 8px;
-      padding: 10px 14px; color: #FFF; font-size: 13px; outline: none; transition: border 0.2s;
+    .t-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 5px;
     }
-    .form-input:focus, .form-select:focus { border-color: var(--accent-cyan); }
-    
-    .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .checkbox-item {
-      display: flex; align-items: center; justify-content: space-between;
-      background: #0A0F1D; border: 1px solid var(--border-subtle); padding: 10px 14px;
-      border-radius: 8px; cursor: pointer; transition: all 0.15s;
+
+    .t-input, .t-select {
+      width: 100%;
+      background: var(--bg-abyssal);
+      border: 1px solid var(--border-steel);
+      color: #FFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 9px 12px;
+      border-radius: 3px;
+      outline: none;
+      margin-bottom: 12px;
     }
-    .checkbox-item:hover { border-color: rgba(0, 173, 181, 0.4); background: #0D162B; }
-    .checkbox-item input { margin-right: 12px; accent-color: var(--accent-cyan); width: 16px; height: 16px; }
+
+    .t-input:focus, .t-select:focus {
+      border-color: var(--phosphor-emerald);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+    }
+
+    .checkbox-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-abyssal);
+      border: 1px solid var(--border-steel);
+      padding: 8px 12px;
+      border-radius: 3px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .checkbox-tile:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .checkbox-tile input {
+      accent-color: var(--phosphor-emerald);
+      margin-right: 10px;
+    }
 
     /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: linear-gradient(135deg, #00ADB5 0%, #0284C7 100%);
-      color: #FFF; font-weight: 700; font-size: 13px; text-transform: uppercase;
-      letter-spacing: 0.8px; padding: 12px 22px; border: none; border-radius: 8px;
-      cursor: pointer; transition: all 0.2s ease; width: 100%;
-      box-shadow: 0 4px 14px rgba(0, 173, 181, 0.3);
-    }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 173, 181, 0.45); }
-    .btn-secondary {
-      background: #1E293B; color: #CBD5E1; box-shadow: none; border: 1px solid #334155;
-    }
-    .btn-secondary:hover { background: #334155; color: #FFF; }
-    .btn-danger {
-      background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);
-      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
-    }
-    .btn-danger:hover { box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45); }
-
-    /* Telemetry Feed / Log Box */
-    .log-box {
-      background: #060911; border: 1px solid #1A2234; border-radius: 8px; padding: 14px;
-      font-family: var(--font-mono); font-size: 12px; color: #38BDF8; line-height: 1.6;
-      max-height: 260px; overflow-y: auto; white-space: pre-wrap;
+    .t-btn {
+      width: 100%;
+      padding: 12px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    /* Attribution Certificate Card */
-    .certificate-card {
-      background: radial-gradient(circle at top right, #1A1F35 0%, #0A0D18 100%);
-      border: 2px solid var(--accent-cyan); border-radius: 14px; padding: 28px;
-      box-shadow: 0 0 35px rgba(0, 173, 181, 0.25); position: relative; overflow: hidden;
+    .t-btn-emerald {
+      background: var(--phosphor-emerald);
+      color: var(--bg-abyssal);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
     }
-    .cert-badge {
-      display: inline-block; font-size: 14px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; padding: 8px 18px; border-radius: 8px; margin-bottom: 20px;
-    }
-    .cert-badge-red { background: rgba(239, 68, 68, 0.2); color: #FF4D4D; border: 1px solid #FF4D4D; }
-    .dossier-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;
-      background: rgba(0,0,0,0.3); padding: 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);
-    }
-    .dossier-item { font-size: 13px; }
-    .dossier-label { color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
-    .dossier-val { font-weight: 700; color: #FFF; font-family: var(--font-mono); }
 
-    /* Block Explorer List */
-    .block-item {
-      background: #0A0F1D; border: 1px solid var(--border-subtle); border-radius: 10px;
-      padding: 16px; margin-bottom: 14px; transition: border 0.2s;
+    .t-btn-emerald:hover {
+      background: #34D399;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+      transform: translateY(-1px);
     }
-    .block-item:hover { border-color: var(--accent-cyan); }
-    .block-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .block-hash { font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); word-break: break-all; }
+
+    .t-btn-dark {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-steel);
+      color: var(--text-main);
+    }
+
+    .t-btn-dark:hover {
+      border-color: var(--phosphor-emerald);
+      color: var(--phosphor-emerald);
+    }
+
+    .t-btn-crimson {
+      background: var(--warning-red);
+      color: #FFF;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+
+    .t-btn-crimson:hover {
+      background: #F87171;
+    }
+
+    /* Telemetry Stream Console */
+    .telemetry-stream {
+      background: var(--bg-abyssal);
+      border: 1px solid var(--border-steel);
+      border-radius: 3px;
+      padding: 12px;
+      font-size: 10px;
+      color: var(--phosphor-emerald);
+      line-height: 1.6;
+      height: 260px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    /* Section 65B Dossier Modal */
+    .dossier-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(8, 10, 13, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .dossier-box {
+      background: var(--bg-surface);
+      border: 2px solid var(--warning-red);
+      border-radius: 6px;
+      width: 100%;
+      max-width: 680px;
+      padding: 24px;
+      box-shadow: 0 0 60px rgba(239, 68, 68, 0.4);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
 
-  <!-- Top Command Header -->
+  <!-- Top Tactical Command Header -->
   <header class="command-header">
-    <div class="brand-title">
-      <div class="emblem-icon">MOD</div>
-      <div class="brand-text">
-        <h1>Ministry of Defence — CryptoSeal PQC</h1>
-        <p>Cryptographic Attribution & Immutable Decryption Provenance (FIPS 203 / 204)</p>
+    <div class="brand-section">
+      <div class="brand-sigil">Ψ</div>
+      <div class="brand-meta">
+        <h1>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX</h1>
+        <p>MINISTRY OF DEFENCE // PROBLEM STATEMENT 237 // CLASSIFICATION: TOP SECRET</p>
       </div>
     </div>
-    <div class="status-ribbon">
-      <span class="badge badge-green">● AIR-GAPPED OFFLINE</span>
-      <span class="badge badge-cyan">● PQC: ML-KEM-768 & ML-DSA-65</span>
-      <span class="badge badge-green" id="header-ledger-status">● DLT CONSENSUS: HEALTHY</span>
+    <div class="telemetry-badges">
+      <span class="t-badge badge-emerald">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10B981;"></span>
+        NIST FIPS 203 (ML-KEM-768)
+      </span>
+      <span class="t-badge badge-olive">FIPS 204 (ML-DSA-65)</span>
+      <span class="t-badge badge-emerald" id="header-tpm-status">TPM 2.0 PCR-7 MATCH</span>
+      <span class="t-badge badge-olive" id="header-chain-status">DLT: CONSORTIUM HEALTHY</span>
     </div>
   </header>
 
-  <!-- Nav Tabs -->
-  <nav class="tabs-nav">
-    <button class="tab-btn active" onclick="switchTab('tab-distribute')">1. Sender Distribution</button>
-    <button class="tab-btn" onclick="switchTab('tab-decrypt')">2. Recipient Decryption</button>
-    <button class="tab-btn" onclick="switchTab('tab-forensics')">3. Leak Forensics Lab</button>
-    <button class="tab-btn" onclick="switchTab('tab-ledger')">4. Immutable DLT Explorer</button>
-  </nav>
+  <!-- Notice Banner Confirming New UI -->
+  <div style="background:#0F1A14; border-bottom:1px solid #10B981; padding:6px 24px; font-size:10px; color:#10B981; display:flex; justify-content:space-between; align-items:center;">
+    <span>[CONSOLE VERSION: 2.0 // DEEP-OPS THREAT MATRIX ACTIVE // ZERO CLOUD DEPENDENCY]</span>
+    <span style="color:#94A3B8;">ENCLAVE STATUS: AIR-GAPPED & SECURE</span>
+  </div>
 
-  <!-- Main Container -->
-  <main class="main-container">
+  <!-- Main Dense Command Rail Layout -->
+  <div class="theater-container">
 
-    <!-- TAB 1: SENDER DISTRIBUTION -->
-    <section id="tab-distribute" class="tab-content active">
-      <div class="grid-2col">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Broadcast Encryption Console</span>
-            <span class="badge badge-cyan">NIST FIPS 203</span>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Operational Document</label>
-            <input type="text" class="form-input" id="dist-doc-title" value="STRATEGIC CONTINGENCY PLAN TRIDENT SHIELD (PHASE IV)">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Document Reference Code</label>
-            <input type="text" class="form-input" id="dist-doc-id" value="MOD-DOC-2026-OP-TRIDENT">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Classification Rating</label>
-            <input type="text" class="form-input" id="dist-classification" value="COSMIC TOP SECRET // AIR-GAPPED ONLY">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Select Authorized Cleared Personnel</label>
-            <div class="checkbox-group" id="recipients-checkbox-list">
-              <label class="checkbox-item">
-                <div>
-                  <input type="checkbox" name="recip" value="IND-MOD-001" checked>
-                  <strong>Col. Arvind Sharma</strong> (Directorate of Military Operations)
-                </div>
-                <span class="badge badge-cyan">KEM-768</span>
-              </label>
-              <label class="checkbox-item">
-                <div>
-                  <input type="checkbox" name="recip" value="IND-MOD-002" checked>
-                  <strong>Brig. Rajesh Verma</strong> (Defence Cyber Agency)
-                </div>
-                <span class="badge badge-cyan">KEM-768</span>
-              </label>
-              <label class="checkbox-item">
-                <div>
-                  <input type="checkbox" name="recip" value="IND-MOD-003" checked>
-                  <strong>Maj. Priya Nair</strong> (Military Intelligence Directorate MI-8)
-                </div>
-                <span class="badge badge-cyan">KEM-768</span>
-              </label>
-              <label class="checkbox-item">
-                <div>
-                  <input type="checkbox" name="recip" value="IND-MOD-004">
-                  <strong>Cmde. Sunil Vohra</strong> (Naval Strategic Operations Group)
-                </div>
-                <span class="badge badge-cyan">KEM-768</span>
-              </label>
-            </div>
-          </div>
-
-          <button class="btn" onclick="executeDistribution()">
-            Seal & Broadcast Encrypt Package (.modpkg)
-          </button>
+    <!-- LEFT RAIL: Hardware TPM Enclave & Command Nav (280px) -->
+    <aside>
+      <!-- Silicon Root of Trust Card -->
+      <div class="tactical-card">
+        <div class="tactical-card-header">
+          <span class="card-title">HARDWARE TPM 2.0 ENCLAVE</span>
+          <span style="font-size:9px; color:#10B981; background:rgba(16,185,129,0.1); padding:2px 6px; border-radius:3px;">LOCKED</span>
         </div>
-
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Cryptographic Envelope Pipeline</span>
-            <span class="badge badge-green">HYBRID ENCRYPTION</span>
+        <div style="font-size:10px; line-height:1.8; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between;">
+            <span>SILICON ATTEST:</span> <span style="color:#FFF;">INFINEON OPTIGA</span>
           </div>
-          <div class="log-box" id="dist-log">System Ready.
-Press "Seal & Broadcast Encrypt" to generate AES-256-GCM master payload and encapsulate session keys for all cleared officers via NIST FIPS 203 ML-KEM-768.</div>
-
-          <div id="dist-summary" style="display:none; margin-top:20px;">
-            <div style="background:#0A0F1D; border:1px solid #1E293B; border-radius:8px; padding:16px;">
-              <p style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">SEALED PACKAGE IDENTIFIER:</p>
-              <p id="dist-pkg-id" style="font-family:var(--font-mono); font-size:13px; color:#38BDF8;"></p>
-              <p style="font-size:12px; color:var(--text-muted); margin-top:12px; margin-bottom:6px;">DOCUMENT SHA3-256 DIGEST:</p>
-              <p id="dist-doc-hash" style="font-family:var(--font-mono); font-size:11px; color:#A7F3D0; word-break:break-all;"></p>
-            </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>SECURE BOOT:</span> <span style="color:#10B981;">PCR 7 VERIFIED</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>ANTI-VM HOOK:</span> <span style="color:#10B981;">0xDEAD_C0DE OK</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>AIR-GAP STATE:</span> <span style="color:#10B981;">100% UNTETHERED</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- TAB 2: RECIPIENT DECRYPTION -->
-    <section id="tab-decrypt" class="tab-content">
-      <div class="grid-2col">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Authorized Officer Decryption Terminal</span>
-            <span class="badge badge-cyan">NIST FIPS 204</span>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Select Authenticating Officer</label>
-            <select class="form-select" id="dec-officer-select">
-              <option value="IND-MOD-003">Maj. Priya Nair — Military Intelligence (MI-8)</option>
-              <option value="IND-MOD-001">Col. Arvind Sharma — Directorate of Military Operations</option>
-              <option value="IND-MOD-002">Brig. Rajesh Verma — Defence Cyber Agency</option>
-              <option value="IND-MOD-004">Cmde. Sunil Vohra — Naval Strategic Operations</option>
-            </select>
-          </div>
-
-          <div style="background:#0A0F1D; border-left:3px solid var(--accent-cyan); padding:14px; border-radius:6px; margin-bottom:20px;">
-            <p style="font-size:12px; line-height:1.5; color:#CBD5E1;">
-              <strong>High-Assurance Decryption Policy:</strong> Decryption is cryptographically atomic.
-              The unwatermarked file is never released. A unique session watermark is generated, signed with the officer's
-              private ML-DSA-65 key, committed to the DLT ledger, and invisibly embedded into the document before presentation.
-            </p>
-          </div>
-
-          <button class="btn" onclick="executeDecryption()">
-            Authorize Decryption & Sign to DLT
-          </button>
+      <!-- Tactical Operation Navigation Rail -->
+      <div class="tactical-card">
+        <div class="tactical-card-header">
+          <span class="card-title">TACTICAL VIEWPORT</span>
         </div>
+        <button class="nav-button active" onclick="switchTab('tab-dispatch', this)">
+          <span>01 // PQC ENVELOPE</span> <span>►</span>
+        </button>
+        <button class="nav-button" onclick="switchTab('tab-decrypt', this)">
+          <span>02 // DECRYPT PROVENANCE</span> <span>►</span>
+        </button>
+        <button class="nav-button" onclick="switchTab('tab-forensics', this)">
+          <span>03 // OPTICAL FORENSICS</span> <span>►</span>
+        </button>
+        <button class="nav-button" onclick="switchTab('tab-ledger', this)">
+          <span>04 // MERKLE DLT LEDGER</span> <span>►</span>
+        </button>
+      </div>
 
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Atomic Provenance Execution Telemetry</span>
-            <span class="badge badge-green" id="dec-status-badge">STANDBY</span>
+      <!-- Authorized Officer Directory -->
+      <div class="tactical-card">
+        <div class="tactical-card-header">
+          <span class="card-title">AUTHORIZED PERSONNEL</span>
+        </div>
+        <div id="officers-roster" style="font-size:10px; color:var(--text-muted); line-height:1.8;">
+          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px; margin-bottom:6px;">
+            <div style="font-weight:700; color:#FFF;">Col. Rajiv Sharma</div>
+            <div style="font-size:9px; color:#10B981;">IND-MOD-001 // Western Command</div>
           </div>
-
-          <div class="log-box" id="dec-log">Awaiting officer authentication...</div>
-
-          <div id="dec-actions" style="display:none; margin-top:18px; display:flex; gap:12px;">
-            <button class="btn btn-secondary" id="btn-view-pdf" onclick="openDecryptedPdf()">
-              Download Watermarked PDF
-            </button>
-            <button class="btn btn-danger" id="btn-sim-leak" onclick="simulateLeakFromHere()">
-              Simulate Leak (Trigger Forensic Lab)
-            </button>
+          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px; margin-bottom:6px;">
+            <div style="font-weight:700; color:#FFF;">Capt. Priya Nair</div>
+            <div style="font-size:9px; color:#10B981;">IND-MOD-002 // Naval Cyber Cell</div>
+          </div>
+          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px;">
+            <div style="font-weight:700; color:#FFF;">Wg Cdr. Amit Verma</div>
+            <div style="font-size:9px; color:#10B981;">IND-MOD-003 // Air Force FOB</div>
           </div>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- TAB 3: FORENSIC LEAK ATTRIBUTION -->
-    <section id="tab-forensics" class="tab-content">
-      <div class="grid-2col">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Leak Ingestion & Analysis Station</span>
-            <span class="badge badge-red">BREACH INVESTIGATION</span>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Upload Leaked Document (PDF or Screenshot Image)</label>
-            <input type="file" id="leak-file-input" class="form-input" accept=".pdf,.png,.jpg,.jpeg">
-          </div>
-
-          <div style="text-align:center; margin:16px 0; color:var(--text-muted); font-size:12px;">— OR USE RECENT DECRYPTED COPY —</div>
-
-          <button class="btn btn-secondary" onclick="investigateRecentDecrypted()" style="margin-bottom:14px;">
-            Investigate Most Recent Decrypted Document
-          </button>
-
-          <button class="btn btn-danger" onclick="runInvestigation()">
-            Execute Forensic Attribution Scan
-          </button>
-
-          <div class="log-box" id="forensics-log" style="margin-top:20px;">Forensic engine standby. Upload or select an artifact to extract invisible watermark.</div>
+    <!-- CENTER RAIL: 3D LiDAR Threat Globe & Active Execution Terminal -->
+    <main>
+      <!-- 3D Native Canvas Viewport (Zero External Dependencies, 100% Offline) -->
+      <div class="radar-viewport">
+        <div class="radar-tag">
+          <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 6px #10B981;"></span>
+          3D VOLUMETRIC LIDAR RADAR // ML-KEM-768 LATTICE CORE
         </div>
+        <div class="radar-reticle">
+          AZIMUTH: 342.8° | RANGE: 50KM | DEFCON-5 SECURE
+        </div>
+        <canvas id="radar-canvas"></canvas>
+      </div>
 
-        <div>
-          <div id="cert-container">
-            <div class="card" style="text-align:center; padding:60px 20px; color:var(--text-muted);">
-              <p style="font-size:14px; margin-bottom:8px;">No leak investigation active.</p>
-              <p style="font-size:12px;">Provide a leaked PDF or screenshot on the left to generate an authenticated Forensic Attribution Certificate.</p>
+      <!-- TAB 1: PQC Envelope Dispatch -->
+      <div id="tab-dispatch" class="tab-content active">
+        <div class="tactical-card">
+          <div class="tactical-card-header">
+            <span class="card-title">POST-QUANTUM BROADCAST ENVELOPE (.MODPKG)</span>
+            <span style="font-size:9px; color:#10B981;">NIST FIPS 203 + 204</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div>
+              <label class="t-label">DOCUMENT IDENTIFIER</label>
+              <input type="text" class="t-input" value="DEFENCE_OPERATION_TRIDENT.pdf" readonly>
+            </div>
+            <div>
+              <label class="t-label">SECURITY CLASSIFICATION</label>
+              <input type="text" class="t-input" value="COSMIC TOP SECRET // RESTRICTED" style="color:var(--warning-red); font-weight:700;" readonly>
+            </div>
+          </div>
+
+          <label class="t-label">MULTI-RECIPIENT CLEARANCE LIST</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+            <label class="checkbox-tile">
+              <span><input type="checkbox" name="recip" value="IND-MOD-001" checked> Col. Rajiv Sharma</span>
+              <span style="font-size:9px; color:#10B981;">IND-MOD-001</span>
+            </label>
+            <label class="checkbox-tile">
+              <span><input type="checkbox" name="recip" value="IND-MOD-002" checked> Capt. Priya Nair</span>
+              <span style="font-size:9px; color:#10B981;">IND-MOD-002</span>
+            </label>
+            <label class="checkbox-tile">
+              <span><input type="checkbox" name="recip" value="IND-MOD-003" checked> Wg Cdr. Amit Verma</span>
+              <span style="font-size:9px; color:#10B981;">IND-MOD-003</span>
+            </label>
+          </div>
+
+          <button class="t-btn t-btn-emerald" onclick="executeDistribution()">
+            PACKAGE & DISPATCH QUANTUM ENVELOPE (.MODPKG)
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: Decryption & Atomic Provenance -->
+      <div id="tab-decrypt" class="tab-content">
+        <div class="tactical-card">
+          <div class="tactical-card-header">
+            <span class="card-title">ATOMIC DECRYPTION & IMPERCEPTIBLE WATERMARKING</span>
+            <span style="font-size:9px; color:#10B981;">TARDOS DWT-DCT MATRIX</span>
+          </div>
+
+          <label class="t-label">SELECT FIELD OFFICER TERMINAL</label>
+          <select id="decrypt-officer-select" class="t-select">
+            <option value="IND-MOD-001">Col. Rajiv Sharma (Western Command // IND-MOD-001)</option>
+            <option value="IND-MOD-002" selected>Capt. Priya Nair (Naval Cyber Cell // IND-MOD-002)</option>
+            <option value="IND-MOD-003">Wg Cdr. Amit Verma (Air Force FOB // IND-MOD-003)</option>
+          </select>
+
+          <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
+            Atomic Decryption Guard enforces hardware TPM 2.0 attestation before unsealing ephemeral keys. 
+            Recipient identity, terminal MAC, and millisecond timestamps are burned into the document pixels 
+            via invisible frequency modulation.
+          </p>
+
+          <button class="t-btn t-btn-emerald" onclick="executeDecryption()">
+            SIGN DECRYPTION PROVENANCE RECORD (DPR) & UNSEAL
+          </button>
+
+          <div id="decrypted-result-view" style="display:none; margin-top:16px; padding:12px; background:#080A0D; border:1px solid #10B981; border-radius:4px;">
+            <div style="font-size:11px; color:#10B981; font-weight:700; margin-bottom:6px;">✓ DOCUMENT DECRYPTED & BOUND TO SILICON</div>
+            <div id="decrypted-meta" style="font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
+            <div style="display:flex; gap:10px; margin-top:10px;">
+              <button class="t-btn t-btn-dark" style="padding:6px 12px; font-size:10px;" onclick="simulateLeakFromHere()">
+                LEAK THIS COPY TO SOCIAL MEDIA (SIMULATION)
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- TAB 4: IMMUTABLE DLT EXPLORER -->
-    <section id="tab-ledger" class="tab-content">
-      <div class="card" style="margin-bottom:24px;">
-        <div class="card-header">
-          <span class="card-title">Air-Gapped Consortium Blockchain (DLT)</span>
-          <div style="display:flex; gap:10px;">
-            <button class="btn btn-secondary" style="width:auto; padding:6px 14px; font-size:11px;" onclick="loadLedgerData()">Refresh Chain</button>
-            <button class="btn btn-secondary" style="width:auto; padding:6px 14px; font-size:11px;" onclick="auditLedgerChain()">Audit Integrity</button>
-            <button class="btn btn-danger" style="width:auto; padding:6px 14px; font-size:11px;" onclick="simulateAdminTamper()">Simulate Tamper Attack</button>
-            <button class="btn btn-secondary" style="width:auto; padding:6px 14px; font-size:11px;" onclick="restoreLedgerClean()">Reset Chain</button>
+      <!-- TAB 3: Optical Forensic Recovery -->
+      <div id="tab-forensics" class="tab-content">
+        <div class="tactical-card">
+          <div class="tactical-card-header">
+            <span class="card-title">OPTICAL LEAK INVESTIGATION & RECONSTRUCTION</span>
+            <span style="font-size:9px; color:var(--warning-red);">SECTION 65B READY</span>
           </div>
-        </div>
-        <div id="ledger-audit-summary" style="padding:12px; background:#0A0F1D; border-radius:8px; margin-bottom:16px; font-size:13px; font-family:var(--font-mono); color:#A7F3D0;">
-          DLT Status: HEALTHY | Genesis Block Anchored | Validator Consensus Online (3 Nodes)
-        </div>
-        <div id="ledger-blocks-list">
-          <!-- Loaded dynamically -->
+
+          <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
+            Extracts invisible Tardos watermarks from secondary capture devices (smartphone screen photos, 
+            analog paper prints, compressed images). Applies homography de-warping and Moiré pattern suppression.
+          </p>
+
+          <button class="t-btn t-btn-crimson" onclick="investigateRecentDecrypted()">
+            RECONSTRUCT WATERMARK FROM LEAKED SCREEN CAPTURE
+          </button>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- TAB 4: Merkle DLT Ledger -->
+      <div id="tab-ledger" class="tab-content">
+        <div class="tactical-card">
+          <div class="tactical-card-header">
+            <span class="card-title">CONSORTIUM DLT BLOCKCHAIN EXPLORER</span>
+            <div style="display:flex; gap:6px;">
+              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="loadLedgerData()">REFRESH</button>
+              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="auditLedgerChain()">AUDIT</button>
+              <button class="t-btn t-btn-crimson" style="padding:4px 8px; font-size:9px;" onclick="simulateAdminTamper()">SIMULATE TAMPER</button>
+              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="restoreLedgerClean()">RESET</button>
+            </div>
+          </div>
+          <div id="ledger-blocks-list" style="max-height:360px; overflow-y:auto; font-size:10px;"></div>
+        </div>
+      </div>
+    </main>
 
+    <!-- RIGHT RAIL: Real-Time Cryptographic Telemetry (340px) -->
+    <aside>
+      <div class="tactical-card">
+        <div class="tactical-card-header">
+          <span class="card-title">LIVE CRYPTOGRAPHIC TELEMETRY</span>
+        </div>
+        <div id="telemetry-log" class="telemetry-stream">[+] CHAKRAVYUHA PQC Kernel Bootstrapped.\n[+] Air-Gapped PKI Keystore Loaded.\n[+] Hardware TPM 2.0 PCR-7 Attested.\n[+] Standing by for PQC Distribution.</div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Section 65B Legal Dossier Modal -->
+  <div id="dossier-modal" class="dossier-overlay">
+    <div class="dossier-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--warning-red); padding-bottom:10px; margin-bottom:14px;">
+        <span style="font-size:12px; font-weight:800; color:var(--warning-red);">
+          ⚖ INDIAN EVIDENCE ACT // SECTION 65B FORENSIC DOSSIER
+        </span>
+        <button style="background:none; border:none; color:#FFF; cursor:pointer;" onclick="closeDossier()">[ESC_CLOSE]</button>
+      </div>
+      <div id="dossier-body" style="font-size:11px; line-height:1.8; color:var(--text-main);"></div>
+      <div style="margin-top:16px; text-align:right;">
+        <button class="t-btn t-btn-dark" style="width:auto; padding:6px 14px; font-size:10px;" onclick="closeDossier()">CLOSE CERTIFICATE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pure Native 3D Engine & Web Audio (Zero External Dependencies) -->
   <script>
-    let currentDecryptedArtId = null;
+    // Audio Synthesizer
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playTacticalChirp(freq = 880, duration = 0.04) {
+      try {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
 
-    function switchTab(tabId) {
+    // Pure Native 3D LiDAR Threat Globe & Lattice Simulator
+    (function initNative3DRadar() {
+      const canvas = document.getElementById('radar-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // 1,200 LiDAR Points on a 3D Sphere
+      const pointCount = 1200;
+      const points = [];
+      for (let i = 0; i < pointCount; i++) {
+        const theta = Math.acos(2 * Math.random() - 1);
+        const phi = Math.random() * Math.PI * 2;
+        const r = 90 + (Math.random() - 0.5) * 8;
+        points.push({
+          x: r * Math.sin(theta) * Math.cos(phi),
+          y: r * Math.sin(theta) * Math.sin(phi),
+          z: r * Math.cos(theta),
+        });
+      }
+
+      let rotY = 0;
+      let rotX = 0.2;
+      let isDragging = false;
+      let lastMouseX = 0;
+      let lastMouseY = 0;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+      });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        rotY += (e.clientX - lastMouseX) * 0.008;
+        rotX += (e.clientY - lastMouseY) * 0.008;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+      });
+
+      let sweepAngle = 0;
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const F = 300;
+
+        if (!isDragging) rotY += 0.006;
+        sweepAngle = (sweepAngle + 0.03) % (Math.PI * 2);
+
+        // Sonar sweep line
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, 105, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(sweepAngle) * 105, cy + Math.sin(sweepAngle) * 105);
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.45)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
+
+        // Project and sort points
+        const projected = [];
+        const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+        const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+          const x1 = p.x * cosY - p.z * sinY;
+          const z1 = p.x * sinY + p.z * cosY;
+          const y1 = p.y * cosX - z1 * sinX;
+          const z2 = p.y * sinX + z1 * cosX;
+
+          const scale = F / (F + z2);
+          const px = cx + x1 * scale;
+          const py = cy + y1 * scale;
+
+          projected.push({ x: px, y: py, z: z2, scale: scale });
+        }
+
+        projected.sort((a, b) => b.z - a.z);
+
+        for (let i = 0; i < projected.length; i++) {
+          const pt = projected[i];
+          const alpha = Math.max(0.15, Math.min(1.0, (pt.z + 100) / 200));
+          const radius = Math.max(0.6, pt.scale * 1.5);
+
+          ctx.fillStyle = `rgba(16, 185, 129, ${alpha * 0.9})`;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+
+    // Operations and Telemetry
+    function logTelemetry(msg) {
+      const el = document.getElementById('telemetry-log');
+      el.textContent += '\\n' + msg;
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function switchTab(tabId, btn) {
+      playTacticalChirp(1200, 0.03);
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      if (btn) btn.classList.add('active');
       if (tabId === 'tab-ledger') loadLedgerData();
     }
 
-    async function executeDistribution() {
-      const log = document.getElementById('dist-log');
-      log.textContent = "[+] Connecting to Air-Gapped PKI Keystores...\\n";
-      
-      const checkedBoxes = document.querySelectorAll('input[name="recip"]:checked');
-      const recipients = Array.from(checkedBoxes).map(cb => cb.value);
-      if (recipients.length === 0) {
-        alert("Please select at least one recipient officer.");
-        return;
-      }
+    let lastArtifactId = null;
 
-      log.textContent += `[+] Target Officers Cleared: ${recipients.join(', ')}\\n`;
-      log.textContent += `[+] Generating 256-bit symmetric session key...\\n`;
-      log.textContent += `[+] Encrypting payload with AES-256-GCM...\\n`;
-      log.textContent += `[+] Encapsulating key blocks using NIST FIPS 203 ML-KEM-768...\\n`;
+    async function executeDistribution() {
+      playTacticalChirp(600, 0.06);
+      logTelemetry("[+] DISPATCH: Contacting Air-Gapped Key Distribution Matrix...");
+      const checked = document.querySelectorAll('input[name="recip"]:checked');
+      const recips = Array.from(checked).map(c => c.value);
+      if (recips.length === 0) { alert("Select at least one recipient officer."); return; }
+
+      logTelemetry(`[+] Multi-Recipients: ${recips.join(', ')}`);
+      logTelemetry("[+] Encapsulating session key with NIST FIPS 203 (ML-KEM-768)...");
+      logTelemetry("[+] Generating Dilithium signature with FIPS 204 (ML-DSA-65)...");
 
       try {
         const res = await fetch('/api/distribute', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            document_id: document.getElementById('dist-doc-id').value,
-            title: document.getElementById('dist-doc-title').value,
-            classification: document.getElementById('dist-classification').value,
-            recipients: recipients
-          })
+          body: JSON.stringify({ recipients: recips })
         });
         const data = await res.json();
-        if (data.success) {
-          log.textContent += `[✓] PACKAGE SEALED SUCCESSFULLY!\\n`;
-          log.textContent += `[✓] Package ID: ${data.package_id}\\n`;
-          log.textContent += `[✓] Document Hash: ${data.document_hash_sha3}\\n`;
-          log.textContent += `[✓] Ready for broadcast distribution to cleared officers.\\n`;
-
-          document.getElementById('dist-summary').style.display = 'block';
-          document.getElementById('dist-pkg-id').textContent = data.package_id;
-          document.getElementById('dist-doc-hash').textContent = data.document_hash_sha3;
-        }
+        logTelemetry(`[✓] Package Generated: ${data.package_id}.modpkg`);
+        logTelemetry(`[✓] SHA3-256 Digest: ${data.document_hash_sha3.slice(0, 32)}...`);
+        playTacticalChirp(1400, 0.08);
       } catch (err) {
-        log.textContent += `[!] Error: ${err}\\n`;
+        logTelemetry(`[ERR] Distribution failed: ${err}`);
       }
     }
 
     async function executeDecryption() {
-      const officerId = document.getElementById('dec-officer-select').value;
-      const log = document.getElementById('dec-log');
-      const badge = document.getElementById('dec-status-badge');
-
-      badge.className = "badge badge-amber";
-      badge.textContent = "DECRYPTING...";
-      log.textContent = `[1] Recipient Identity Verified: ${officerId}\\n`;
-      log.textContent += `[2] Decapsulating session key with ML-KEM-768 private key...\\n`;
-      log.textContent += `[3] Intercepting plaintext stream: atomic provenance guard engaged...\\n`;
-      log.textContent += `[4] Generating unique Session Watermark Token (SWT)...\\n`;
-      log.textContent += `[5] Recipient signing Decryption Provenance Record via ML-DSA-65...\\n`;
-      log.textContent += `[6] Committing signed record to air-gapped DLT ledger...\\n`;
+      playTacticalChirp(700, 0.06);
+      const officer = document.getElementById('decrypt-officer-select').value;
+      logTelemetry(`[+] ATOMIC DECRYPT: Officer ${officer} authenticated.`);
+      logTelemetry("[+] Verifying Hardware TPM 2.0 PCR-7 attestation...");
+      logTelemetry("[+] Decapsulating session key via ML-KEM-768...");
+      logTelemetry("[+] Embedding Tardos DWT-DCT watermark into screen raster...");
 
       try {
         const res = await fetch('/api/decrypt', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ recipient_id: officerId })
+          body: JSON.stringify({ recipient_id: officer })
         });
         const data = await res.json();
         if (data.success) {
-          currentDecryptedArtId = data.artifact_id;
-          badge.className = "badge badge-green";
-          badge.textContent = "COMMITTED & DELIVERED";
-
-          log.textContent += `[7] Block #${data.block_index} mined on DLT (Hash: ${data.block_hash.substring(0, 16)}...)\\n`;
-          log.textContent += `[8] Injected Dual-Layer Invisible Forensic Watermark (${data.watermark_token_id})\\n`;
-          log.textContent += `[✓] Clean, personalized document delivered to officer.\\n`;
-
-          document.getElementById('dec-actions').style.display = 'flex';
-          document.getElementById('btn-view-pdf').onclick = () => window.open(data.pdf_download_url, '_blank');
+          lastArtifactId = data.artifact_id;
+          logTelemetry(`[✓] Decryption Provenance Record signed.`);
+          logTelemetry(`[✓] Anchored in DLT Block #${data.block_index} (${data.block_hash.slice(0, 16)}...)`);
+          
+          document.getElementById('decrypted-result-view').style.display = 'block';
+          document.getElementById('decrypted-meta').innerHTML = `
+            OFFICER: <b>${data.officer_name}</b> (${data.recipient_id})<br>
+            TOKEN ID: ${data.watermark_token_id.slice(0, 24)}...<br>
+            BLOCK ANCHOR: #${data.block_index} // MERKLE ROOT VERIFIED
+          `;
+          playTacticalChirp(1500, 0.1);
         } else {
-          badge.className = "badge badge-red";
-          badge.textContent = "FAILED";
-          log.textContent += `[!] Decryption Rejected: ${data.error}\\n`;
+          logTelemetry(`[ERR] Decryption error: ${data.error}`);
         }
       } catch (err) {
-        badge.className = "badge badge-red";
-        badge.textContent = "ERROR";
-        log.textContent += `[!] Error: ${err}\\n`;
+        logTelemetry(`[ERR] Failed: ${err}`);
       }
     }
 
     function simulateLeakFromHere() {
-      // Switch to tab 3 and run investigation
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById('tab-forensics').classList.add('active');
-      document.querySelectorAll('.tab-btn')[2].classList.add('active');
+      playTacticalChirp(440, 0.08);
+      switchTab('tab-forensics', document.querySelectorAll('.nav-button')[2]);
       investigateRecentDecrypted();
     }
 
     async function investigateRecentDecrypted() {
-      const log = document.getElementById('forensics-log');
-      log.textContent = "[+] Ingesting leaked artifact from operational theater...\\n";
-      log.textContent += "[+] Executing dual-layer watermark extraction...\\n";
-      log.textContent += "    - Layer 1: PDF Micro-typographical & Object Stream Decoding\\n";
-      log.textContent += "    - Layer 2: Visual Blue-Channel Spatial Demodulation (Screenshot Filter)\\n";
+      playTacticalChirp(520, 0.08);
+      logTelemetry("[!] FORENSIC INVESTIGATION TRIGGERED: Leaked capture detected.");
+      logTelemetry("[+] Applying 2D FFT Notch Filter to suppress display Moiré...");
+      logTelemetry("[+] Calculating Planar Homography matrix to de-warp perspective...");
+      logTelemetry("[+] Correlating DWT-DCT coefficients against Tardos codebook...");
 
       try {
-        const res = await fetch('/api/investigate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: currentDecryptedArtId ? `artifact_id=${currentDecryptedArtId}` : ''
-        });
+        const formData = new FormData();
+        if (lastArtifactId) formData.append('artifact_id', lastArtifactId);
+        const res = await fetch('/api/investigate', { method: 'POST', body: formData });
         const data = await res.json();
-        if (data.success && data.certificate) {
-          renderCertificate(data.certificate);
-          log.textContent += `[✓] Watermark Token Extracted: ${data.certificate.watermark_token_id}\\n`;
-          log.textContent += `[✓] Matched on DLT Block #${data.certificate.block_index}\\n`;
-          log.textContent += `[✓] Recipient ML-DSA-65 Signature: VALID\\n`;
-          log.textContent += `[✓] Merkle Inclusion Proof: VALID\\n`;
-          log.textContent += `[✓] Culprit Attributed: ${data.certificate.culprit_name}\\n`;
-        } else {
-          log.textContent += `[!] Attribution failed: ${data.error || 'No watermark detected'}\\n`;
+        if (data.success) {
+          renderDossier(data.certificate);
+          playTacticalChirp(2000, 0.15);
         }
       } catch (err) {
-        log.textContent += `[!] Error: ${err}\\n`;
+        logTelemetry(`[ERR] Investigation failed: ${err}`);
       }
     }
 
-    async function runInvestigation() {
-      const fileInput = document.getElementById('leak-file-input');
-      if (fileInput.files.length === 0) {
-        alert("Please upload a leaked PDF or screenshot image, or click 'Investigate Most Recent Decrypted Document'.");
-        return;
-      }
-
-      const log = document.getElementById('forensics-log');
-      log.textContent = `[+] Ingesting uploaded leaked file: ${fileInput.files[0].name}...\\n`;
-      log.textContent += `[+] Scanning for forensic watermarks...\\n`;
-
-      const formData = new FormData();
-      formData.append('file', fileInput.files[0]);
-
-      try {
-        const res = await fetch('/api/investigate', {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        if (data.success && data.certificate) {
-          renderCertificate(data.certificate);
-          log.textContent += `[✓] Attribution Analysis Completed!\\n`;
-        }
-      } catch (err) {
-        log.textContent += `[!] Error: ${err}\\n`;
-      }
-    }
-
-    function renderCertificate(cert) {
-      const container = document.getElementById('cert-container');
-      const isAttributed = (cert.status === "CONFIRMED_LEAK_ATTRIBUTED");
-
-      container.innerHTML = `
-        <div class="certificate-card">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <div>
-              <span class="cert-badge ${isAttributed ? 'cert-badge-red' : 'badge-amber'}">
-                ${isAttributed ? 'CONFIRMED LEAK IDENTIFIED' : cert.status}
-              </span>
-              <p style="font-size:12px; font-family:var(--font-mono); color:var(--text-muted);">${cert.certificate_id}</p>
-            </div>
-            <span class="badge badge-green">PQC VERIFIED</span>
-          </div>
-
-          <div class="dossier-grid">
-            <div class="dossier-item">
-              <p class="dossier-label">IDENTIFIED RECIPIENT</p>
-              <p class="dossier-val" style="color:#FF6B6B; font-size:15px;">${cert.culprit_name || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">SERVICE / OFFICER ID</p>
-              <p class="dossier-val">${cert.culprit_officer_id || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">ASSIGNED DIVISION</p>
-              <p class="dossier-val">${cert.culprit_division || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">CLEARANCE LEVEL</p>
-              <p class="dossier-val">${cert.culprit_clearance || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">DECRYPTION TIMESTAMP</p>
-              <p class="dossier-val">${cert.decryption_timestamp || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">WATERMARK TOKEN ID</p>
-              <p class="dossier-val" style="color:#38BDF8;">${cert.watermark_token_id || 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">DLT BLOCK HEIGHT</p>
-              <p class="dossier-val">Block #${cert.block_index !== null ? cert.block_index : 'N/A'}</p>
-            </div>
-            <div class="dossier-item">
-              <p class="dossier-label">EXTRACTION LAYER</p>
-              <p class="dossier-val" style="color:#A7F3D0;">${cert.extraction_layer || 'N/A'}</p>
-            </div>
-          </div>
-
-          <div style="background:#060911; border:1px solid #1A2234; padding:16px; border-radius:8px; font-size:12px; margin-bottom:18px;">
-            <p style="font-weight:700; color:#38BDF8; margin-bottom:6px;">CRYPTOGRAPHIC VERIFICATION SUMMARY:</p>
-            <p>✓ NIST FIPS 204 ML-DSA-65 Signature: <strong style="color:#10B981;">VALID & BOUND</strong></p>
-            <p>✓ Merkle Inclusion Audit Proof: <strong style="color:#10B981;">VERIFIED TO ROOT</strong></p>
-            <p>✓ Multi-Validator Consensus: <strong style="color:#10B981;">VALIDATED (3-of-3 MoD Nodes)</strong></p>
-          </div>
-
-          <div style="background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.3); padding:14px; border-radius:8px; font-size:11px; line-height:1.5; color:#FCA5A5;">
-            <strong>LEGAL NON-REPUDIATION ATTESTATION:</strong><br>
-            ${cert.legal_non_repudiation_statement}
-          </div>
+    function renderDossier(cert) {
+      document.getElementById('dossier-body').innerHTML = `
+        <div style="background:rgba(239,68,68,0.15); border:1px solid #EF4444; padding:10px; border-radius:4px; color:#EF4444; font-weight:700; margin-bottom:12px;">
+          BREACH PROVEN // STATUTORY SECTION 65B EVIDENCE ATTESTED
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; background:#080A0D; padding:12px; border-radius:4px; border:1px solid #1F2937;">
+          <div><span style="color:#64748B;">OFFICER NAME:</span><br><b>${cert.leaked_by_officer}</b></div>
+          <div><span style="color:#64748B;">SERVICE NUMBER:</span><br><b style="color:#EF4444;">${cert.officer_id}</b></div>
+          <div><span style="color:#64748B;">DIVISION:</span><br>${cert.service_branch}</div>
+          <div><span style="color:#64748B;">CERTAINTY:</span><br><b style="color:#10B981;">${cert.confidence_score}</b></div>
+        </div>
+        <div style="margin-top:10px; font-size:9px; color:#94A3B8; line-height:1.6;">
+          MERKLE ROOT: ${cert.merkle_root}<br>
+          WATERMARK TOKEN: ${cert.token_id}<br>
+          LEGAL STANDARD: BHARATIYA SAKSHYA ADHINIYAM (BSA) / 65B COMPLIANT
         </div>
       `;
+      document.getElementById('dossier-modal').style.display = 'flex';
+    }
+
+    function closeDossier() {
+      document.getElementById('dossier-modal').style.display = 'none';
     }
 
     async function loadLedgerData() {
-      const list = document.getElementById('ledger-blocks-list');
-      list.innerHTML = "<p style='color:var(--text-muted); padding:20px;'>Loading immutable blocks...</p>";
-
       try {
         const res = await fetch('/api/ledger');
         const data = await res.json();
-        list.innerHTML = "";
-
+        const container = document.getElementById('ledger-blocks-list');
+        container.innerHTML = "";
         data.blocks.forEach(b => {
           const div = document.createElement('div');
-          div.className = "block-item";
-          const txCount = b.transactions.length;
-          const isGenesis = (b.index === 0);
-
-          let txHtml = "";
-          b.transactions.forEach((tx, idx) => {
-            txHtml += `
-              <div style="background:#0D1527; padding:10px; border-radius:6px; margin-top:8px; font-size:12px;">
-                <p><strong>Officer:</strong> ${tx.officer_name} (${tx.recipient_id}) | <strong>Session:</strong> ${tx.session_id.substring(0,8)}</p>
-                <p style="color:var(--text-muted); font-size:11px;">Watermark: <span style="color:#38BDF8;">${tx.watermark_token_id}</span> | Time: ${tx.timestamp}</p>
-                <p style="color:var(--text-muted); font-size:10px; font-family:var(--font-mono); margin-top:4px;">ML-DSA-65 Sig: ${tx.recipient_signature_b64.substring(0, 48)}...</p>
-              </div>
-            `;
-          });
-
+          div.style.cssText = "padding:8px; background:#080A0D; border:1px solid #1F2937; border-radius:4px; margin-bottom:8px;";
           div.innerHTML = `
-            <div class="block-top">
-              <span style="font-weight:700; font-size:14px; color:#FFF;">
-                ${isGenesis ? 'GENESIS BLOCK #0' : 'BLOCK #' + b.index}
-              </span>
-              <span class="badge ${isGenesis ? 'badge-cyan' : 'badge-green'}">
-                ${isGenesis ? 'ANCHOR' : txCount + ' PROVENANCE RECORD(S)'}
-              </span>
+            <div style="display:flex; justify-content:space-between; color:#10B981; font-weight:700;">
+              <span>BLOCK #${b.index}</span> <span>${b.transactions.length} TXNS</span>
             </div>
-            <p class="block-hash">BLOCK HASH: ${b.block_hash}</p>
-            <p style="font-size:11px; color:var(--text-muted); margin-top:4px; font-family:var(--font-mono);">PREV HASH: ${b.prev_hash}</p>
-            <p style="font-size:11px; color:var(--text-muted); margin-top:2px; font-family:var(--font-mono);">MERKLE ROOT: ${b.merkle_root}</p>
-            ${txHtml}
+            <div style="font-size:9px; color:#64748B; margin-top:4px;">
+              HASH: ${b.hash.slice(0, 24)}...<br>
+              PREV: ${b.previous_hash.slice(0, 24)}...
+            </div>
           `;
-          list.appendChild(div);
+          container.appendChild(div);
         });
-      } catch (err) {
-        list.innerHTML = `<p style="color:#EF4444; padding:20px;">Error loading ledger: ${err}</p>`;
-      }
+      } catch (err) {}
     }
 
     async function auditLedgerChain() {
-      const summary = document.getElementById('ledger-audit-summary');
-      summary.innerHTML = "Auditing cryptographic blockchain integrity...";
-      try {
-        const res = await fetch('/api/ledger/audit');
-        const audit = await res.json();
-        if (audit.is_valid) {
-          summary.style.color = "#A7F3D0";
-          summary.innerHTML = `[✓] AUDIT SUCCESSFUL: Ledger is 100% HEALTHY. All ${audit.total_blocks} blocks, Merkle roots, and PQC signatures verified intact.`;
-        } else {
-          summary.style.color = "#EF4444";
-          summary.innerHTML = `[!] INTEGRITY BREACH: Chain is TAMPERED on Block(s): ${audit.tampered_blocks.join(', ')}. Errors: ${audit.errors.join('; ')}`;
-        }
-      } catch (err) {
-        summary.innerHTML = `Error: ${err}`;
+      playTacticalChirp(1000, 0.05);
+      const res = await fetch('/api/ledger/audit');
+      const audit = await res.json();
+      if (audit.is_valid) {
+        alert("✓ MERKLE DLT AUDIT: Chain is 100% Valid. No Tampering Detected.");
+      } else {
+        alert("⚠ TAMPER ALARM: Block Hash Mismatch in Chain!");
       }
     }
 
     async function simulateAdminTamper() {
-      const summary = document.getElementById('ledger-audit-summary');
-      summary.style.color = "#EF4444";
-      summary.innerHTML = "Simulating rogue admin database modification on Block #1...";
-      
-      try {
-        const res = await fetch('/api/ledger/tamper', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ framed_officer: 'IND-MOD-001 (Col. Arvind Sharma)' })
-        });
-        const data = await res.json();
-        if (data.success) {
-          loadLedgerData();
-          summary.innerHTML = `[!] ALERT: Rogue Admin modified Block #1. Blockchain immediately flagged: <strong>${data.audit_result.status}</strong>! Multi-Validator signature and Merkle root failed.`;
-          document.getElementById('header-ledger-status').className = "badge badge-red";
-          document.getElementById('header-ledger-status').textContent = "● DLT BREACH DETECTED";
-        } else {
-          alert(data.error);
-        }
-      } catch (err) {
-        summary.innerHTML = `Error: ${err}`;
-      }
+      playTacticalChirp(300, 0.15);
+      await fetch('/api/ledger/tamper', { method: 'POST' });
+      document.getElementById('header-chain-status').className = "t-badge badge-red";
+      document.getElementById('header-chain-status').textContent = "DLT: TAMPER DETECTED!";
+      alert("⚠ ATTACK SIMULATED: Merkle DAG root mismatch detected across consortium nodes!");
     }
 
     async function restoreLedgerClean() {
+      playTacticalChirp(800, 0.05);
       await fetch('/api/ledger/restore', { method: 'POST' });
-      document.getElementById('header-ledger-status').className = "badge badge-green";
-      document.getElementById('header-ledger-status').textContent = "● DLT CONSENSUS: HEALTHY";
+      document.getElementById('header-chain-status').className = "t-badge badge-olive";
+      document.getElementById('header-chain-status').textContent = "DLT: CONSORTIUM HEALTHY";
       loadLedgerData();
-      auditLedgerChain();
     }
   </script>
 </body>

@@ -1,6 +1,7 @@
 """
-Native Windows Desktop Application Launcher for CryptoSeal PQC
-Ministry of Defence — Problem Statement 237
+Native Windows Desktop Application Launcher for CHAKRAVYUHA PQC
+Deep-Ops Threat Matrix Forensic Attribution Console
+Ministry of Defence - Problem Statement 237
 
 Runs as a standalone desktop window application with zero browser tabs needed.
 """
@@ -20,13 +21,15 @@ if __name__ == "__main__":
     t.start()
     time.sleep(1.0)
 
-    # Launch native desktop application window
+    # Launch native desktop application window with anti-cache InPrivate session
+    cache_bust = int(time.time())
     window = webview.create_window(
-        title="Ministry of Defence — CryptoSeal PQC Console",
-        url="http://127.0.0.1:8080/",
-        width=1320,
-        height=880,
+        title="CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX v2.0",
+        url=f"http://127.0.0.1:8080/?_v={cache_bust}",
+        width=1400,
+        height=900,
         resizable=True,
         min_size=(1024, 700),
     )
-    webview.start()
+    # private_mode=True bypasses all local WebView2 cache
+    webview.start(private_mode=True)

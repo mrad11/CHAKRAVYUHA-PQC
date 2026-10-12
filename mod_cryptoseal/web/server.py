@@ -319,6 +319,9 @@ from .index_html import get_dashboard_html
 
 @app.route("/")
 def index():
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     return get_dashboard_html()
 
 
