@@ -14,7 +14,7 @@
 
 ---
 
-## 📌 Executive Summary
+## 📌 Summary
 
 Sensitive defense plans, troop movement maps, and tactical directives are distributed under a **broadcast-encrypt, individually-decrypt** model: a sender encrypts a document once and delivers it to a group of cleared officers.
 
