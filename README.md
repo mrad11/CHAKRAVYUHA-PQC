@@ -1,12 +1,5 @@
 # 🛡️ CHAKRAVYUHA PQC: Sovereign Post-Quantum Cryptographic Attribution & Immutable Decryption Provenance
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Ministry_of_Defence-SIH_PS_237-0A84FF?style=for-the-badge&logo=shield" alt="MoD SIH PS 237" />
-  <img src="https://img.shields.io/badge/Defense_Readiness-TRL_6_Operational_Prototype-00C853?style=for-the-badge" alt="TRL 6" />
-  <img src="https://img.shields.io/badge/NIST_Standards-FIPS_203_%2F_204_Compliant-FF9100?style=for-the-badge" alt="NIST PQC" />
-  <img src="https://img.shields.io/badge/Environment-100%25_Air--Gapped_Offline-7928CA?style=for-the-badge" alt="100% Air-Gapped" />
-  <img src="https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge" alt="License" />
-</p>
 
 <p align="center">
   <strong>Cryptographic Attribution and Immutable Decryption Provenance for Multi-Recipient Encrypted Document Distribution in 100% Air-Gapped Military Networks.</strong>
