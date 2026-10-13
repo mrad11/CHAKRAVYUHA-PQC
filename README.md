@@ -127,8 +127,4 @@ tests/test_e2e.py::test_full_attribution_pipeline PASSED               [100%]
 3. **India Code (Ministry of Law and Justice)**: [Section 65B Electronic Records Admissibility](https://www.indiacode.nic.in/).
 4. **CERT-In (MeitY)**: [National Cyber Security Guidelines for Critical Defense Infrastructure](https://www.cert-in.org.in/).
 
----
 
-## 📄 License & Attribution
-
-Distributed under the **Apache License 2.0**. Developed for the **Smart India Hackathon (SIH 2024)** under Ministry of Defence Problem Statement 237.
