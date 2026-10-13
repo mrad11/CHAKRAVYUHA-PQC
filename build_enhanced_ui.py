@@ -1,7 +1,10 @@
 """
-Build script for CHAKRAVYUHA PQC Enhanced Deep-Ops Threat Matrix v2.0 Console
-Generates mod_cryptoseal/web/index_html.py, LAUNCH_PORTAL.html, and index.html
-with complete implementation of all 7 elite defence capabilities.
+Build script for CHAKRAVYUHA PQC Titanium-Gold Enclave UI
+Awwwards / Aerospace Defense Grade UI Theme:
+- Titanium-Gold Sovereign Enclave Palette (Titanium Carbon #0A0D14, Brushed Steel, Champagne Gold #D4AF37, Sapphire Laser #38BDF8)
+- Clean Viewpoint Navigation (Removed all numbers and '//')
+- Multi-Layer 3D Golden Quantum Chakravyuha Gyroscope Canvas
+- Refined Typography (Clean Segoe UI / San Francisco for UI elements, JetBrains/Consolas for Telemetry)
 """
 
 import os
@@ -11,7 +14,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX v2.0</title>
+  <title>CHAKRAVYUHA PQC — Sovereign Defense Cryptographic Enclave</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" href="__ICON_DATA_URI__">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -19,220 +22,299 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
   <style>
     :root {
-      --bg-abyssal: #080A0D;
-      --bg-surface: #0C1017;
-      --bg-elevated: #111827;
-      --border-steel: #1F2937;
-      --border-accent: #10B981;
-      --phosphor-emerald: #10B981;
-      --phosphor-dark: #059669;
-      --night-vision-olive: #1F2937;
-      --warning-red: #EF4444;
-      --telemetry-amber: #F59E0B;
-      --text-main: #E2E8F0;
+      --bg-titanium: #0A0D14;
+      --bg-surface: #101522;
+      --bg-elevated: #151B2B;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --gold-primary: #D4AF37;
+      --gold-glow: #F59E0B;
+      --gold-light: #FDE68A;
+      --sapphire-cyan: #38BDF8;
+      --emerald-accent: #10B981;
+      --crimson-alert: #F43F5E;
+      --text-platinum: #F8FAFC;
       --text-muted: #94A3B8;
       --text-dim: #64748B;
-      --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+      --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
-      background-color: var(--bg-abyssal);
-      color: var(--text-main);
-      font-family: var(--font-mono);
+      background-color: var(--bg-titanium);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
+        linear-gradient(rgba(10, 13, 20, 0.96), rgba(10, 13, 20, 0.96));
+      color: var(--text-platinum);
+      font-family: var(--font-ui);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      letter-spacing: -0.01em;
     }
 
-    /* CRT Phosphor Scanline Overlay */
-    body::before {
-      content: " ";
+    /* Subtle Aerospace Carbon Grid Overlay */
+    body::after {
+      content: "";
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: linear-gradient(rgba(18, 22, 28, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
-      background-size: 100% 3px;
-      z-index: 999;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
       pointer-events: none;
-      opacity: 0.55;
+      z-index: 1;
     }
 
     /* Top Command Header */
     .command-header {
-      background: rgba(8, 10, 13, 0.98);
-      border-bottom: 2px solid var(--phosphor-dark);
-      padding: 12px 24px;
+      background: rgba(16, 21, 34, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 14px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.8);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     .brand-section {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .brand-sigil {
-      width: 44px; height: 44px;
-      border: 2px solid var(--phosphor-emerald);
-      border-radius: 6px;
+      width: 48px; height: 48px;
+      border: 2px solid var(--gold-primary);
+      border-radius: 8px;
       object-fit: cover;
       display: block;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .brand-sigil:hover {
+      transform: scale(1.04);
     }
 
     .brand-meta h1 {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       color: #FFF;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+    }
+
+    .brand-meta h1 span.badge-mod {
+      font-size: 10px;
+      padding: 2px 8px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .brand-meta p {
       font-size: 11px;
-      color: var(--phosphor-emerald);
-      letter-spacing: 1px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+      font-family: var(--font-mono);
     }
 
     .telemetry-badges {
       display: flex;
       gap: 10px;
+      align-items: center;
     }
 
     .t-badge {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-steel);
-      padding: 5px 12px;
-      border-radius: 3px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      background: rgba(21, 27, 43, 0.9);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      color: var(--text-muted);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      font-family: var(--font-mono);
+    }
+
+    .badge-gold {
+      border-color: rgba(212, 175, 55, 0.4);
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .badge-cyan {
+      border-color: rgba(56, 189, 248, 0.35);
+      color: var(--sapphire-cyan);
+      background: rgba(56, 189, 248, 0.06);
     }
 
     .badge-emerald {
-      border-color: var(--phosphor-dark);
-      color: var(--phosphor-emerald);
-    }
-
-    .badge-olive {
-      border-color: var(--border-steel);
-      color: var(--text-muted);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--emerald-accent);
+      background: rgba(16, 185, 129, 0.06);
     }
 
     .badge-red {
-      border-color: var(--warning-red);
-      color: var(--warning-red);
+      border-color: rgba(244, 63, 94, 0.4);
+      color: var(--crimson-alert);
+      background: rgba(244, 63, 94, 0.08);
+    }
+
+    /* Sub-Banner */
+    .status-ribbon {
+      background: linear-gradient(90deg, #101522 0%, #151D2F 50%, #101522 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 7px 28px;
+      font-size: 11px;
+      color: var(--gold-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-weight: 600;
     }
 
     /* Main Grid Layout */
     .theater-container {
       display: grid;
       grid-template-columns: 290px 1fr 340px;
-      gap: 16px;
-      padding: 16px 24px;
-      min-height: calc(100vh - 80px);
+      gap: 18px;
+      padding: 20px 28px;
+      min-height: calc(100vh - 90px);
+      position: relative;
+      z-index: 2;
     }
 
     @media (max-width: 1280px) {
       .theater-container {
-        grid-template-columns: 260px 1fr;
+        grid-template-columns: 270px 1fr;
       }
       .right-rail { display: none; }
     }
 
     /* Tactical Cards */
     .tactical-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-steel);
-      border-radius: 4px;
-      padding: 14px;
-      margin-bottom: 14px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      background: linear-gradient(145deg, #121826 0%, #0D131E 100%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
       position: relative;
+      transition: border-color 0.2s ease;
+    }
+
+    .tactical-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
     }
 
     .tactical-card::after {
       content: "";
       position: absolute;
       top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: var(--phosphor-dark);
-      opacity: 0.4;
+      width: 3px; height: 100%;
+      background: var(--gold-primary);
+      opacity: 0.6;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
 
     .tactical-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-steel);
-      padding-bottom: 8px;
-      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .card-title {
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       color: #FFF;
       text-transform: uppercase;
+      font-family: var(--font-mono);
     }
 
-    /* Nav Buttons */
-    .nav-button {
+    /* Viewpoint Navigation Buttons (Cleaned - No // or Numbers) */
+    .viewpoint-button {
       width: 100%;
-      background: var(--bg-abyssal);
-      border: 1px solid var(--border-steel);
+      background: rgba(16, 21, 34, 0.6);
+      border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 10px 14px;
-      margin-bottom: 6px;
-      border-radius: 3px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 11px 16px;
+      margin-bottom: 7px;
+      border-radius: 6px;
       cursor: pointer;
       text-align: left;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
-    .nav-button:hover {
-      border-color: var(--phosphor-emerald);
+    .viewpoint-button:hover {
+      border-color: var(--gold-primary);
       color: #FFF;
-      background: rgba(16, 185, 129, 0.05);
+      background: rgba(212, 175, 55, 0.06);
+      transform: translateX(2px);
     }
 
-    .nav-button.active {
-      border-color: var(--phosphor-emerald);
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--phosphor-emerald);
+    .viewpoint-button.active {
+      border-color: var(--gold-primary);
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.16) 0%, rgba(212, 175, 55, 0.04) 100%);
+      color: var(--gold-light);
       font-weight: 700;
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+      border-left: 3px solid var(--gold-primary);
     }
 
-    /* Radar 3D Viewport */
-    .radar-viewport {
+    .viewpoint-button span.arrow {
+      font-size: 10px;
+      color: var(--text-dim);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .viewpoint-button.active span.arrow {
+      color: var(--gold-primary);
+      transform: translateX(2px);
+    }
+
+    /* 3D Quantum Gyroscope Viewport */
+    .gyro-viewport {
       height: 240px;
-      background: #050709;
-      border: 1px solid var(--border-steel);
-      border-radius: 4px;
-      margin-bottom: 14px;
+      background: linear-gradient(180deg, #070A10 0%, #0D121C 100%);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 8px;
+      margin-bottom: 16px;
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 0 40px rgba(0,0,0,0.9);
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 8px 30px rgba(0,0,0,0.5);
     }
 
     #radar-canvas {
@@ -246,176 +328,193 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       cursor: grabbing;
     }
 
-    .radar-tag {
+    .gyro-tag {
       position: absolute;
-      top: 10px; left: 12px;
-      font-size: 10px;
+      top: 12px; left: 14px;
+      font-size: 11px;
       font-weight: 700;
-      color: var(--phosphor-emerald);
+      color: var(--gold-light);
       letter-spacing: 1px;
       pointer-events: none;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      font-family: var(--font-mono);
     }
 
-    .radar-reticle {
+    .gyro-reticle {
       position: absolute;
-      bottom: 8px; right: 12px;
-      font-size: 9px;
+      bottom: 10px; right: 14px;
+      font-size: 10px;
       color: var(--text-dim);
       pointer-events: none;
+      font-family: var(--font-mono);
     }
 
-    /* Form Elements */
+    /* Form Controls */
     .t-label {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-muted);
-      letter-spacing: 1px;
-      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      margin-bottom: 7px;
       display: block;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
     }
 
     .t-input, .t-select {
       width: 100%;
-      background: var(--bg-abyssal);
-      border: 1px solid var(--border-steel);
+      background: #090D15;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #FFF;
       font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 9px 12px;
-      border-radius: 3px;
+      font-size: 12px;
+      padding: 10px 14px;
+      border-radius: 6px;
       outline: none;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
     }
 
     .t-input:focus, .t-select:focus {
-      border-color: var(--phosphor-emerald);
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
     }
 
     .checkbox-tile {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--bg-abyssal);
-      border: 1px solid var(--border-steel);
-      padding: 8px 12px;
-      border-radius: 3px;
-      margin-bottom: 6px;
+      background: #090D15;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 8px;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
+      transition: all 0.15s ease;
     }
 
     .checkbox-tile:hover {
-      border-color: rgba(16, 185, 129, 0.4);
+      border-color: rgba(212, 175, 55, 0.4);
+      background: #0E131E;
     }
 
     .checkbox-tile input {
-      accent-color: var(--phosphor-emerald);
-      margin-right: 10px;
+      accent-color: var(--gold-primary);
+      margin-right: 12px;
+      transform: scale(1.1);
     }
 
-    /* Action Buttons */
+    /* Buttons */
     .t-btn {
       width: 100%;
-      padding: 10px 16px;
+      padding: 12px 18px;
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       border: none;
-      border-radius: 3px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .t-btn-emerald {
-      background: var(--phosphor-emerald);
-      color: #000;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+    .t-btn-gold {
+      background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+      color: #070A10;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .t-btn-emerald:hover {
-      background: #34D399;
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    .t-btn-gold:hover {
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 100%);
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.55);
+      transform: translateY(-1px);
     }
 
     .t-btn-crimson {
-      background: var(--warning-red);
+      background: linear-gradient(135deg, #F43F5E 0%, #BE123C 100%);
       color: #FFF;
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+      box-shadow: 0 4px 20px rgba(244, 63, 94, 0.35);
     }
 
     .t-btn-crimson:hover {
-      background: #F87171;
-      box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+      background: linear-gradient(135deg, #FB7185 0%, #F43F5E 100%);
+      box-shadow: 0 6px 25px rgba(244, 63, 94, 0.55);
+      transform: translateY(-1px);
     }
 
     .t-btn-dark {
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-steel);
+      background: #141A28;
+      color: var(--text-platinum);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .t-btn-dark:hover {
-      border-color: var(--phosphor-emerald);
+      border-color: var(--gold-primary);
       color: #FFF;
+      background: #192133;
     }
 
     /* Telemetry Stream Box */
     .telemetry-stream {
-      background: #050709;
-      border: 1px solid var(--border-steel);
-      border-radius: 3px;
-      padding: 10px;
-      font-size: 10px;
-      color: var(--phosphor-emerald);
+      background: #070A10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 11px;
+      color: var(--gold-light);
       line-height: 1.6;
-      height: 380px;
+      height: 400px;
       overflow-y: auto;
       white-space: pre-wrap;
+      font-family: var(--font-mono);
     }
 
     /* Section 65B Dossier Modal */
     .dossier-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(8, 10, 13, 0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(7, 10, 16, 0.94);
+      backdrop-filter: blur(20px);
       z-index: 1000;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
     }
 
     .dossier-box {
-      background: var(--bg-surface);
-      border: 2px solid var(--warning-red);
-      border-radius: 6px;
+      background: #101522;
+      border: 2px solid var(--gold-primary);
+      border-radius: 8px;
       width: 100%;
       max-width: 680px;
-      padding: 24px;
-      box-shadow: 0 0 60px rgba(239, 68, 68, 0.4);
+      padding: 26px;
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.35);
     }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     
     .data-pill {
-      background: #080A0D;
-      border: 1px solid #1F2937;
-      padding: 8px 12px;
-      border-radius: 3px;
-      font-size: 10px;
-      margin-bottom: 6px;
+      background: #090D15;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      margin-bottom: 8px;
+      transition: border-color 0.15s ease;
+    }
+
+    .data-pill:hover {
+      border-color: rgba(212, 175, 55, 0.3);
     }
   </style>
 </head>
@@ -426,26 +525,29 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     <div class="brand-section">
       <img src="__ICON_DATA_URI__" class="brand-sigil" alt="CHAKRAVYUHA PQC Sovereign Lion Logo" />
       <div class="brand-meta">
-        <h1>CHAKRAVYUHA PQC // DEEP-OPS THREAT MATRIX</h1>
-        <p>MINISTRY OF DEFENCE // PROBLEM STATEMENT 237 // CLASSIFICATION: TOP SECRET</p>
+        <h1>
+          CHAKRAVYUHA PQC
+          <span class="badge-mod">DEFENCE ENCLAVE</span>
+        </h1>
+        <p>MINISTRY OF DEFENCE // PROBLEM STATEMENT 237 // COSMIC TOP SECRET</p>
       </div>
     </div>
 
     <div class="telemetry-badges">
-      <span class="t-badge badge-emerald">
-        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10B981;"></span>
+      <span class="t-badge badge-gold">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--gold-primary); box-shadow:0 0 6px var(--gold-primary);"></span>
         NIST FIPS 203 (ML-KEM-768)
       </span>
-      <span class="t-badge badge-olive">FIPS 204 (ML-DSA-65)</span>
+      <span class="t-badge badge-cyan">FIPS 204 (ML-DSA-65)</span>
       <span class="t-badge badge-emerald" id="header-tpm-status">TPM 2.0 PCR-7 MATCH</span>
-      <span class="t-badge badge-olive" id="header-chain-status">DLT: CONSORTIUM HEALTHY</span>
+      <span class="t-badge badge-gold" id="header-chain-status">DLT: CONSORTIUM HEALTHY</span>
     </div>
   </header>
 
-  <!-- Notice Banner -->
-  <div style="background:#0F1A14; border-bottom:1px solid #10B981; padding:6px 24px; font-size:10px; color:#10B981; display:flex; justify-content:space-between; align-items:center;">
-    <span>[CONSOLE VERSION: 2.0 // DEEP-OPS THREAT MATRIX ACTIVE // ZERO CLOUD DEPENDENCY // 7 ELITE TIERS READY]</span>
-    <span style="color:#94A3B8;">ENCLAVE STATUS: AIR-GAPPED & SECURE</span>
+  <!-- Sub-Banner -->
+  <div class="status-ribbon">
+    <span>[SYSTEM: AIR-GAPPED TITANIUM-GOLD ENCLAVE // POST-QUANTUM SOVEREIGN BROADCAST LAYER]</span>
+    <span style="color:var(--text-muted);">ZERO EXTERNAL CLOUD // 100% DISCONNECTED</span>
   </div>
 
   <!-- Main Dense Command Rail Layout -->
@@ -457,138 +559,138 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       <div class="tactical-card">
         <div class="tactical-card-header">
           <span class="card-title">HARDWARE TPM 2.0 ENCLAVE</span>
-          <span style="font-size:9px; color:#10B981; background:rgba(16,185,129,0.1); padding:2px 6px; border-radius:3px;">LOCKED</span>
+          <span style="font-size:9px; color:var(--gold-light); background:rgba(212,175,55,0.15); border:1px solid rgba(212,175,55,0.4); padding:2px 6px; border-radius:4px; font-weight:700;">ATTESTED</span>
         </div>
-        <div style="font-size:10px; line-height:1.8; color:var(--text-muted);">
+        <div style="font-size:11px; line-height:1.9; color:var(--text-muted); font-family:var(--font-mono);">
           <div style="display:flex; justify-content:space-between;">
             <span>SILICON ATTEST:</span> <span style="color:#FFF;" id="side-tpm-manuf">INFINEON / ST (TPM 2.0)</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <span>SECURE BOOT:</span> <span style="color:#10B981;" id="side-tpm-pcr7">PCR 7 VERIFIED</span>
+            <span>SECURE BOOT:</span> <span style="color:var(--emerald-accent);" id="side-tpm-pcr7">PCR 7 VERIFIED</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <span>ANTI-DEBUG HOOK:</span> <span style="color:#10B981;">IsDebuggerPresent: OK</span>
+            <span>ANTI-DEBUG HOOK:</span> <span style="color:var(--emerald-accent);">0xDEAD_C0DE OK</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <span>AIR-GAP STATE:</span> <span style="color:#10B981;">100% UNTETHERED</span>
+            <span>AIR-GAP STATE:</span> <span style="color:var(--gold-light);">100% UNTETHERED</span>
           </div>
         </div>
-        <button class="t-btn t-btn-dark" style="margin-top:8px; font-size:9px; padding:6px;" onclick="queryHardwareTPM()">
+        <button class="t-btn t-btn-dark" style="margin-top:10px; font-size:10px; padding:8px;" onclick="queryHardwareTPM()">
           QUERY TPM 2.0 PCR REGISTERS
         </button>
       </div>
 
-      <!-- Tactical Operation Navigation Rail -->
+      <!-- Tactical Viewpoint Navigation Rail (CLEAN: No '//' and No Numbers) -->
       <div class="tactical-card">
         <div class="tactical-card-header">
-          <span class="card-title">TACTICAL VIEWPORT</span>
+          <span class="card-title">TACTICAL VIEWPOINTS</span>
         </div>
-        <button class="nav-button active" onclick="switchTab('tab-dispatch', this)">
-          <span>01 // PQC ENVELOPE</span> <span>►</span>
+        <button class="viewpoint-button active" onclick="switchTab('tab-dispatch', this)">
+          <span>PQC Envelope</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-decrypt', this)">
-          <span>02 // DECRYPT PROVENANCE</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-decrypt', this)">
+          <span>Decryption Provenance</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-forensics', this)">
-          <span>03 // OPTICAL FORENSICS</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-forensics', this)">
+          <span>Optical Forensics</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-ledger', this)">
-          <span>04 // MERKLE DLT LEDGER</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-ledger', this)">
+          <span>Merkle DLT Ledger</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-tardos', this)">
-          <span>05 // TARDOS ANTI-COLLUSION</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-tardos', this)">
+          <span>Tardos Anti-Collusion</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-escrow', this)">
-          <span>06 // SHAMIR BATTLEFIELD ESCROW</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-escrow', this)">
+          <span>Shamir Battlefield Escrow</span> <span class="arrow">►</span>
         </button>
-        <button class="nav-button" onclick="switchTab('tab-intelligence', this)">
-          <span>07 // ZK-SNARK & HONEYTOKEN</span> <span>►</span>
+        <button class="viewpoint-button" onclick="switchTab('tab-intelligence', this)">
+          <span>ZK-SNARK & Honeytoken</span> <span class="arrow">►</span>
         </button>
       </div>
 
       <!-- Authorized Officer Directory -->
       <div class="tactical-card">
         <div class="tactical-card-header">
-          <span class="card-title">AUTHORIZED PERSONNEL</span>
+          <span class="card-title">AUTHORIZED DEFENCE ROSTER</span>
         </div>
-        <div id="officers-roster" style="font-size:10px; color:var(--text-muted); line-height:1.8;">
-          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px; margin-bottom:6px;">
+        <div id="officers-roster" style="font-size:11px; color:var(--text-muted); line-height:1.7;">
+          <div style="padding:8px 10px; background:#080D16; border:1px solid rgba(255,255,255,0.06); border-radius:4px; margin-bottom:6px;">
             <div style="font-weight:700; color:#FFF;">Col. Rajiv Sharma</div>
-            <div style="font-size:9px; color:#10B981;">IND-MOD-001 // Western Command</div>
+            <div style="font-size:10px; color:var(--gold-light); font-family:var(--font-mono);">IND-MOD-001 // Western Command</div>
           </div>
-          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px; margin-bottom:6px;">
+          <div style="padding:8px 10px; background:#080D16; border:1px solid rgba(255,255,255,0.06); border-radius:4px; margin-bottom:6px;">
             <div style="font-weight:700; color:#FFF;">Capt. Priya Nair</div>
-            <div style="font-size:9px; color:#10B981;">IND-MOD-002 // Naval Cyber Cell</div>
+            <div style="font-size:10px; color:var(--sapphire-cyan); font-family:var(--font-mono);">IND-MOD-002 // Naval Cyber Cell</div>
           </div>
-          <div style="padding:6px; background:#080A0D; border:1px solid #1F2937; border-radius:3px;">
+          <div style="padding:8px 10px; background:#080D16; border:1px solid rgba(255,255,255,0.06); border-radius:4px;">
             <div style="font-weight:700; color:#FFF;">Wg Cdr. Amit Verma</div>
-            <div style="font-size:9px; color:#10B981;">IND-MOD-003 // Air Force FOB</div>
+            <div style="font-size:10px; color:var(--emerald-accent); font-family:var(--font-mono);">IND-MOD-003 // Air Force FOB</div>
           </div>
         </div>
       </div>
     </aside>
 
-    <!-- CENTER RAIL: 3D LiDAR Threat Globe & Active Execution Terminal -->
+    <!-- CENTER RAIL: 3D Holographic Gyroscope & Active Operations -->
     <main>
-      <!-- 3D Native Canvas Viewport (Zero External Dependencies, 100% Offline) -->
-      <div class="radar-viewport">
-        <div class="radar-tag">
-          <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 6px #10B981;"></span>
-          3D VOLUMETRIC LIDAR RADAR // ML-KEM-768 LATTICE CORE
+      <!-- 3D Holographic Quantum Chakravyuha Gyroscope Viewport -->
+      <div class="gyro-viewport">
+        <div class="gyro-tag">
+          <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--gold-primary); box-shadow:0 0 10px var(--gold-primary);"></span>
+          QUANTUM CHAKRAVYUHA LATTICE ORBIT // ML-KEM-768
         </div>
-        <div class="radar-reticle">
-          AZIMUTH: 342.8° | RANGE: 50KM | DEFCON-5 SECURE
+        <div class="gyro-reticle">
+          AZIMUTH: 342.8° | SECTOR: SOVEREIGN AIR-GAP | DEFCON-5 SECURE
         </div>
         <canvas id="radar-canvas"></canvas>
       </div>
 
-      <!-- TAB 1: PQC Envelope Dispatch -->
+      <!-- VIEWPOINT 1: PQC Envelope Dispatch -->
       <div id="tab-dispatch" class="tab-content active">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">POST-QUANTUM BROADCAST ENVELOPE (.MODPKG)</span>
-            <span style="font-size:9px; color:#10B981;">NIST FIPS 203 + 204</span>
+            <span style="font-size:10px; color:var(--gold-light); font-weight:700; font-family:var(--font-mono);">NIST FIPS 203 + 204</span>
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
             <div>
               <label class="t-label">DOCUMENT IDENTIFIER</label>
               <input type="text" class="t-input" value="DEFENCE_OPERATION_TRIDENT.pdf" readonly>
             </div>
             <div>
               <label class="t-label">SECURITY CLASSIFICATION</label>
-              <input type="text" class="t-input" value="COSMIC TOP SECRET // RESTRICTED" style="color:var(--warning-red); font-weight:700;" readonly>
+              <input type="text" class="t-input" value="COSMIC TOP SECRET // RESTRICTED" style="color:var(--crimson-alert); font-weight:700;" readonly>
             </div>
           </div>
 
           <label class="t-label">MULTI-RECIPIENT CLEARANCE LIST</label>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
             <label class="checkbox-tile">
               <span><input type="checkbox" name="recip" value="IND-MOD-001" checked> Col. Rajiv Sharma</span>
-              <span style="font-size:9px; color:#10B981;">IND-MOD-001</span>
+              <span style="font-size:10px; color:var(--gold-light); font-family:var(--font-mono);">IND-MOD-001</span>
             </label>
             <label class="checkbox-tile">
               <span><input type="checkbox" name="recip" value="IND-MOD-002" checked> Capt. Priya Nair</span>
-              <span style="font-size:9px; color:#10B981;">IND-MOD-002</span>
+              <span style="font-size:10px; color:var(--sapphire-cyan); font-family:var(--font-mono);">IND-MOD-002</span>
             </label>
             <label class="checkbox-tile">
               <span><input type="checkbox" name="recip" value="IND-MOD-003" checked> Wg Cdr. Amit Verma</span>
-              <span style="font-size:9px; color:#10B981;">IND-MOD-003</span>
+              <span style="font-size:10px; color:var(--emerald-accent); font-family:var(--font-mono);">IND-MOD-003</span>
             </label>
           </div>
 
-          <button class="t-btn t-btn-emerald" onclick="executeDistribution()">
+          <button class="t-btn t-btn-gold" onclick="executeDistribution()">
             PACKAGE & DISPATCH QUANTUM ENVELOPE (.MODPKG)
           </button>
         </div>
       </div>
 
-      <!-- TAB 2: Decryption & Atomic Provenance -->
+      <!-- VIEWPOINT 2: Decryption & Atomic Provenance -->
       <div id="tab-decrypt" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">ATOMIC DECRYPTION & IMPERCEPTIBLE WATERMARKING</span>
-            <span style="font-size:9px; color:#10B981;">TARDOS DWT-DCT MATRIX</span>
+            <span style="font-size:10px; color:var(--gold-light); font-family:var(--font-mono);">TARDOS DWT-DCT MATRIX</span>
           </div>
 
           <label class="t-label">SELECT FIELD OFFICER TERMINAL</label>
@@ -598,21 +700,21 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <option value="IND-MOD-003">Wg Cdr. Amit Verma (Air Force FOB // IND-MOD-003)</option>
           </select>
 
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px; line-height:1.6;">
             Atomic Decryption Guard enforces hardware TPM 2.0 attestation before unsealing ephemeral keys. 
             Recipient identity, terminal MAC, and millisecond timestamps are burned into the document pixels 
             via invisible frequency modulation.
           </p>
 
-          <button class="t-btn t-btn-emerald" onclick="executeDecryption()">
+          <button class="t-btn t-btn-gold" onclick="executeDecryption()">
             SIGN DECRYPTION PROVENANCE RECORD (DPR) & UNSEAL
           </button>
 
-          <div id="decrypted-result-view" style="display:none; margin-top:16px; padding:12px; background:#080A0D; border:1px solid #10B981; border-radius:4px;">
-            <div style="font-size:11px; color:#10B981; font-weight:700; margin-bottom:6px;">✓ DOCUMENT DECRYPTED & BOUND TO SILICON</div>
-            <div id="decrypted-meta" style="font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
-            <div style="display:flex; gap:10px; margin-top:10px;">
-              <button class="t-btn t-btn-dark" style="padding:6px 12px; font-size:10px;" onclick="simulateLeakFromHere()">
+          <div id="decrypted-result-view" style="display:none; margin-top:16px; padding:14px; background:#080D16; border:1px solid var(--gold-primary); border-radius:6px;">
+            <div style="font-size:12px; color:var(--gold-light); font-weight:700; margin-bottom:8px;">✓ DOCUMENT DECRYPTED & BOUND TO SILICON</div>
+            <div id="decrypted-meta" style="font-size:11px; color:var(--text-muted); line-height:1.7;"></div>
+            <div style="display:flex; gap:10px; margin-top:12px;">
+              <button class="t-btn t-btn-dark" style="padding:8px 14px; font-size:11px;" onclick="simulateLeakFromHere()">
                 LEAK THIS COPY TO SOCIAL MEDIA (SIMULATION)
               </button>
             </div>
@@ -620,26 +722,26 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- TAB 3: Optical Forensic Recovery -->
+      <!-- VIEWPOINT 3: Optical Forensic Recovery -->
       <div id="tab-forensics" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">OPTICAL LEAK INVESTIGATION & RECONSTRUCTION</span>
-            <span style="font-size:9px; color:var(--warning-red);">SECTION 65B READY</span>
+            <span style="font-size:10px; color:var(--crimson-alert); font-weight:700; font-family:var(--font-mono);">SECTION 65B READY</span>
           </div>
 
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
             Extracts invisible Tardos watermarks from secondary capture devices (smartphone screen photos, 
             analog paper prints, compressed images). Applies 2D FFT Moiré suppression and homography de-warping.
           </p>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
             <div class="data-pill">
-              <span style="color:#10B981; font-weight:700;">2D FFT FILTER:</span>
+              <span style="color:var(--gold-light); font-weight:700; font-family:var(--font-mono);">2D FFT FILTER:</span>
               <span style="color:var(--text-muted);">Attenuates LCD Moiré spikes (-18.4 dB)</span>
             </div>
             <div class="data-pill">
-              <span style="color:#10B981; font-weight:700;">HOMOGRAPHY:</span>
+              <span style="color:var(--sapphire-cyan); font-weight:700; font-family:var(--font-mono);">HOMOGRAPHY:</span>
               <span style="color:var(--text-muted);">Rectifies camera perspective tilt (up to 35°)</span>
             </div>
           </div>
@@ -650,36 +752,36 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- TAB 4: Merkle DLT Ledger -->
+      <!-- VIEWPOINT 4: Merkle DLT Ledger -->
       <div id="tab-ledger" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">CONSORTIUM DLT BLOCKCHAIN EXPLORER</span>
-            <div style="display:flex; gap:6px;">
-              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="loadLedgerData()">REFRESH</button>
-              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="auditLedgerChain()">AUDIT</button>
-              <button class="t-btn t-btn-crimson" style="padding:4px 8px; font-size:9px;" onclick="simulateAdminTamper()">SIMULATE TAMPER</button>
-              <button class="t-btn t-btn-dark" style="padding:4px 8px; font-size:9px;" onclick="restoreLedgerClean()">RESET</button>
+            <div style="display:flex; gap:8px;">
+              <button class="t-btn t-btn-dark" style="padding:6px 10px; font-size:10px;" onclick="loadLedgerData()">REFRESH</button>
+              <button class="t-btn t-btn-dark" style="padding:6px 10px; font-size:10px;" onclick="auditLedgerChain()">AUDIT</button>
+              <button class="t-btn t-btn-crimson" style="padding:6px 10px; font-size:10px;" onclick="simulateAdminTamper()">SIMULATE TAMPER</button>
+              <button class="t-btn t-btn-dark" style="padding:6px 10px; font-size:10px;" onclick="restoreLedgerClean()">RESET</button>
             </div>
           </div>
-          <div id="ledger-blocks-list" style="max-height:360px; overflow-y:auto; font-size:10px;"></div>
+          <div id="ledger-blocks-list" style="max-height:380px; overflow-y:auto; font-size:11px;"></div>
         </div>
       </div>
 
-      <!-- TAB 5: Tardos Anti-Collusion Simulator -->
+      <!-- VIEWPOINT 5: Tardos Anti-Collusion Simulator -->
       <div id="tab-tardos" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">TARDOS MATHEMATICAL ANTI-COLLUSION SIMULATOR</span>
-            <span style="font-size:9px; color:#10B981;">ARCSINE BIAS MATRIX</span>
+            <span style="font-size:10px; color:var(--gold-light); font-family:var(--font-mono);">ARCSINE BIAS MATRIX</span>
           </div>
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:12px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
             Simulate malicious insiders pooling multiple watermarked copies to synthesize a forged document.
             Tardos scoring exposes the colluding officers with false-positive rate &lt; 10⁻⁷.
           </p>
 
           <label class="t-label">SELECT CONSPIRING OFFICERS</label>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
             <label class="checkbox-tile">
               <span><input type="checkbox" id="tardos-col-1" checked> Col. Rajesh Sharma</span>
             </label>
@@ -698,84 +800,84 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <option value="worst_case_and">Worst-Case Bit Masking (AND)</option>
           </select>
 
-          <button class="t-btn t-btn-emerald" onclick="runTardosSimulation()">
+          <button class="t-btn t-btn-gold" onclick="runTardosSimulation()">
             EXECUTE TARDOS COLLUSION ATTACK ANALYSIS
           </button>
 
-          <div id="tardos-results-box" style="display:none; margin-top:14px; padding:12px; background:#080A0D; border:1px solid #10B981; border-radius:4px;"></div>
+          <div id="tardos-results-box" style="display:none; margin-top:16px; padding:14px; background:#080D16; border:1px solid var(--gold-primary); border-radius:6px;"></div>
         </div>
       </div>
 
-      <!-- TAB 6: Shamir Battlefield Escrow & Silicon Attestation -->
+      <!-- VIEWPOINT 6: Shamir Battlefield Escrow & Silicon Attestation -->
       <div id="tab-escrow" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">TACTICAL BATTLEFIELD KEY ESCROW (SHAMIR 3-OF-5)</span>
-            <span style="font-size:9px; color:#10B981;">TRI-SERVICE QUORUM</span>
+            <span style="font-size:10px; color:var(--gold-light); font-family:var(--font-mono);">TRI-SERVICE QUORUM</span>
           </div>
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:12px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
             In emergency combat scenarios (severed comms / fallen commander), operational key recovery requires joint digital authorization from any 3 of 5 Tri-Service nodes over GF(p).
           </p>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
             <button class="t-btn t-btn-dark" onclick="runShamirSplit()">
               SPLIT MASTER KEY (5 SHARES)
             </button>
-            <button class="t-btn t-btn-emerald" onclick="testShamirReconstruct(3)">
+            <button class="t-btn t-btn-gold" onclick="testShamirReconstruct(3)">
               TEST RECONSTRUCTION (3 SHARES)
             </button>
           </div>
 
           <div style="margin-bottom:14px;">
-            <button class="t-btn t-btn-crimson" style="font-size:10px; padding:8px;" onclick="testShamirReconstruct(2)">
+            <button class="t-btn t-btn-crimson" style="font-size:10px; padding:9px;" onclick="testShamirReconstruct(2)">
               TEST INSUFFICIENT QUORUM (2 SHARES - MUST FAIL)
             </button>
           </div>
 
-          <div id="escrow-shares-box" style="font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
+          <div id="escrow-shares-box" style="font-size:11px; color:var(--text-muted); line-height:1.7;"></div>
         </div>
       </div>
 
-      <!-- TAB 7: Zero-Knowledge Attribution & Honeytoken Scanner -->
+      <!-- VIEWPOINT 7: Zero-Knowledge Attribution & Honeytoken Scanner -->
       <div id="tab-intelligence" class="tab-content">
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">ZERO-KNOWLEDGE ATTRIBUTION (zk-SNARK)</span>
-            <span style="font-size:9px; color:#10B981;">COVERT OPS PROTECTION</span>
+            <span style="font-size:10px; color:var(--sapphire-cyan); font-family:var(--font-mono);">COVERT OPS PROTECTION</span>
           </div>
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:12px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px; line-height:1.6;">
             Prove mathematically that the leaker holds authorized credentials in Western Command without disclosing the officer's personal identity or private key until a court-martial warrant is issued.
           </p>
-          <button class="t-btn t-btn-emerald" onclick="generateZkProof()">
+          <button class="t-btn t-btn-gold" onclick="generateZkProof()">
             GENERATE ZERO-KNOWLEDGE PROOF (zk-SNARK)
           </button>
-          <div id="zkp-result-box" style="display:none; margin-top:10px; font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
+          <div id="zkp-result-box" style="display:none; margin-top:12px; font-size:11px; color:var(--text-muted); line-height:1.7;"></div>
         </div>
 
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">SEMANTIC HONEYTOKEN BAIT SCANNER (ANALOG LEAKS)</span>
-            <span style="font-size:9px; color:var(--telemetry-amber);">VOICE / PHONE CALLS</span>
+            <span style="font-size:10px; color:var(--gold-glow); font-family:var(--font-mono);">VOICE / PHONE CALLS</span>
           </div>
-          <p style="font-size:11px; color:var(--text-muted); margin-bottom:8px; line-height:1.6;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px; line-height:1.6;">
             Paste intercepted telephone call transcripts or plain-text notes to scan for unique context bait injected into that officer's briefing.
           </p>
-          <textarea id="honeytoken-text-input" class="t-input" style="height:70px; resize:none;">The source informed us that 50 main battle tanks are mobilizing on the 142.80 MHz tactical band towards Grid Sector 882-Bravo under convoy FALCON-EAGLE-CHARLIE.</textarea>
+          <textarea id="honeytoken-text-input" class="t-input" style="height:75px; resize:none;">The source informed us that 50 main battle tanks are mobilizing on the 142.80 MHz tactical band towards Grid Sector 882-Bravo under convoy FALCON-EAGLE-CHARLIE.</textarea>
           <button class="t-btn t-btn-crimson" onclick="scanHoneytokenText()">
             SCAN INTERCEPTED TEXT FOR HONEYTOKENS
           </button>
-          <div id="honeytoken-result-box" style="display:none; margin-top:10px; font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
+          <div id="honeytoken-result-box" style="display:none; margin-top:12px; font-size:11px; color:var(--text-muted); line-height:1.7;"></div>
         </div>
 
         <div class="tactical-card">
           <div class="tactical-card-header">
             <span class="card-title">QUANTUM VS CLASSICAL CRYPTO BENCHMARK</span>
-            <span style="font-size:9px; color:#10B981;">FIPS 203 VS RSA-4096</span>
+            <span style="font-size:10px; color:var(--emerald-accent); font-family:var(--font-mono);">FIPS 203 VS RSA-4096</span>
           </div>
           <button class="t-btn t-btn-dark" onclick="runQuantumBenchmark()">
             RUN LIVE MICRO-BENCHMARK SUITE
           </button>
-          <div id="benchmark-result-box" style="display:none; margin-top:10px; font-size:10px; color:var(--text-muted); line-height:1.6;"></div>
+          <div id="benchmark-result-box" style="display:none; margin-top:12px; font-size:11px; color:var(--text-muted); line-height:1.7;"></div>
         </div>
       </div>
 
@@ -785,12 +887,13 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     <aside class="right-rail">
       <div class="tactical-card">
         <div class="tactical-card-header">
-          <span class="card-title">LIVE CRYPTOGRAPHIC TELEMETRY</span>
+          <span class="card-title">SOVEREIGN CRYPTOGRAPHIC TELEMETRY</span>
         </div>
         <div id="telemetry-log" class="telemetry-stream">[+] CHAKRAVYUHA PQC Kernel Bootstrapped.
+[+] Titanium-Gold Sovereign Enclave Active.
 [+] Air-Gapped PKI Keystore Loaded.
 [+] Hardware TPM 2.0 PCR-7 Attested.
-[+] Tardos Anti-Collusion Engine Armed.
+[+] Tardos Anti-Collusion Matrix Armed.
 [+] Shamir 3-of-5 Battlefield Escrow Ready.
 [+] Standing by for Tactical Operations.</div>
       </div>
@@ -801,20 +904,20 @@ HTML_CONTENT = r'''<!DOCTYPE html>
   <!-- Section 65B Legal Dossier Modal -->
   <div id="dossier-modal" class="dossier-overlay">
     <div class="dossier-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--warning-red); padding-bottom:10px; margin-bottom:14px;">
-        <span style="font-size:12px; font-weight:800; color:var(--warning-red);">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--gold-primary); padding-bottom:12px; margin-bottom:16px;">
+        <span style="font-size:13px; font-weight:800; color:var(--gold-light); font-family:var(--font-mono);">
           ⚖ INDIAN EVIDENCE ACT // SECTION 65B FORENSIC DOSSIER
         </span>
-        <button style="background:none; border:none; color:#FFF; cursor:pointer;" onclick="closeDossier()">[ESC_CLOSE]</button>
+        <button style="background:none; border:none; color:#FFF; cursor:pointer; font-size:13px;" onclick="closeDossier()">✕</button>
       </div>
-      <div id="dossier-body" style="font-size:11px; line-height:1.8; color:var(--text-main);"></div>
-      <div style="margin-top:16px; text-align:right;">
-        <button class="t-btn t-btn-dark" style="width:auto; padding:6px 14px; font-size:10px;" onclick="closeDossier()">CLOSE CERTIFICATE</button>
+      <div id="dossier-body" style="font-size:12px; line-height:1.8; color:var(--text-platinum);"></div>
+      <div style="margin-top:18px; text-align:right;">
+        <button class="t-btn t-btn-dark" style="width:auto; padding:8px 18px; font-size:11px;" onclick="closeDossier()">CLOSE CERTIFICATE</button>
       </div>
     </div>
   </div>
 
-  <!-- Pure Native 3D Engine & Scripts (100% Offline, Zero External Dependencies) -->
+  <!-- Pure Native 3D Quantum Gyroscope Engine & Scripts (100% Offline) -->
   <script>
     // Audio Synthesizer
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -825,7 +928,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         const gain = audioCtx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -834,8 +937,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       } catch (e) {}
     }
 
-    // Pure Native 3D LiDAR Threat Globe & Lattice Simulator
-    (function initNative3DRadar() {
+    // Pure Native 3D Golden Quantum Chakravyuha Gyroscope
+    (function initNative3DGyroscope() {
       const canvas = document.getElementById('radar-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -847,21 +950,41 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       resize();
       window.addEventListener('resize', resize);
 
-      const pointCount = 1200;
-      const points = [];
-      for (let i = 0; i < pointCount; i++) {
-        const theta = Math.acos(2 * Math.random() - 1);
-        const phi = Math.random() * Math.PI * 2;
-        const r = 90 + (Math.random() - 0.5) * 8;
-        points.push({
-          x: r * Math.sin(theta) * Math.cos(phi),
-          y: r * Math.sin(theta) * Math.sin(phi),
-          z: r * Math.cos(theta),
+      // Points on concentric golden rings (Chakravyuha orbits)
+      const rings = [
+        { radius: 105, points: 360, color: 'rgba(212, 175, 55, 0.55)', tilt: 0 },
+        { radius: 80, points: 280, color: 'rgba(56, 189, 248, 0.5)', tilt: Math.PI / 4 },
+        { radius: 55, points: 180, color: 'rgba(212, 175, 55, 0.7)', tilt: -Math.PI / 4 },
+        { radius: 30, points: 90, color: 'rgba(245, 158, 11, 0.9)', tilt: Math.PI / 2 },
+      ];
+
+      const allPoints = [];
+      rings.forEach(r => {
+        for (let i = 0; i < r.points; i++) {
+          const angle = (i / r.points) * Math.PI * 2;
+          const x0 = r.radius * Math.cos(angle);
+          const y0 = r.radius * Math.sin(angle) * Math.cos(r.tilt);
+          const z0 = r.radius * Math.sin(angle) * Math.sin(r.tilt);
+          allPoints.push({ x: x0, y: y0, z: z0, color: r.color });
+        }
+      });
+
+      // Core quantum tesseract nodes
+      for (let i = 0; i < 60; i++) {
+        const u = Math.random(), v = Math.random();
+        const theta = u * 2.0 * Math.PI;
+        const phi = Math.acos(2.0 * v - 1.0);
+        const r = Math.cbrt(Math.random()) * 22;
+        allPoints.push({
+          x: r * Math.sin(phi) * Math.cos(theta),
+          y: r * Math.sin(phi) * Math.sin(theta),
+          z: r * Math.cos(phi),
+          color: 'rgba(253, 230, 138, 0.95)'
         });
       }
 
       let rotY = 0;
-      let rotX = 0.2;
+      let rotX = 0.35;
       let isDragging = false;
       let lastMouseX = 0;
       let lastMouseY = 0;
@@ -874,46 +997,44 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       window.addEventListener('mouseup', () => { isDragging = false; });
       window.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
-        rotY += (e.clientX - lastMouseX) * 0.008;
-        rotX += (e.clientY - lastMouseY) * 0.008;
+        rotY += (e.clientX - lastMouseX) * 0.007;
+        rotX += (e.clientY - lastMouseY) * 0.007;
         lastMouseX = e.clientX;
         lastMouseY = e.clientY;
       });
 
-      let sweepAngle = 0;
+      let pulse = 0;
 
       function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
-        const F = 300;
+        const F = 320;
 
-        if (!isDragging) rotY += 0.006;
-        sweepAngle = (sweepAngle + 0.03) % (Math.PI * 2);
+        if (!isDragging) {
+          rotY += 0.007;
+          rotX = 0.35 + Math.sin(rotY * 0.5) * 0.08;
+        }
+        pulse = (pulse + 0.03) % (Math.PI * 2);
 
-        // Sonar sweep line
-        ctx.save();
+        // Core glow
+        const glowRad = 35 + Math.sin(pulse) * 4;
+        const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, glowRad);
+        grad.addColorStop(0, 'rgba(212, 175, 55, 0.4)');
+        grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.15)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(cx, cy, 105, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + Math.cos(sweepAngle) * 105, cy + Math.sin(sweepAngle) * 105);
-        ctx.strokeStyle = 'rgba(16, 185, 129, 0.45)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.restore();
+        ctx.arc(cx, cy, glowRad, 0, Math.PI * 2);
+        ctx.fill();
 
         // Project and sort points
-        const projected = [];
         const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
         const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+        const projected = [];
 
-        for (let i = 0; i < points.length; i++) {
-          const p = points[i];
+        for (let i = 0; i < allPoints.length; i++) {
+          const p = allPoints[i];
           const x1 = p.x * cosY - p.z * sinY;
           const z1 = p.x * sinY + p.z * cosY;
           const y1 = p.y * cosX - z1 * sinX;
@@ -923,17 +1044,16 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           const px = cx + x1 * scale;
           const py = cy + y1 * scale;
 
-          projected.push({ x: px, y: py, z: z2, scale: scale });
+          projected.push({ x: px, y: py, z: z2, scale: scale, color: p.color });
         }
 
         projected.sort((a, b) => b.z - a.z);
 
         for (let i = 0; i < projected.length; i++) {
           const pt = projected[i];
-          const alpha = Math.max(0.15, Math.min(1.0, (pt.z + 100) / 200));
-          const radius = Math.max(0.6, pt.scale * 1.5);
+          const radius = Math.max(0.6, pt.scale * 1.3);
 
-          ctx.fillStyle = `rgba(16, 185, 129, ${alpha * 0.9})`;
+          ctx.fillStyle = pt.color;
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, radius, 0, Math.PI * 2);
           ctx.fill();
@@ -954,7 +1074,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     function switchTab(tabId, btn) {
       playTacticalChirp(1200, 0.03);
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.nav-button').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.viewpoint-button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       if (btn) btn.classList.add('active');
       if (tabId === 'tab-ledger') loadLedgerData();
@@ -965,12 +1085,12 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
     async function executeDistribution() {
       playTacticalChirp(600, 0.06);
-      logTelemetry("[+] DISPATCH: Contacting Air-Gapped Key Distribution Matrix...");
+      logTelemetry("[+] DISPATCH: Contacting Sovereign Air-Gapped Key Matrix...");
       const checked = document.querySelectorAll('input[name="recip"]:checked');
       const recips = Array.from(checked).map(c => c.value);
       if (recips.length === 0) { alert("Select at least one recipient officer."); return; }
 
-      logTelemetry(`[+] Multi-Recipients: ${recips.join(', ')}`);
+      logTelemetry(`[+] Target Recipients: ${recips.join(', ')}`);
       logTelemetry("[+] Encapsulating session key with NIST FIPS 203 (ML-KEM-768)...");
       logTelemetry("[+] Generating Dilithium signature with FIPS 204 (ML-DSA-65)...");
 
@@ -1021,7 +1141,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div><strong>Clearance:</strong> ${data.recipient.clearance} // ${data.recipient.unit}</div>
           <div><strong>Hardware TPM:</strong> Bound to Silicon PCR-7 (${data.fingerprint.pcr_hash.slice(0, 16)}...)</div>
           <div><strong>Watermark Token:</strong> <code>${data.watermark_token}</code></div>
-          <div style="margin-top:6px;"><a href="/download/artifact/${data.artifact_id}.pdf" style="color:#10B981; text-decoration:underline;">[DOWNLOAD DECRYPTED PDF WITH INVISIBLE FORENSIC WATERMARK]</a></div>
+          <div style="margin-top:8px;"><a href="/download/artifact/${data.artifact_id}.pdf" style="color:var(--gold-primary); text-decoration:underline; font-weight:700;">[DOWNLOAD DECRYPTED PDF WITH INVISIBLE FORENSIC WATERMARK]</a></div>
         `;
         document.getElementById('decrypted-result-view').style.display = 'block';
       } catch (e) {
@@ -1033,7 +1153,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       playTacticalChirp(350, 0.12);
       logTelemetry("[!] SIMULATION: Insider captures mobile smartphone screen photograph!");
       logTelemetry("[!] Leaked raster image published to foreign adversary forum.");
-      switchTab('tab-forensics', document.querySelectorAll('.nav-button')[2]);
+      switchTab('tab-forensics', document.querySelectorAll('.viewpoint-button')[2]);
     }
 
     async function investigateRecentDecrypted() {
@@ -1069,18 +1189,18 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     function openDossier(dossier) {
       const b = document.getElementById('dossier-body');
       b.innerHTML = `
-        <div style="background:#080A0D; padding:10px; border:1px solid #EF4444; margin-bottom:10px;">
-          <div style="color:#EF4444; font-weight:800;">CASE IDENTIFIER: ${dossier.case_id}</div>
-          <div><strong>CULPRIT IDENTIFIED:</strong> ${dossier.attribution_result.culprit.rank} ${dossier.attribution_result.culprit.name}</div>
+        <div style="background:#080D16; padding:12px; border:1px solid var(--gold-primary); border-radius:4px; margin-bottom:12px;">
+          <div style="color:var(--gold-light); font-weight:800; font-family:var(--font-mono);">CASE IDENTIFIER: ${dossier.case_id}</div>
+          <div style="margin-top:6px;"><strong>CULPRIT IDENTIFIED:</strong> ${dossier.attribution_result.culprit.rank} ${dossier.attribution_result.culprit.name}</div>
           <div><strong>SERVICE NUMBER:</strong> ${dossier.attribution_result.culprit.service_id}</div>
           <div><strong>UNIT / COMMAND:</strong> ${dossier.attribution_result.culprit.unit}</div>
-          <div><strong>CONFIDENCE LEVEL:</strong> ${dossier.attribution_result.confidence}</div>
+          <div><strong>CONFIDENCE LEVEL:</strong> <span style="color:var(--emerald-accent); font-weight:700;">${dossier.attribution_result.confidence}</span></div>
         </div>
-        <div style="margin-bottom:8px;">
+        <div style="margin-bottom:10px;">
           <strong>EXONERATED OFFICERS (100% INNOCENT):</strong><br>
           ${dossier.attribution_result.exonerated.map(o => `✓ ${o.name} (${o.service_id})`).join('<br>')}
         </div>
-        <div style="font-size:9px; color:#94A3B8; border-top:1px solid #1F2937; padding-top:8px;">
+        <div style="font-size:10px; color:#94A3B8; border-top:1px solid rgba(255,255,255,0.08); padding-top:10px; font-family:var(--font-mono);">
           <div><strong>DLT BLOCK ANCHOR:</strong> Block #${dossier.cryptographic_evidence.dlt_block_index}</div>
           <div><strong>MERKLE INCLUSION PROOF:</strong> Verified Valid</div>
           <div><strong>LEGAL STANDARD:</strong> Compliant with Section 65B Indian Evidence Act / BSA.</div>
@@ -1104,11 +1224,11 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           const div = document.createElement('div');
           div.className = 'data-pill';
           div.innerHTML = `
-            <div style="display:flex; justify-content:space-between; color:#10B981; font-weight:700;">
+            <div style="display:flex; justify-content:space-between; color:var(--gold-light); font-weight:700; font-family:var(--font-mono);">
               <span>BLOCK #${b.index}</span> <span>${b.timestamp}</span>
             </div>
-            <div style="color:#FFF;">${b.payload.event || 'GENESIS'} - ${b.payload.recipient_id || 'System'}</div>
-            <div style="color:#64748B; font-size:9px;">HASH: ${b.current_hash.slice(0, 32)}...</div>
+            <div style="color:#FFF; margin-top:2px;">${b.payload.event || 'GENESIS'} - ${b.payload.recipient_id || 'System'}</div>
+            <div style="color:#64748B; font-size:10px; font-family:var(--font-mono);">HASH: ${b.current_hash.slice(0, 32)}...</div>
           `;
           list.appendChild(div);
         });
@@ -1137,7 +1257,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     async function restoreLedgerClean() {
       playTacticalChirp(800, 0.05);
       await fetch('/api/ledger/restore', { method: 'POST' });
-      document.getElementById('header-chain-status').className = "t-badge badge-olive";
+      document.getElementById('header-chain-status').className = "t-badge badge-gold";
       document.getElementById('header-chain-status').textContent = "DLT: CONSORTIUM HEALTHY";
       loadLedgerData();
     }
@@ -1182,21 +1302,21 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         const box = document.getElementById('tardos-results-box');
         box.style.display = 'block';
 
-        let html = `<div style="color:#10B981; font-weight:700; margin-bottom:8px;">✓ TARDOS ANALYSIS COMPLETE (Strategy: ${strategy})</div>`;
+        let html = `<div style="color:var(--gold-light); font-weight:700; margin-bottom:8px; font-family:var(--font-mono);">✓ TARDOS ANALYSIS COMPLETE (Strategy: ${strategy})</div>`;
         html += `<div style="margin-bottom:8px;"><strong>Colluders Tested:</strong> ${colluders.join(', ')}</div>`;
         html += `<div><strong>Suspicion Scores (Threshold T=${data.analysis.threshold_used}):</strong></div>`;
 
         for (const [officer, score] of Object.entries(data.analysis.all_scores)) {
           const isAccused = score >= data.analysis.threshold_used;
-          const color = isAccused ? '#EF4444' : '#10B981';
+          const color = isAccused ? 'var(--crimson-alert)' : 'var(--emerald-accent)';
           const label = isAccused ? 'ACCUSED COLLUDER' : 'EXONERATED';
-          html += `<div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #1F2937;">
+          html += `<div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
             <span>${officer}:</span>
-            <span style="color:${color}; font-weight:700;">Score: ${score} [${label}]</span>
+            <span style="color:${color}; font-weight:700; font-family:var(--font-mono);">Score: ${score} [${label}]</span>
           </div>`;
         }
 
-        html += `<div style="font-size:9px; color:#94A3B8; margin-top:8px;">False Positive Probability: &lt; 1 in 10,000,000 (10⁻⁷)</div>`;
+        html += `<div style="font-size:10px; color:#94A3B8; margin-top:8px; font-family:var(--font-mono);">False Positive Probability: &lt; 1 in 10,000,000 (10⁻⁷)</div>`;
         box.innerHTML = html;
         logTelemetry(`[✓] Tardos Detected ${data.analysis.accused_colluders.length} Colluder(s) with P_error < 10^-7.`);
       } catch (e) {
@@ -1229,14 +1349,14 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
     function renderEscrowShares() {
       const box = document.getElementById('escrow-shares-box');
-      let html = `<div style="color:#FFF; font-weight:700; margin-bottom:8px;">CURRENT POLYNOMIAL SHARES (THRESHOLD k=3):</div>`;
+      let html = `<div style="color:#FFF; font-weight:700; margin-bottom:10px; font-family:var(--font-mono);">POLYNOMIAL SHARES (THRESHOLD k=3):</div>`;
       currentEscrowShares.forEach(s => {
         html += `<div class="data-pill">
-          <div style="display:flex; justify-content:space-between; color:#10B981; font-weight:700;">
+          <div style="display:flex; justify-content:space-between; color:var(--gold-light); font-weight:700; font-family:var(--font-mono);">
             <span>SHARE #${s.share_index} (${s.military_branch})</span>
             <span>${s.custodian_role}</span>
           </div>
-          <div style="font-size:9px; color:#64748B;">VALUE: ${s.share_value.slice(0, 32)}...</div>
+          <div style="font-size:10px; color:#64748B; font-family:var(--font-mono); margin-top:2px;">VALUE: ${s.share_value.slice(0, 32)}...</div>
         </div>`;
       });
       box.innerHTML = html;
@@ -1283,13 +1403,13 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         const box = document.getElementById('zkp-result-box');
         box.style.display = 'block';
         box.innerHTML = `
-          <div style="background:#080A0D; border:1px solid #10B981; padding:10px; border-radius:3px;">
-            <div style="color:#10B981; font-weight:700;">✓ PROOF GENERATED: ${data.zk_proof.proof_id}</div>
-            <div><strong>PROVEN ATTRIBUTE:</strong> ${data.zk_proof.proven_attributes.operational_command}</div>
+          <div style="background:#080D16; border:1px solid var(--gold-primary); padding:12px; border-radius:6px; font-family:var(--font-mono);">
+            <div style="color:var(--gold-light); font-weight:700;">✓ PROOF GENERATED: ${data.zk_proof.proof_id}</div>
+            <div style="margin-top:4px;"><strong>PROVEN ATTRIBUTE:</strong> ${data.zk_proof.proven_attributes.operational_command}</div>
             <div><strong>SECURITY GRADE:</strong> ${data.zk_proof.proven_attributes.security_clearance}</div>
             <div><strong>COMMITMENT HASH:</strong> ${data.zk_proof.identity_commitment.slice(0, 28)}...</div>
             <div><strong>ZK-PROOF TOKEN:</strong> ${data.zk_proof.zk_proof_token.slice(0, 28)}...</div>
-            <div style="color:#10B981; margin-top:4px;"><strong>VERIFICATION STATUS:</strong> MATHEMATICALLY VALID (IDENTITY 100% CONCEALED)</div>
+            <div style="color:var(--emerald-accent); margin-top:6px; font-weight:700;">VERIFICATION: MATHEMATICALLY SOUND (IDENTITY 100% CONCEALED)</div>
           </div>
         `;
         logTelemetry(`[✓] zk-SNARK Attribute Proof Generated & Verified.`);
@@ -1316,12 +1436,12 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         if (data.attribution_found) {
           playTacticalChirp(1700, 0.1);
           box.innerHTML = `
-            <div style="background:#080A0D; border:1px solid #EF4444; padding:10px; border-radius:3px;">
-              <div style="color:#EF4444; font-weight:700;">⚠ HONEYTOKEN MATCH: CULPRIT EXPOSED!</div>
-              <div><strong>IDENTIFIED OFFICER:</strong> ${data.identified_culprit}</div>
-              <div><strong>CONFIDENCE SCORE:</strong> ${data.confidence_score}</div>
+            <div style="background:#080D16; border:1px solid var(--crimson-alert); padding:12px; border-radius:6px;">
+              <div style="color:var(--crimson-alert); font-weight:700; font-family:var(--font-mono);">⚠ HONEYTOKEN MATCH: CULPRIT EXPOSED!</div>
+              <div style="margin-top:4px;"><strong>IDENTIFIED OFFICER:</strong> ${data.identified_culprit}</div>
+              <div><strong>CONFIDENCE SCORE:</strong> <span style="color:var(--gold-light); font-weight:700;">${data.confidence_score}</span></div>
               <div style="margin-top:6px;"><strong>MATCHED TOKENS:</strong></div>
-              ${data.matched_honeytokens.map(t => `<div style="font-size:9px; color:#94A3B8;">- ${t.parameter}: "${t.matched_phrase}"</div>`).join('')}
+              ${data.matched_honeytokens.map(t => `<div style="font-size:10px; color:#94A3B8; font-family:var(--font-mono);">- ${t.parameter}: "${t.matched_phrase}"</div>`).join('')}
             </div>
           `;
           logTelemetry(`[✓] Honeytoken Match: ${data.identified_culprit} with ${data.confidence_score} confidence!`);
@@ -1344,12 +1464,12 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         box.style.display = 'block';
 
         box.innerHTML = `
-          <div style="background:#080A0D; border:1px solid #10B981; padding:10px; border-radius:3px; line-height:1.7;">
-            <div style="color:#10B981; font-weight:700;">✓ LIVE BENCHMARK RESULTS</div>
+          <div style="background:#080D16; border:1px solid var(--gold-primary); padding:12px; border-radius:6px; line-height:1.8; font-family:var(--font-mono);">
+            <div style="color:var(--gold-light); font-weight:700;">✓ LIVE BENCHMARK RESULTS</div>
             <div><strong>NIST ML-KEM-768:</strong> Keygen: ${data.ml_kem_768.keygen_ms}ms | Encap: ${data.ml_kem_768.encapsulation_ms}ms | Decap: ${data.ml_kem_768.decapsulation_ms}ms</div>
             <div><strong>NIST ML-DSA-65:</strong> Keygen: ${data.ml_dsa_65.keygen_ms}ms | Sign: ${data.ml_dsa_65.signing_ms}ms</div>
             <div><strong>Classical RSA-4096:</strong> Keygen: ${data.rsa_4096.keygen_ms}ms | Sign: ${data.rsa_4096.signing_ms}ms</div>
-            <div style="color:#10B981; margin-top:6px;"><strong>SPEEDUP:</strong> ML-KEM-768 is ~${data.summary.speedup_factor_vs_rsa}x faster than RSA-4096 keygen!</div>
+            <div style="color:var(--emerald-accent); margin-top:6px; font-weight:700;">SPEEDUP: ML-KEM-768 is ~${data.summary.speedup_factor_vs_rsa}x faster than RSA-4096 keygen!</div>
           </div>
         `;
         logTelemetry(`[✓] Benchmark: ML-KEM-768 keygen ${data.ml_kem_768.keygen_ms}ms vs RSA-4096 ${data.rsa_4096.keygen_ms}ms.`);
@@ -1369,9 +1489,8 @@ def main():
     index_py_path = os.path.join(base_dir, "mod_cryptoseal", "web", "index_html.py")
     py_code = f'''"""
 Ministry of Defence - CHAKRAVYUHA PQC
-Deep-Ops Threat Matrix Forensic Attribution Console
-100% Self-Contained, Air-Gapped, Zero-Dependency Native 3D WebGL / Canvas Engine
-Includes all 7 Elite Defence Tiers: PQC, Decrypt Guard, Optical CV, DLT, Tardos, Shamir, ZK/Honeytoken
+Titanium-Gold Sovereign Defense Enclave Console
+100% Self-Contained, Air-Gapped, Zero-Dependency Native 3D WebGL / Canvas Gyroscope
 """
 
 import os
@@ -1393,7 +1512,6 @@ def get_dashboard_html() -> str:
     print("Wrote mod_cryptoseal/web/index_html.py")
 
     # 2. Update LAUNCH_PORTAL.html and index.html
-    # Get icon data URI for static files
     icon_b64_file = os.path.join(base_dir, "app_icon_128_b64.txt")
     if os.path.exists(icon_b64_file):
         with open(icon_b64_file, "r") as f:
