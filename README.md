@@ -1,16 +1,8 @@
 # CHAKRAVYUHA PQC: Cryptographic Attribution & Immutable Decryption Provenance
 
-**Organization**: Ministry of Defence (MoD)  
-**Hackathon**: Smart India Hackathon (SIH 2024 / MoD Problem Statement 237)  
-**Problem Statement ID**: 26237 | **Problem Statement Title**: Cryptographic Attribution and Immutable Decryption Provenance for Multi-Recipient Encrypted Document Distribution  
-**Team Name**: SPARK CODE6 | **Team ID**: 164931 | **Category**: Software | **Theme**: Blockchain & Cybersecurity  
-**GitHub Repository**: [https://github.com/mrad11/CHAKRAVYUHA-PQC](https://github.com/mrad11/CHAKRAVYUHA-PQC)  
-**Operating Standard**: 100% Offline / Air-Gapped / Zero External Cloud / Zero Public Blockchain  
-**Cryptographic Standards**: NIST FIPS 203 (ML-KEM-768) & NIST FIPS 204 (ML-DSA-65)  
-
 ---
 
-## 1. Executive Summary
+## 1. PRECISE SUMMARY
 
 Sensitive military operational plans and intelligence directives are traditionally distributed under a **broadcast-encrypt, individually-decrypt** model: a sender encrypts a document once and distributes it to a group of cleared recipients, each capable of decrypting it with their own credentials.
 
@@ -26,18 +18,6 @@ When a document is shared with multiple recipients, every recipient holds an ide
 3. **Immutable Air-Gapped Distributed Ledger (DLT)**: The signed decryption record is anchored into an offline consortium blockchain secured by Merkle inclusion trees and multi-validator Proof-of-Authority (PoA) consensus (co-signed by Directorate of Military Operations, Defence Cyber Agency, and Integrated Defence Staff). No single administrator or rogue insider can retroactively alter or delete records without triggering immediate cryptographic alarms.
 4. **Forensic Attribution Engine**: Given a leaked copy (whether digital PDF or a raster screenshot/photograph), the forensic engine extracts the invisible watermark, looks up the session on the DLT ledger, verifies the post-quantum signature and Merkle inclusion proof, and issues an official **Forensic Attribution Certificate** identifying the exact culprit while completely exonerating innocent officers.
 
----
-
-## 2. System Architecture & Official Hackathon Presentation
-
-> [!IMPORTANT]
-> ### 📄 Official Presentation Deck: MoD Problem Statement 237
-> The complete official 6-slide defense presentation submitted for Smart India Hackathon is included directly in this repository:
-> 
-> 🔗 **[Download Official Presentation PDF (PS 237 CHAKRAVYUHA PQC SPARK CODE 6.pdf)](assets/CHAKRAVYUHA_PQC_OFFICIAL_PRESENTATION.pdf)**  
-> *(7.5 MB High-Resolution Defence Briefing Deck | Team SPARK CODE6 | ID: 164931)*
-
----
 
 ### CHAKRAVYUHA PQC
 ![CHAKRAVYUHA PQC: Global Defence Network, Post-Quantum Lattice & Immutable Merkle Ledger](assets/chakravyuha_pqc_architecture.jpg)
