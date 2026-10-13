@@ -39,25 +39,30 @@ When a document is shared with multiple recipients, every recipient holds an ide
 
 ---
 
-### Slide 1: Mission Briefing & Team Identification
-![Slide 1: Smart India Hackathon Briefing & Team Identification](assets/presentation_slides/slide_1.png)
+### CHAKRAVYUHA PQC
+![CHAKRAVYUHA PQC: Global Defence Network, Post-Quantum Lattice & Immutable Merkle Ledger](assets/chakravyuha_pqc_architecture.jpg)
 
-| Parameter | Official Value |
-| :--- | :--- |
-| **Hackathon Platform** | Smart India Hackathon (SIH 2024) |
-| **Ministry / Organization** | Ministry of Defence (MoD) |
-| **Problem Statement ID** | **26237** |
-| **Problem Statement Title** | Cryptographic Attribution and Immutable Decryption Provenance for Multi-Recipient Encrypted Document Distribution |
-| **Domain Theme** | Blockchain & Cybersecurity |
-| **Category** | Software |
-| **Team Name** | **SPARK CODE6** |
-| **Team ID** | **164931** |
-| **Official Repository** | [https://github.com/mrad11/CHAKRAVYUHA-PQC](https://github.com/mrad11/CHAKRAVYUHA-PQC) |
+#### 🌐 Global Defense Architecture & Cryptographic Overview
+**CHAKRAVYUHA PQC** establishes a sovereign, post-quantum defense infrastructure uniting hardware security, post-quantum lattice cryptography, and an immutable air-gapped distributed ledger:
+
+1. **Global Defense Net & Real-Time Situational Command**:
+   - Continuous real-time monitoring across tri-service command nodes (**Alert Level: Alpha**, **Threat Detection: Active**, **Network Status: Secure [Post-Quantum]**).
+   - Dynamic tracking of military asset locations and defense nodes with zero reliance on foreign cloud servers.
+
+2. **Quantum-Resistant Lattice Cryptography (PQ-Lattice)**:
+   - Built on hard mathematical lattice problems (**NIST FIPS 203 ML-KEM-768** key encapsulation and **NIST FIPS 204 ML-DSA-65** digital signatures).
+   - Forms unbreakable **PQ Defense Barriers** that neutralize quantum supercomputing threats (Shor's and Grover's algorithms) and "Harvest Now, Decrypt Later" espionage.
+   - Provides active **Threat Mitigation** and instant post-quantum key exchange for multi-recipient military envelopes.
+
+3. **Immutable Blockchain Ledger & Merkle Proof Chain**:
+   - Every document decryption transaction is sealed into serialized, cryptographic ledger blocks (`BLOCK 849,211`, `BLOCK 949,211`, `BLOCK 858,311`...).
+   - Interconnected by a **Merkle Proof Chain** using SHA3-256 Merkle trees, enabling instant mathematical inclusion proofs without exposing neighboring transaction data.
+   - Provides **Secure Data Logging** with tamper-evident cryptographic chaining, ensuring rogue administrators or compromised insiders cannot alter historical decryption records.
 
 ---
 
-### Slide 2: Problem vs. CHAKRAVYUHA PQC Remedy Matrix
-![Slide 2: Problem vs CHAKRAVYUHA PQC Remedy Matrix](assets/presentation_slides/slide_2.png)
+### Slide 1: Problem vs. CHAKRAVYUHA PQC Remedy Matrix
+![Slide 1: Problem vs CHAKRAVYUHA PQC Remedy Matrix](assets/presentation_slides/slide_2.png)
 
 | # | Critical Defence Problem | CHAKRAVYUHA PQC Architectural Remedy |
 | :-: | :--- | :--- |
@@ -68,8 +73,8 @@ When a document is shared with multiple recipients, every recipient holds an ide
 
 ---
 
-### Slide 3: Technical Approach, 4-Tier Technological Stack & 6 Unique Innovations
-![Slide 3: Technical Approach & Technological Stack](assets/presentation_slides/slide_3.png)
+### Slide 2: Technical Approach, 4-Tier Technological Stack & 6 Unique Innovations
+![Slide 2: Technical Approach & Technological Stack](assets/presentation_slides/slide_3.png)
 
 #### 🏛️ 4-Tier Technological Stack Architecture
 ```
@@ -102,8 +107,8 @@ When a document is shared with multiple recipients, every recipient holds an ide
 
 ---
 
-### Slide 4: Feasibility & Viability Analysis
-![Slide 4: Feasibility & Viability Analysis](assets/presentation_slides/slide_4.png)
+### Slide 3: Feasibility & Viability Analysis
+![Slide 3: Feasibility & Viability Analysis](assets/presentation_slides/slide_4.png)
 
 - **Thirty-Year Quantum Immunity**: Native implementation of post-quantum lattice cryptography (NIST FIPS 203 ML-KEM-768 & FIPS 204 ML-DSA-65) protecting military plans against future quantum harvest-now-decrypt-later attacks.
 - **Zero-Hardware-Overhead Deployment**: Runs smoothly on existing standard military ruggedized laptops without requiring costly hardware accelerators or specialized cloud infrastructure.
@@ -112,8 +117,8 @@ When a document is shared with multiple recipients, every recipient holds an ide
 
 ---
 
-### Slide 5: Strategic Impacts & National Defence Benefits
-![Slide 5: Strategic Impacts & National Defence Benefits](assets/presentation_slides/slide_5.png)
+### Slide 4: Strategic Impacts & National Defence Benefits
+![Slide 4: Strategic Impacts & National Defence Benefits](assets/presentation_slides/slide_5.png)
 
 - **Immunizing India's 30-Year Military Strategy**: Neutralizes foreign quantum supercomputing decryption capabilities against classified operational directives.
 - **Dismantling the Anonymity Shield**: Eliminates the fear of unidentified insider leaks before they occur by turning every decryption into a forensically unique, signed event.
@@ -123,8 +128,8 @@ When a document is shared with multiple recipients, every recipient holds an ide
 
 ---
 
-### Slide 6: Research References & Comparative Benchmark Matrix
-![Slide 6: Comparative Benchmark & Research References](assets/presentation_slides/slide_6.png)
+### Slide 5: Research References & Comparative Benchmark Matrix
+![Slide 5: Comparative Benchmark & Research References](assets/presentation_slides/slide_6.png)
 
 #### 📊 Comprehensive Comparative Benchmark Matrix
 
