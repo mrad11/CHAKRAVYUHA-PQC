@@ -925,6 +925,7 @@ def get_dashboard_html() -> str:
 
   <!-- Pure Native 3D Quantum Gyroscope Engine & Scripts (100% Offline) -->
   <script>
+    const API_BASE = (window.location.protocol === "file:") ? "http://127.0.0.1:8080" : "";
     // Audio Synthesizer
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playTacticalChirp(freq = 880, duration = 0.04) {
@@ -1101,7 +1102,7 @@ def get_dashboard_html() -> str:
       logTelemetry("[+] Generating Dilithium signature with FIPS 204 (ML-DSA-65)...");
 
       try {
-        const res = await fetch('/api/distribute', {
+        const res = await fetch(API_BASE + '/api/distribute', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ recipients: recips })
@@ -1123,7 +1124,7 @@ def get_dashboard_html() -> str:
       logTelemetry("[+] Hardware TPM 2.0 PCR-7 Attestation In Progress...");
 
       try {
-        const res = await fetch('/api/decrypt', {
+        const res = await fetch(API_BASE + '/api/decrypt', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ officer_id: officer })
@@ -1147,7 +1148,7 @@ def get_dashboard_html() -> str:
           <div><strong>Clearance:</strong> ${data.recipient.clearance} // ${data.recipient.unit}</div>
           <div><strong>Hardware TPM:</strong> Bound to Silicon PCR-7 (${data.fingerprint.pcr_hash.slice(0, 16)}...)</div>
           <div><strong>Watermark Token:</strong> <code>${data.watermark_token}</code></div>
-          <div style="margin-top:8px;"><a href="/download/artifact/${data.artifact_id}.pdf" style="color:var(--gold-primary); text-decoration:underline; font-weight:700;">[DOWNLOAD DECRYPTED PDF WITH INVISIBLE FORENSIC WATERMARK]</a></div>
+          <div style="margin-top:8px;"><a href="${API_BASE}/download/artifact/${data.artifact_id}.pdf" style="color:var(--gold-primary); text-decoration:underline; font-weight:700;">[DOWNLOAD DECRYPTED PDF WITH INVISIBLE FORENSIC WATERMARK]</a></div>
         `;
         document.getElementById('decrypted-result-view').style.display = 'block';
       } catch (e) {
@@ -1169,7 +1170,7 @@ def get_dashboard_html() -> str:
       logTelemetry("[+] Applying 3x3 Planar Homography Perspective De-warping...");
 
       try {
-        const res = await fetch('/api/forensic/investigate', {
+        const res = await fetch(API_BASE + '/api/forensic/investigate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ artifact_id: lastArtifactId })
@@ -1222,7 +1223,7 @@ def get_dashboard_html() -> str:
     // Ledger Functions
     async function loadLedgerData() {
       try {
-        const res = await fetch('/api/ledger');
+        const res = await fetch(API_BASE + '/api/ledger');
         const data = await res.json();
         const list = document.getElementById('ledger-blocks-list');
         list.innerHTML = '';
@@ -1243,7 +1244,7 @@ def get_dashboard_html() -> str:
 
     async function auditLedgerChain() {
       playTacticalChirp(900, 0.05);
-      const res = await fetch('/api/ledger/audit');
+      const res = await fetch(API_BASE + '/api/ledger/audit');
       const data = await res.json();
       if (data.is_valid) {
         alert("✓ MERKLE DLT AUDIT: Chain is 100% Valid. No Tampering Detected.");
@@ -1254,7 +1255,7 @@ def get_dashboard_html() -> str:
 
     async function simulateAdminTamper() {
       playTacticalChirp(300, 0.15);
-      await fetch('/api/ledger/tamper', { method: 'POST' });
+      await fetch(API_BASE + '/api/ledger/tamper', { method: 'POST' });
       document.getElementById('header-chain-status').className = "t-badge badge-red";
       document.getElementById('header-chain-status').textContent = "DLT: TAMPER DETECTED!";
       alert("⚠ ATTACK SIMULATED: Merkle DAG root mismatch detected across consortium nodes!");
@@ -1262,7 +1263,7 @@ def get_dashboard_html() -> str:
 
     async function restoreLedgerClean() {
       playTacticalChirp(800, 0.05);
-      await fetch('/api/ledger/restore', { method: 'POST' });
+      await fetch(API_BASE + '/api/ledger/restore', { method: 'POST' });
       document.getElementById('header-chain-status').className = "t-badge badge-gold";
       document.getElementById('header-chain-status').textContent = "DLT: CONSORTIUM HEALTHY";
       loadLedgerData();
@@ -1275,7 +1276,7 @@ def get_dashboard_html() -> str:
       playTacticalChirp(1000, 0.04);
       logTelemetry("[+] Querying Hardware TPM 2.0 via TSS2 API...");
       try {
-        const res = await fetch('/api/tpm/telemetry');
+        const res = await fetch(API_BASE + '/api/tpm/telemetry');
         const data = await res.json();
         logTelemetry(`[✓] TPM Model: ${data.manufacturer}`);
         logTelemetry(`[✓] Composite PCR Digest: ${data.composite_pcr_digest.slice(0, 24)}...`);
@@ -1299,7 +1300,7 @@ def get_dashboard_html() -> str:
       const strategy = document.getElementById('tardos-strategy').value;
 
       try {
-        const res = await fetch('/api/collusion/simulate', {
+        const res = await fetch(API_BASE + '/api/collusion/simulate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ officers: colluders, strategy: strategy })
@@ -1336,7 +1337,7 @@ def get_dashboard_html() -> str:
       playTacticalChirp(800, 0.05);
       logTelemetry("[+] SHAMIR: Splitting Master Key into (k=3, n=5) polynomial shares...");
       try {
-        const res = await fetch('/api/escrow/split', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+        const res = await fetch(API_BASE + '/api/escrow/split', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
         const data = await res.json();
         currentEscrowShares = data.shares;
         renderEscrowShares();
@@ -1375,7 +1376,7 @@ def get_dashboard_html() -> str:
       logTelemetry(`[+] Testing reconstruction with ${count} shares...`);
 
       try {
-        const res = await fetch('/api/escrow/reconstruct', {
+        const res = await fetch(API_BASE + '/api/escrow/reconstruct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ shares: testSubset })
@@ -1404,7 +1405,7 @@ def get_dashboard_html() -> str:
       playTacticalChirp(1100, 0.06);
       logTelemetry("[+] ZK-SNARK: Generating Zero-Knowledge Attribute Proof...");
       try {
-        const res = await fetch('/api/zkp/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+        const res = await fetch(API_BASE + '/api/zkp/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
         const data = await res.json();
         const box = document.getElementById('zkp-result-box');
         box.style.display = 'block';
@@ -1430,7 +1431,7 @@ def get_dashboard_html() -> str:
       const text = document.getElementById('honeytoken-text-input').value;
       logTelemetry("[+] Scanning text snippet for contextual honeytokens...");
       try {
-        const res = await fetch('/api/honeytoken/scan', {
+        const res = await fetch(API_BASE + '/api/honeytoken/scan', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: text })
@@ -1464,7 +1465,7 @@ def get_dashboard_html() -> str:
       playTacticalChirp(1300, 0.05);
       logTelemetry("[+] Running Quantum vs Classical micro-benchmarks...");
       try {
-        const res = await fetch('/api/benchmark/run');
+        const res = await fetch(API_BASE + '/api/benchmark/run');
         const data = await res.json();
         const box = document.getElementById('benchmark-result-box');
         box.style.display = 'block';

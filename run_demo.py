@@ -15,6 +15,8 @@ import shutil
 # Ensure UTF-8 output on Windows
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 import pymupdf
 from mod_cryptoseal.crypto.pki import AirGappedPKI
