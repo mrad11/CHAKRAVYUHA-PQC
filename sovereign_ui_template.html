@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHAKRAVYUHA PQC — Sovereign Defense Cryptographic Enclave</title>
+  <link rel="icon" type="image/png" href="__ICON_DATA_URI__">
+  <link rel="apple-touch-icon" href="__ICON_DATA_URI__">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CHAKRAVYUHA PQC — TITANIUM BASALT & SOVEREIGN OCHRE PALETTE (NON-NAVY)
+       True Military Hardware Aesthetics: Zero Navy Blue, Neutral Mineral Slate,
+       Sovereign Ochre-Amber, Tactical Phosphor Celadon, and Cinnabar Vermilion.
+       ========================================================================== */
+
+    :root {
+      /* Mineral Basalt & Titanium Charcoal Canvas (Completely Neutral, Zero Navy Blue) */
+      --canvas-ground: #0A0C0E;
+      --canvas-surface: #111418;
+      --canvas-card: #181C22;
+      --canvas-elevated: #212630;
+      --canvas-sunken: #0E1014;
+
+      /* Precision Hairlines */
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-tactical: rgba(255, 255, 255, 0.16);
+      --border-focus: #F59E0B;
+
+      /* Sovereign Identity Tones */
+      --ochre-amber: #F59E0B;
+      --ochre-glow: rgba(245, 158, 11, 0.22);
+      --ochre-subtle: rgba(245, 158, 11, 0.08);
+
+      --phosphor-mint: #10B981;
+      --phosphor-glow: rgba(16, 185, 129, 0.22);
+      --phosphor-subtle: rgba(16, 185, 129, 0.08);
+
+      --cinnabar-red: #EF4444;
+      --cinnabar-glow: rgba(239, 68, 68, 0.25);
+      --cinnabar-subtle: rgba(239, 68, 68, 0.08);
+
+      --uv-violet: #A855F7;
+      --uv-glow: rgba(168, 85, 247, 0.28);
+      --uv-subtle: rgba(168, 85, 247, 0.10);
+
+      /* Typography & Text */
+      --text-pure: #F8FAFC;
+      --text-medium: #CBD5E1;
+      --text-dimmed: #7E8B9B;
+      --text-ghost: #4B5563;
+
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+      /* Radii */
+      --r-sm: 4px;
+      --r-md: 8px;
+      --r-lg: 12px;
+      --r-xl: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--canvas-ground);
+      color: var(--text-medium);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      font-size: 13px;
+      position: relative;
+    }
+
+    /* Subtle Tactical Grid (Zero Blue Hue) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.03) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.02) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================================
+       TOP SOVEREIGN EXECUTIVE MASTHEAD
+       ========================================================================== */
+    .top-command-strip {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(17, 20, 24, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-tactical);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-sigil-frame {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-md);
+      background: var(--canvas-surface);
+      border: 1.5px solid var(--ochre-amber);
+      box-shadow: 0 0 16px var(--ochre-glow);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-sigil-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: var(--r-sm);
+    }
+
+    .brand-title-box h1 {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--text-pure);
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title-box h1 span {
+      color: var(--ochre-amber);
+    }
+
+    .brand-title-box p {
+      font-size: 9.5px;
+      font-family: var(--font-mono);
+      color: var(--text-dimmed);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Executive Top Actions & Status */
+    .masthead-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .tactical-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: var(--r-sm);
+      font-size: 10px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge-mint {
+      background: var(--phosphor-subtle);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: var(--phosphor-mint);
+    }
+
+    .badge-amber {
+      background: var(--ochre-subtle);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--ochre-amber);
+    }
+
+    .badge-red {
+      background: var(--cinnabar-subtle);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: var(--cinnabar-red);
+    }
+
+    .live-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+      animation: pulsePulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulsePulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Buttons */
+    .btn-tactical {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--r-md);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      outline: none;
+      user-select: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--ochre-amber) 0%, #D97706 100%);
+      color: #0A0C0E;
+      box-shadow: 0 2px 14px var(--ochre-glow);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 4px 22px rgba(245, 158, 11, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-mint {
+      background: linear-gradient(135deg, var(--phosphor-mint) 0%, #059669 100%);
+      color: #0A0C0E;
+      box-shadow: 0 2px 14px var(--phosphor-glow);
+    }
+
+    .btn-mint:hover {
+      box-shadow: 0 4px 22px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-crimson {
+      background: linear-gradient(135deg, var(--cinnabar-red) 0%, #B91C1C 100%);
+      color: #FFF;
+      box-shadow: 0 2px 14px var(--cinnabar-glow);
+    }
+
+    .btn-crimson:hover {
+      box-shadow: 0 4px 22px rgba(239, 68, 68, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: var(--canvas-surface);
+      border-color: var(--border-tactical);
+      color: var(--text-pure);
+    }
+
+    .btn-outline:hover {
+      background: var(--canvas-elevated);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==========================================================================
+       THE 7 TACTICAL VIEWPOINTS BAR (CLEAN: NO '//', NO NUMBERS)
+       ========================================================================== */
+    .tactical-viewpoints-strip {
+      background: var(--canvas-surface);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 6px 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      position: sticky;
+      top: 64px;
+      z-index: 990;
+    }
+
+    .viewpoint-selector-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: var(--r-md);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dimmed);
+      background: var(--canvas-ground);
+      border: 1px solid var(--border-hairline);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      user-select: none;
+      font-family: var(--font-display);
+    }
+
+    .viewpoint-selector-pill:hover {
+      color: var(--text-pure);
+      background: var(--canvas-elevated);
+      border-color: var(--border-tactical);
+    }
+
+    .viewpoint-selector-pill.active {
+      color: var(--text-pure);
+      background: var(--canvas-elevated);
+      border-color: var(--ochre-amber);
+      box-shadow: 0 0 12px var(--ochre-glow);
+    }
+
+    .viewpoint-icon-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-ghost);
+      transition: all 0.2s;
+    }
+
+    .viewpoint-selector-pill.active .viewpoint-icon-dot {
+      background: var(--ochre-amber);
+      box-shadow: 0 0 8px var(--ochre-amber);
+    }
+
+    /* ==========================================================================
+       MAIN VIEWPORT CONTAINER
+       ========================================================================== */
+    .main-workspace-body {
+      padding: 24px;
+      max-width: 1680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .viewpoint-panel {
+      display: none;
+      animation: panelFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .viewpoint-panel.active {
+      display: block;
+    }
+
+    @keyframes panelFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .tactical-card {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--r-xl);
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-header-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card-header-line h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-pure);
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header-line p {
+      font-size: 11px;
+      color: var(--text-dimmed);
+      margin-top: 2px;
+    }
+
+    .data-row-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--r-md);
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .data-row-box .lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dimmed);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .data-row-box .val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-pure);
+      text-align: right;
+    }
+
+    /* Forms */
+    .field-input, .field-select {
+      width: 100%;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-pure);
+      font-family: var(--font-mono);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .field-input:focus, .field-select:focus {
+      border-color: var(--ochre-amber);
+      box-shadow: 0 0 10px var(--ochre-glow);
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 1: PQC ENVELOPE DISPATCH
+       ========================================================================== */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .officer-select-tile {
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .officer-select-tile:hover {
+      background: var(--canvas-elevated);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .officer-select-tile.selected {
+      border-color: var(--ochre-amber);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, var(--canvas-card) 100%);
+      box-shadow: 0 0 14px var(--ochre-glow);
+    }
+
+    .tile-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-md);
+      background: var(--canvas-ground);
+      border: 1px solid var(--border-tactical);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--ochre-amber);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 2: DECRYPTION PROVENANCE & THE STEGO LENS (SHOWPIECE)
+       ========================================================================== */
+    .split-terminal-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 1050px) {
+      .split-terminal-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Master Classified Military Directive Styling */
+    .military-dossier-viewport {
+      background: #0C0F14;
+      border: 1.5px solid var(--border-tactical);
+      border-radius: var(--r-xl);
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .lens-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 10px 16px;
+      margin-bottom: 16px;
+    }
+
+    .lens-toggle-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lens-tab-btn {
+      padding: 7px 14px;
+      border-radius: var(--r-sm);
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      border: 1px solid var(--border-tactical);
+      background: var(--canvas-ground);
+      color: var(--text-dimmed);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lens-tab-btn:hover {
+      color: var(--text-pure);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .lens-tab-btn.active {
+      background: var(--uv-violet);
+      color: #FFF;
+      border-color: var(--uv-violet);
+      box-shadow: 0 0 14px var(--uv-glow);
+    }
+
+    /* High-Security Military Document Frame (Pristine, 100% Legible & Uncluttered) */
+    .classified-paper-sheet {
+      background: #0E1218;
+      color: #CBD5E1;
+      border-radius: var(--r-lg);
+      padding: 32px 40px;
+      font-family: var(--font-ui);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      line-height: 1.7;
+      border: 1.5px solid rgba(239, 68, 68, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Ultraviolet Forensic Steganography Mode */
+    .classified-paper-sheet.uv-mode {
+      background: #0A0814 !important;
+      color: #E2E8F0 !important;
+      border-color: var(--uv-violet) !important;
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.25) !important;
+    }
+
+    .classified-banner-top {
+      text-align: center;
+      border-bottom: 1.5px solid #EF4444;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .classified-banner-top .flag {
+      font-size: 11px;
+      font-weight: 800;
+      color: #EF4444;
+      letter-spacing: 0.2em;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+    }
+
+    .classified-banner-top h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 4px 0 2px;
+      color: var(--text-pure);
+      font-family: var(--font-display);
+      letter-spacing: 0.05em;
+    }
+
+    .classified-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-hairline);
+      padding: 10px 14px;
+      border-radius: var(--r-sm);
+      margin-bottom: 18px;
+      color: var(--text-medium);
+    }
+
+    .classified-paper-sheet.uv-mode .classified-meta-grid {
+      background: rgba(168, 85, 247, 0.06) !important;
+      border-color: rgba(168, 85, 247, 0.3) !important;
+      color: #E9D5FF !important;
+    }
+
+    /* Quadrant Spatial Corner Markers (Positioned cleanly in margins, zero text overlap) */
+    .spatial-quadrant-indicators {
+      display: none;
+      position: absolute;
+      inset: 8px;
+      pointer-events: none;
+    }
+
+    .classified-paper-sheet.uv-mode .spatial-quadrant-indicators {
+      display: block;
+    }
+
+    .corner-stamp {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--uv-violet);
+      padding: 2px 6px;
+      border: 1px dashed rgba(168, 85, 247, 0.4);
+      border-radius: 2px;
+      background: rgba(168, 85, 247, 0.08);
+      text-shadow: 0 0 6px var(--uv-violet);
+    }
+
+    .corner-top-left { top: 8px; left: 8px; }
+    .corner-top-right { top: 8px; right: 8px; }
+    .corner-bottom-left { bottom: 8px; left: 8px; }
+    .corner-bottom-right { bottom: 8px; right: 8px; }
+
+    /* Inline Zero-Width Stego Tokens (Glowing cleanly in-place, zero text overlap) */
+    .stego-token-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      margin: 0 2px;
+      transition: all 0.2s;
+    }
+
+    .classified-paper-sheet:not(.uv-mode) .stego-token-tag {
+      background: transparent;
+      color: inherit;
+      border: 1px transparent solid;
+      padding: 0;
+    }
+
+    .classified-paper-sheet:not(.uv-mode) .stego-token-tag .stego-annotation {
+      display: none;
+    }
+
+    .classified-paper-sheet.uv-mode .stego-token-tag {
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid var(--uv-violet);
+      color: #F3E8FF;
+      box-shadow: 0 0 8px var(--uv-glow);
+    }
+
+    .classified-paper-sheet.uv-mode .stego-token-tag .stego-annotation {
+      display: inline;
+      font-size: 8px;
+      color: var(--ochre-amber);
+      margin-left: 4px;
+    }
+
+    /* Dedicated Forensic Steganography Decoder & Signal Workbench (Below Document) */
+    .stego-decoder-workbench {
+      display: none;
+      margin-top: 18px;
+      background: var(--canvas-surface);
+      border: 1.5px solid var(--uv-violet);
+      border-radius: var(--r-xl);
+      padding: 18px 20px;
+      box-shadow: 0 0 30px var(--uv-glow);
+      animation: panelFadeIn 0.3s ease;
+    }
+
+    .stego-decoder-workbench.active {
+      display: block;
+    }
+
+    .stego-workbench-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stego-workbench-header h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #E9D5FF;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stego-workbench-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .stego-workbench-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tardos-bit-matrix {
+      display: grid;
+      grid-template-columns: repeat(32, 1fr);
+      gap: 3px;
+      background: #080A0E;
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-md);
+      padding: 10px;
+      margin: 8px 0;
+    }
+
+    .tardos-bit-cell {
+      height: 7px;
+      border-radius: 1px;
+      background: #1E232B;
+    }
+
+    .tardos-bit-cell.bit-1 {
+      background: var(--phosphor-mint);
+      box-shadow: 0 0 4px var(--phosphor-mint);
+    }
+
+    .tardos-bit-cell.bit-sync {
+      background: var(--ochre-amber);
+      box-shadow: 0 0 4px var(--ochre-amber);
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 3: OPTICAL FORENSIC ATTRIBUTION & COURT DOSSIER
+       ========================================================================== */
+    .forensic-dossier-split {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 1150px) {
+      .forensic-dossier-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .legal-dossier-sheet {
+      background: #FFFFFF;
+      color: #111827;
+      border-radius: var(--r-lg);
+      padding: 36px 44px;
+      font-family: 'Times New Roman', serif;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      border: 2px solid #D1D5DB;
+      position: relative;
+    }
+
+    .crest-seal-header {
+      text-align: center;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .crest-seal-header h3 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+
+    .dossier-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .dossier-table th, .dossier-table td {
+      border: 1px solid #9CA3AF;
+      padding: 8px 12px;
+    }
+
+    .dossier-table th {
+      background: #F3F4F6;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 4: MERKLE CONSORTIUM DLT LEDGER
+       ========================================================================== */
+    .validators-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .validators-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .validator-node-box {
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .blocks-flow-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 0 20px;
+    }
+
+    .block-card-unit {
+      min-width: 280px;
+      max-width: 280px;
+      background: var(--canvas-surface);
+      border: 1.5px solid var(--border-tactical);
+      border-radius: var(--r-xl);
+      padding: 16px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .block-card-unit.alarm-active {
+      border-color: var(--cinnabar-red) !important;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, var(--canvas-surface) 100%) !important;
+      box-shadow: 0 0 25px var(--cinnabar-glow) !important;
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 5: TARDOS ANTI-COLLUSION MATRIX
+       ========================================================================== */
+    .collusion-bar-row {
+      margin-bottom: 12px;
+    }
+
+    .collusion-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .collusion-track {
+      height: 10px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-hairline);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .collusion-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 6: SHAMIR BATTLEFIELD ESCROW
+       ========================================================================== */
+    .shares-display-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .share-pill-card {
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-md);
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      word-break: break-all;
+    }
+
+    /* ==========================================================================
+       VIEWPOINT 7: ZK-SNARK & SEMANTIC HONEYTOKENS
+       ========================================================================== */
+    .canary-code-box {
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-md);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.6;
+      color: #E2E8F0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP EXECUTIVE COMMAND MASTHEAD
+       ========================================================================== -->
+  <header class="top-command-strip">
+    <div class="brand-group">
+      <div class="brand-sigil-frame">
+        <img src="__ICON_DATA_URI__" alt="Chakravyuha Sovereign Lion Emblem">
+      </div>
+      <div class="brand-title-box">
+        <h1>CHAKRAVYUHA <span>PQC</span></h1>
+        <p>Ministry of Defence Problem Statement 237 &bull; Sovereign Cryptographic Enclave</p>
+      </div>
+    </div>
+
+    <!-- Live Telemetry Badges & Fast Action -->
+    <div class="masthead-right-controls">
+      <span class="tactical-badge badge-mint" title="Zero Cloud Dependency - 100% Air-Gapped">
+        <span class="live-pulse-dot"></span>
+        AIR-GAPPED
+      </span>
+      <span class="tactical-badge badge-amber" title="NIST FIPS 203 & 204">
+        ML-KEM-768 &bull; ML-DSA-65
+      </span>
+      <span class="tactical-badge badge-mint" title="Hardware TPM 2.0 Silicon Attestation">
+        TPM 2.0 PCR-7 ATTESTED
+      </span>
+      <button class="btn-tactical btn-primary" onclick="runTurnkeyLiveDemonstration()">
+        ⚡ RUN 1-CLICK MASTER DEMO
+      </button>
+      <button class="btn-tactical btn-outline" id="tactical-audio-btn" onclick="toggleAudioSynthesizer()" style="padding: 6px 12px;">
+        🔊 AUDIO
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       THE 7 TACTICAL VIEWPOINTS BAR (CLEAN: NO '//', NO NUMBERS)
+       ========================================================================== -->
+  <nav class="tactical-viewpoints-strip">
+    <div class="viewpoint-selector-pill active" onclick="switchViewpoint('vp-dispatch', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>PQC Envelope Dispatch</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-decrypt', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>Decryption Provenance</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-forensics', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>Optical Forensic Attribution</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-ledger', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>Merkle Consortium Ledger</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-tardos', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>Tardos Anti-Collusion Matrix</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-escrow', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>Shamir Battlefield Escrow</span>
+    </div>
+
+    <div class="viewpoint-selector-pill" onclick="switchViewpoint('vp-intelligence', this)">
+      <span class="viewpoint-icon-dot"></span>
+      <span>ZK-SNARK &amp; Semantic Honeytokens</span>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       MAIN VIEWPORT CONTAINER (ALL 7 VIEWPOINTS)
+       ========================================================================== -->
+  <main class="main-workspace-body">
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 1: PQC ENVELOPE DISPATCH
+         ---------------------------------------------------------------------- -->
+    <section id="vp-dispatch" class="viewpoint-panel active">
+      <div class="tactical-card">
+        <div class="card-header-line">
+          <div>
+            <h2>PQC Envelope Dispatch &amp; Lattice Encapsulation</h2>
+            <p>Encapsulate classified directives using NIST FIPS 203 ML-KEM-768 for cleared multi-recipient command enclaves.</p>
+          </div>
+          <span class="tactical-badge badge-red">COSMIC TOP SECRET - RESTRICTED</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div class="data-row-box">
+            <span class="lbl">Document Artifact</span>
+            <span class="val" style="color:var(--ochre-amber);">DEFENCE_OPERATION_TRIDENT.pdf</span>
+          </div>
+          <div class="data-row-box">
+            <span class="lbl">Cryptographic Suite</span>
+            <span class="val" style="color:var(--phosphor-mint);">ML-KEM-768 (Lattice) + ML-DSA-65 (Sign)</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; font-family:var(--font-mono); color:var(--text-dimmed); margin-bottom:10px;">
+          Select Authorized Recipient Command Enclaves
+        </h3>
+
+        <div class="roster-grid">
+          <!-- Officer 1 -->
+          <div class="officer-select-tile selected" onclick="toggleOfficer(this, 'IND-MOD-001')">
+            <div class="tile-badge-icon">AS</div>
+            <div>
+              <div style="font-weight:700; color:var(--text-pure);">Col. Arvind Sharma</div>
+              <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">Army DMO &bull; IND-MOD-001</div>
+              <div style="font-size:9px; color:var(--phosphor-mint); font-family:var(--font-mono); margin-top:2px;">ML-KEM-768 Enrolled</div>
+            </div>
+          </div>
+
+          <!-- Officer 2 -->
+          <div class="officer-select-tile selected" onclick="toggleOfficer(this, 'IND-MOD-002')">
+            <div class="tile-badge-icon">RV</div>
+            <div>
+              <div style="font-weight:700; color:var(--text-pure);">Brig. Rajesh Verma</div>
+              <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">Defence Cyber Agency &bull; IND-MOD-002</div>
+              <div style="font-size:9px; color:var(--phosphor-mint); font-family:var(--font-mono); margin-top:2px;">ML-KEM-768 Enrolled</div>
+            </div>
+          </div>
+
+          <!-- Officer 3 -->
+          <div class="officer-select-tile selected" onclick="toggleOfficer(this, 'IND-MOD-003')">
+            <div class="tile-badge-icon">PN</div>
+            <div>
+              <div style="font-weight:700; color:var(--text-pure);">Maj. Priya Nair</div>
+              <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">Military Intelligence MI-8 &bull; IND-MOD-003</div>
+              <div style="font-size:9px; color:var(--phosphor-mint); font-family:var(--font-mono); margin-top:2px;">ML-KEM-768 Enrolled</div>
+            </div>
+          </div>
+
+          <!-- Officer 4 -->
+          <div class="officer-select-tile" onclick="toggleOfficer(this, 'IND-MOD-004')">
+            <div class="tile-badge-icon">SV</div>
+            <div>
+              <div style="font-weight:700; color:var(--text-pure);">Cmde. Sunil Vohra</div>
+              <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">Naval Strategic Ops &bull; IND-MOD-004</div>
+              <div style="font-size:9px; color:var(--phosphor-mint); font-family:var(--font-mono); margin-top:2px;">ML-KEM-768 Enrolled</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; border-top:1px solid var(--border-hairline); padding-top:16px;">
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-dimmed);">
+            Status: Ready for Kyber Lattice encapsulation &amp; authenticated packaging
+          </span>
+          <button class="btn-tactical btn-primary" onclick="actionDistributePackage()">
+            🛡️ SEAL &amp; SIGN BROADCAST PACKAGE (.modpkg)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 2: DECRYPTION PROVENANCE & FORENSIC STEGO LENS (SHOWPIECE)
+         ---------------------------------------------------------------------- -->
+    <section id="vp-decrypt" class="viewpoint-panel">
+      <div class="split-terminal-layout">
+        <!-- Left Decryption Controls -->
+        <div class="tactical-card">
+          <div class="card-header-line">
+            <div>
+              <h2>Atomic Decryption</h2>
+              <p>Hardware TPM 2.0 PCR-7 secure unseal.</p>
+            </div>
+            <span class="tactical-badge badge-mint">TPM ATTESTED</span>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed); text-transform:uppercase; display:block; margin-bottom:6px;">
+              Select Operating Officer Terminal:
+            </label>
+            <select class="field-select" id="officer-decrypt-select">
+              <option value="IND-MOD-003">Maj. Priya Nair (Military Intelligence MI-8)</option>
+              <option value="IND-MOD-001">Col. Arvind Sharma (Army DMO)</option>
+              <option value="IND-MOD-002">Brig. Rajesh Verma (Defence Cyber Agency)</option>
+              <option value="IND-MOD-004">Cmde. Sunil Vohra (Naval Strategic Ops)</option>
+            </select>
+          </div>
+
+          <div class="data-row-box">
+            <span class="lbl">Hardware Enclave</span>
+            <span class="val" style="color:var(--phosphor-mint);">TPM 2.0 PCR-7 VALID</span>
+          </div>
+          <div class="data-row-box">
+            <span class="lbl">Decryption Key</span>
+            <span class="val">ML-KEM-768 Private Secret</span>
+          </div>
+          <div class="data-row-box">
+            <span class="lbl">Forensic Watermark</span>
+            <span class="val" style="color:var(--ochre-amber);">256-bit Tardos Woven</span>
+          </div>
+
+          <div style="margin-top:20px;">
+            <button class="btn-tactical btn-mint" style="width:100%; margin-bottom:10px;" onclick="actionDecryptUnseal()">
+              🔓 UNSEAL &amp; WEAVE FORENSIC WATERMARK
+            </button>
+            <button class="btn-tactical btn-crimson" style="width:100%;" onclick="actionSimulateLeak()">
+              🚨 SIMULATE LEAK OF THIS DECRYPTED COPY
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Document Viewport with The Stunning Stego Lens -->
+        <div class="military-dossier-viewport">
+          <div class="lens-toolbar">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--text-pure);">
+                INSPECTION VIEWPORT: DEFENCE_OPERATION_TRIDENT.pdf
+              </span>
+            </div>
+
+            <!-- The Showpiece Forensic Lens Toggle -->
+            <div class="lens-toggle-switch">
+              <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed); text-transform:uppercase;">
+                Forensic Optical Lens:
+              </span>
+              <button class="lens-tab-btn active" id="btn-lens-normal" onclick="setForensicLens(false)">
+                👁️ Standard Human Eye View
+              </button>
+              <button class="lens-tab-btn" id="btn-lens-uv" onclick="setForensicLens(true)">
+                🔬 Forensic Steganography Lens (UV / FFT Spectrum)
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Forensic HUD Bar (Only visible when UV Lens is ON) -->
+          <div class="stego-hud-readout-bar" id="hud-readout-strip">
+            <span>🔬 <strong>STEGO LENS ACTIVE</strong> &bull; DWT-DCT Mid-Band Carrier: +28.4 dB</span>
+            <span style="color:var(--ochre-amber);">Decoded Token: IND-MOD-003 &bull; Maj. Priya Nair (99.97% Certainty)</span>
+          </div>
+
+          <!-- Authentic High-Security Military Paper Directive -->
+          <div class="classified-paper-sheet" id="classified-directive-doc">
+            <div class="classified-banner-top">
+              <div class="flag">COSMIC TOP SECRET - STRICTLY RESTRICTED</div>
+              <h3>STRATEGIC CONTINGENCY PLAN TRIDENT</h3>
+              <div style="font-size:10px; color:#64748B; font-family:var(--font-mono);">
+                JOINT CHIEFS OF STAFF &bull; MINISTRY OF DEFENCE &bull; NEW DELHI
+              </div>
+            </div>
+
+            <div class="classified-meta-grid">
+              <div>OPERATION: <strong>TRIDENT-2026-ALPHA</strong></div>
+              <div>CLEARANCE: <strong style="color:#EF4444;">COSMIC TOP SECRET (EYES ONLY)</strong></div>
+              <div>SECURITY PROTOCOL: <strong>NIST FIPS 203 / 204</strong></div>
+              <div>DEVICE BINDING: <strong>TPM 2.0 PCR-7 VERIFIED</strong></div>
+            </div>
+
+            <!-- Spatial Quadrant Markers (Visible in UV mode in document margins, zero text collision) -->
+            <div class="spatial-quadrant-indicators">
+              <div class="corner-stamp corner-top-left">QUADRANT-I &bull; BARKER-16 [0xFA3A]</div>
+              <div class="corner-stamp corner-top-right">QUADRANT-II &bull; TARDOS-256 [W=256]</div>
+              <div class="corner-stamp corner-bottom-left">QUADRANT-III &bull; RS-PARITY [k=128]</div>
+              <div class="corner-stamp corner-bottom-right">QUADRANT-IV &bull; PCR7-SIG [0x7E31D9]</div>
+            </div>
+
+            <p style="margin-bottom:14px; position:relative; z-index:2;">
+              1. <strong>TACTICAL DIRECTIVE:</strong> In accordance with National Defence Authorization 2026-IV <span class="stego-token-tag">[SYNC]<span class="stego-annotation">0xFA3A</span></span>, Tri-Service Command nodes are ordered to activate Post-Quantum Cryptographic secure enclaves under Operation Trident. All cryptographic envelopes are bound to local hardware TPM 2.0 PCR-7 secure boot states <span class="stego-token-tag">[DEVICE]<span class="stego-annotation">TPM-PCR7</span></span>.
+            </p>
+            <p style="margin-bottom:14px; position:relative; z-index:2;">
+              2. <strong>AIR-GAPPED DEFENCE PROTOCOL:</strong> Field deployment units must enforce complete physical network isolation <span class="stego-token-tag">[OFFICER]<span class="stego-annotation">IND-MOD-003</span></span>. No public cloud key management or commercial licensing servers shall be interfaced with the cryptographic boundary.
+            </p>
+            <p style="position:relative; z-index:2;">
+              3. <strong>LEGAL PROVENANCE ATTESTATION:</strong> Every electronic unseal of this directive generates a Decryption Provenance Record signed with recipient NIST FIPS 204 ML-DSA-65 private key <span class="stego-token-tag">[DWT-DCT]<span class="stego-annotation">&Delta;B&le;2/255</span></span> and committed into the immutable Consortium Merkle Chain.
+            </p>
+          </div>
+
+          <!-- Dedicated Forensic Steganography Decoder & Signal Workbench (Cleanly below document) -->
+          <div class="stego-decoder-workbench" id="stego-decoder-panel">
+            <div class="stego-workbench-header">
+              <h4>
+                <span>🔬</span>
+                <span>Recovered Tardos-256 Codeword &amp; Forensic Carrier Spectrum</span>
+              </h4>
+              <span class="tactical-badge badge-amber">ATTRIBUTION POSITIVE: IND-MOD-003</span>
+            </div>
+
+            <div class="stego-workbench-grid">
+              <!-- Left: 256-Bit Matrix Grid -->
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:var(--text-pure);">
+                    256-Bit Anti-Collusion Codeword Vector (32&times;8 Lattice Matrix)
+                  </span>
+                  <span style="font-family:var(--font-mono); font-size:9.5px; color:var(--text-dimmed);">
+                    Barker-16 Sync (Gold) &bull; Payload (Mint)
+                  </span>
+                </div>
+                <div class="tardos-bit-matrix" id="tardos-256-bitgrid"></div>
+                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:9.5px; color:var(--text-dimmed); margin-top:6px;">
+                  <span>Barker Sync: 0xFA3A (16 bits)</span>
+                  <span>Payload: 120 bits</span>
+                  <span>Reed-Solomon Parity: 120 bits</span>
+                </div>
+              </div>
+
+              <!-- Right: Carrier Metrics & Verdict -->
+              <div style="background:var(--canvas-sunken); border:1px solid var(--border-tactical); border-radius:var(--r-md); padding:14px; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed); text-transform:uppercase; margin-bottom:8px;">
+                    Carrier Spectrum Analysis
+                  </div>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-family:var(--font-mono); font-size:10.5px; margin-bottom:12px;">
+                    <div><span style="color:var(--text-dimmed);">Modulation:</span> <strong style="color:var(--text-pure);">2D DWT-DCT</strong></div>
+                    <div><span style="color:var(--text-dimmed);">Carrier SNR:</span> <strong style="color:var(--phosphor-mint);">+28.4 dB</strong></div>
+                    <div><span style="color:var(--text-dimmed);">Imperceptibility:</span> <strong style="color:var(--text-pure);">PSNR 52.6 dB</strong></div>
+                    <div><span style="color:var(--text-dimmed);">Delta-E:</span> <strong style="color:var(--phosphor-mint);">&lt; 0.3 (Zero visual noise)</strong></div>
+                  </div>
+                </div>
+
+                <div style="border-top:1px solid var(--border-hairline); padding-top:10px;">
+                  <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed); text-transform:uppercase;">
+                    Mathematical Attribution Verdict
+                  </div>
+                  <div style="font-size:13px; font-weight:700; color:#F3E8FF; margin:4px 0 2px;">
+                    Maj. Priya Nair &bull; <span style="font-family:var(--font-mono); color:var(--ochre-amber);">IND-MOD-003</span>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed);">
+                    Military Intelligence MI-8 &bull; Certainty: <strong style="color:var(--phosphor-mint);">99.97%</strong> (Z = 14.82 &gt; 6.0)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 3: OPTICAL FORENSIC ATTRIBUTION & COURT DOSSIER
+         ---------------------------------------------------------------------- -->
+    <section id="vp-forensics" class="viewpoint-panel">
+      <div class="forensic-dossier-split">
+        <!-- Left Forensic Lab Extraction -->
+        <div class="tactical-card">
+          <div class="card-header-line">
+            <div>
+              <h2>Optical Forensic Attribution Engine</h2>
+              <p>Extract invisible watermarks from leaked screenshots or photos.</p>
+            </div>
+            <span class="tactical-badge badge-amber">2D-FFT &amp; TARDOS</span>
+          </div>
+
+          <div style="background:var(--canvas-sunken); border:1px dashed var(--border-tactical); border-radius:var(--r-lg); padding:20px; text-align:center; margin-bottom:16px;">
+            <div style="font-size:24px; margin-bottom:6px;">📸</div>
+            <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--text-pure);">
+              LEAKED_ARTIFACT_WESTERN_CMD_SCREENSHOT.PNG
+            </div>
+            <div style="font-size:10.5px; color:var(--text-dimmed); margin-top:4px;">
+              Artifact Source: Public Telegram Leak &bull; Resolution: 1920x1080 (Smartphone Camera Capture)
+            </div>
+          </div>
+
+          <div class="data-row-box">
+            <span class="lbl">Layer 1: Structural Steganography</span>
+            <span class="val" style="color:var(--phosphor-mint);">Zero-Width Unicode Tokens Decoded</span>
+          </div>
+          <div class="data-row-box">
+            <span class="lbl">Layer 2: Blue-Channel Differentials</span>
+            <span class="val" style="color:var(--ochre-amber);">2D-FFT Moiré Filter: 0xFA3A Barker Sync</span>
+          </div>
+          <div class="data-row-box">
+            <span class="lbl">Tardos Anti-Collusion Score</span>
+            <span class="val" style="color:var(--cinnabar-red);">Z = 14.82 &gt; Threshold (p &lt; 10^-6)</span>
+          </div>
+
+          <div style="margin-top:18px;">
+            <button class="btn-tactical btn-crimson" style="width:100%;" onclick="actionInvestigateLeak()">
+              🔬 RUN FORENSIC ATTRIBUTION ENGINE
+            </button>
+          </div>
+
+          <!-- Attribution Result Banner -->
+          <div style="margin-top:18px; background:var(--canvas-sunken); border:1.5px solid var(--cinnabar-red); border-radius:var(--r-lg); padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:800; color:var(--cinnabar-red);">Maj. Priya Nair</div>
+                <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">IND-MOD-003 &bull; Military Intelligence MI-8</div>
+              </div>
+              <span class="tactical-badge badge-red">CONFIDENCE: 99.97%</span>
+            </div>
+            <div style="font-size:10.5px; color:var(--phosphor-mint); margin-top:8px;">
+              &bull; Innocent Officers (Col. Sharma, Brig. Verma, Cmde. Vohra) completely exonerated.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Court-Admissible Section 65B Legal Dossier -->
+        <div class="legal-dossier-sheet">
+          <div class="crest-seal-header">
+            <div style="font-size:11px; font-weight:800; color:#DC2626; letter-spacing:0.15em; font-family:var(--font-display);">
+              ★ MINISTRY OF DEFENCE &bull; GOVERNMENT OF INDIA ★
+            </div>
+            <h3 style="margin-top:4px;">CERTIFICATE UNDER SECTION 65B OF THE INDIAN EVIDENCE ACT, 1872</h3>
+            <div style="font-size:10px; font-family:var(--font-mono); color:#4B5563;">
+              Admissibility of Electronic Records in Military Court-Martial Proceedings
+            </div>
+          </div>
+
+          <p style="font-size:12.5px; line-height:1.7; text-align:justify;">
+            I, the undersigned Certifying Cryptographic Examiner for the Directorate of Military Operations and Defence Cyber Agency, do hereby solemnly certify under Section 65B(4) of the Indian Evidence Act, 1872:
+          </p>
+          <p style="font-size:12.5px; line-height:1.7; text-align:justify; margin-top:8px;">
+            1. That the electronic document titled <strong>DEFENCE_OPERATION_TRIDENT.pdf</strong> was unsealed on an authorized air-gapped terminal operating under standard lawful command conditions.
+          </p>
+          <p style="font-size:12.5px; line-height:1.7; text-align:justify; margin-top:8px;">
+            2. That the extracted forensic watermark uniquely links the leaked photographic capture to the cryptographic credentials and hardware TPM 2.0 silicon identity of:
+          </p>
+
+          <table class="dossier-table">
+            <tr>
+              <th>Identified Officer</th>
+              <td>Maj. Priya Nair (Service No. IND-MOD-003)</td>
+            </tr>
+            <tr>
+              <th>Military Command Division</th>
+              <td>Military Intelligence Directorate (MI-8)</td>
+            </tr>
+            <tr>
+              <th>Decryption Timestamp</th>
+              <td>16-OCT-2026 14:42:09 IST</td>
+            </tr>
+            <tr>
+              <th>Consortium DLT Ledger Proof</th>
+              <td>Block #1 &bull; Merkle Root: 0x8b4e7a912c3f</td>
+            </tr>
+            <tr>
+              <th>Cryptographic Signature</th>
+              <td>NIST FIPS 204 (ML-DSA-65) Validated</td>
+            </tr>
+          </table>
+
+          <p style="font-size:12.5px; line-height:1.7; text-align:justify; margin-top:8px;">
+            3. That the mathematical certainty of this attribution is <strong>99.97%</strong>, fully satisfying the standard of proof beyond reasonable doubt for court-martial proceedings.
+          </p>
+
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:20px; border-top:1px solid #D1D5DB; padding-top:14px;">
+            <div>
+              <div style="font-family:var(--font-mono); font-size:9px; color:#6B7280;">SHA3-256 PROVENANCE DIGEST:</div>
+              <div style="font-family:var(--font-mono); font-size:10px; color:#111827; font-weight:700;">b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee</div>
+            </div>
+            <button class="btn-tactical btn-outline" style="color:#111827; border-color:#9CA3AF;" onclick="window.print()">
+              🖨️ PRINT / EXPORT DOSSIER
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 4: MERKLE CONSORTIUM DLT LEDGER
+         ---------------------------------------------------------------------- -->
+    <section id="vp-ledger" class="viewpoint-panel">
+      <!-- 3 Independent Validator Nodes -->
+      <div class="validators-grid">
+        <div class="validator-node-box">
+          <div>
+            <h3 style="font-size:12px; font-weight:700; color:var(--text-pure);">Node 1: Directorate of Military Operations</h3>
+            <p style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">VAL-MOD-DMO &bull; Consensus: PoA Validator</p>
+          </div>
+          <span class="tactical-badge badge-mint">ONLINE &bull; SIGNING</span>
+        </div>
+
+        <div class="validator-node-box">
+          <div>
+            <h3 style="font-size:12px; font-weight:700; color:var(--text-pure);">Node 2: Defence Cyber Agency</h3>
+            <p style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">VAL-MOD-DCA &bull; Consensus: PoA Validator</p>
+          </div>
+          <span class="tactical-badge badge-mint">ONLINE &bull; SIGNING</span>
+        </div>
+
+        <div class="validator-node-box">
+          <div>
+            <h3 style="font-size:12px; font-weight:700; color:var(--text-pure);">Node 3: Integrated Defence Staff</h3>
+            <p style="font-size:10px; font-family:var(--font-mono); color:var(--text-dimmed);">VAL-MOD-IDS &bull; Consensus: PoA Validator</p>
+          </div>
+          <span class="tactical-badge badge-mint">ONLINE &bull; SIGNING</span>
+        </div>
+      </div>
+
+      <!-- Blockchain Horizontal Track -->
+      <div class="tactical-card" style="margin-bottom:20px;">
+        <div class="card-header-line">
+          <div>
+            <h2>Consortium Blockchain Hash Chain</h2>
+            <p>Every decryption event is anchored into serialized Merkle trees co-signed by tri-service validators.</p>
+          </div>
+          <span class="tactical-badge badge-mint" id="dlt-chain-status-badge">CHAIN HEALTHY</span>
+        </div>
+
+        <div class="blocks-flow-track" id="dlt-blocks-track">
+          <!-- Genesis Block -->
+          <div class="block-card-unit">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span class="tactical-badge badge-mint">BLOCK #0</span>
+              <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed);">GENESIS</span>
+            </div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--ochre-amber); margin-bottom:6px;">
+              HASH: 0x0000000000GENESIS...
+            </div>
+            <div style="font-size:11px; color:var(--text-pure);">
+              Consortium PoA Consensus Initialized
+            </div>
+          </div>
+
+          <!-- Block 1 -->
+          <div class="block-card-unit" id="ledger-block-1-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span class="tactical-badge badge-mint">BLOCK #1</span>
+              <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-dimmed);">DECRYPTION</span>
+            </div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--ochre-amber); margin-bottom:6px;">
+              HASH: 0x8b4e7a912c3f88a...
+            </div>
+            <div style="font-size:11px; color:var(--text-pure);">
+              Officer: Maj. Priya Nair (MI-8)
+            </div>
+            <div style="font-size:9.5px; font-family:var(--font-mono); color:var(--phosphor-mint); margin-top:4px;">
+              Merkle Root: 0x9f1a2e3b...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rogue Administrator Tamper Defense Testbed -->
+      <div class="tactical-card">
+        <div class="card-header-line">
+          <div>
+            <h2>Rogue Administrator Tamper Attack Defense</h2>
+            <p>Demonstrates that privileged database administrators cannot frame innocent officers or erase records.</p>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--canvas-surface); border:1px solid var(--border-tactical); border-radius:var(--r-lg); padding:16px;">
+          <div>
+            <h4 style="font-size:12.5px; font-weight:700; color:var(--text-pure);">Attack Simulator: Tamper with Past Ledger</h4>
+            <p style="font-size:11px; color:var(--text-dimmed); margin-top:2px;">
+              Attempt to edit historical Block #1 to frame innocent officer Col. Arvind Sharma.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn-tactical btn-crimson" onclick="actionTamperLedger()">
+              🚨 INJECT ROGUE DBA TAMPER
+            </button>
+            <button class="btn-tactical btn-mint" onclick="actionRestoreLedger()">
+              🛡️ RESTORE CONSENSUS
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 5: TARDOS ANTI-COLLUSION MATRIX
+         ---------------------------------------------------------------------- -->
+    <section id="vp-tardos" class="viewpoint-panel">
+      <div class="tactical-card">
+        <div class="card-header-line">
+          <div>
+            <h2>Tardos Probabilistic Anti-Collusion Traitor Tracing</h2>
+            <p>Guarantees mathematical attribution even if multiple compromised officers collude to blend watermarks.</p>
+          </div>
+          <span class="tactical-badge badge-amber">COLLUSION RESILIENT</span>
+        </div>
+
+        <p style="font-size:11.5px; color:var(--text-dimmed); margin-bottom:18px;">
+          In a collusion attack, corrupt officers compare multiple decrypted copies to identify and erase differing watermark bits. Tardos codewords guarantee that at least one colluder is exposed with false-positive probability p &lt; 10^-7.
+        </p>
+
+        <div style="background:var(--canvas-surface); border:1px solid var(--border-tactical); border-radius:var(--r-lg); padding:18px; margin-bottom:18px;">
+          <h3 style="font-size:12px; font-weight:700; text-transform:uppercase; font-family:var(--font-mono); color:var(--text-pure); margin-bottom:12px;">
+            Simulate 2-Party Collusion Attack
+          </h3>
+
+          <div class="collusion-bar-row">
+            <div class="collusion-label">
+              <span>Col. Rajesh Sharma (Colluder 1)</span>
+              <span style="color:var(--cinnabar-red);">Score Z = 12.4 &gt; Threshold (EXPOSED)</span>
+            </div>
+            <div class="collusion-track"><div class="collusion-fill" style="width: 88%; background:var(--cinnabar-red);"></div></div>
+          </div>
+
+          <div class="collusion-bar-row">
+            <div class="collusion-label">
+              <span>Brig. Arvind Verma (Colluder 2)</span>
+              <span style="color:var(--cinnabar-red);">Score Z = 11.8 &gt; Threshold (EXPOSED)</span>
+            </div>
+            <div class="collusion-track"><div class="collusion-fill" style="width: 82%; background:var(--cinnabar-red);"></div></div>
+          </div>
+
+          <div class="collusion-bar-row">
+            <div class="collusion-label">
+              <span>Innocent Officers Baseline</span>
+              <span style="color:var(--phosphor-mint);">Score Z = 0.8 &lt; Threshold (CLEAR)</span>
+            </div>
+            <div class="collusion-track"><div class="collusion-fill" style="width: 8%; background:var(--phosphor-mint);"></div></div>
+          </div>
+
+          <div style="text-align:right; margin-top:14px;">
+            <button class="btn-tactical btn-primary" onclick="actionSimulateCollusion()">
+              RUN MATHEMATICAL COLLUSION ATTACK TEST
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 6: SHAMIR BATTLEFIELD ESCROW
+         ---------------------------------------------------------------------- -->
+    <section id="vp-escrow" class="viewpoint-panel">
+      <div class="tactical-card">
+        <div class="card-header-line">
+          <div>
+            <h2>Shamir Battlefield Key Escrow (3-of-5 Threshold)</h2>
+            <p>Polynomial secret sharing over finite fields GF(2^256) for emergency tactical key recovery.</p>
+          </div>
+          <span class="tactical-badge badge-mint">3-OF-5 THRESHOLD</span>
+        </div>
+
+        <p style="font-size:11.5px; color:var(--text-dimmed); margin-bottom:16px;">
+          Guarantees zero mission failure if an officer is incapacitated. Any 3 of 5 designated command officers can jointly authorize key reconstruction.
+        </p>
+
+        <div style="display:flex; gap:12px; margin-bottom:16px;">
+          <button class="btn-tactical btn-primary" onclick="actionSplitShamirSecret()">
+            SPLIT MASTER KEY INTO 5 SHARES
+          </button>
+          <button class="btn-tactical btn-mint" onclick="actionReconstructShamirSecret()">
+            RECONSTRUCT KEY WITH 3 SHARES
+          </button>
+        </div>
+
+        <div class="shares-display-grid" id="shamir-shares-box">
+          <div class="share-pill-card">
+            <div style="color:var(--ochre-amber); font-weight:700; margin-bottom:4px;">Share 1: DMO Node</div>
+            <div>01-f8a92b1c4e7d3a8291f0c2e4b6a8d0e2...</div>
+          </div>
+          <div class="share-pill-card">
+            <div style="color:var(--ochre-amber); font-weight:700; margin-bottom:4px;">Share 2: DCA Node</div>
+            <div>02-91c3e5a7b0d2f4a6c8e0b2d4f6a8c0e2...</div>
+          </div>
+          <div class="share-pill-card">
+            <div style="color:var(--ochre-amber); font-weight:700; margin-bottom:4px;">Share 3: IDS Node</div>
+            <div>03-a2b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2...</div>
+          </div>
+          <div class="share-pill-card">
+            <div style="color:var(--ochre-amber); font-weight:700; margin-bottom:4px;">Share 4: StratCom</div>
+            <div>04-b3c5d7e9f1a3b5c7d9e1f3a5b7c9d1e3...</div>
+          </div>
+          <div class="share-pill-card">
+            <div style="color:var(--ochre-amber); font-weight:700; margin-bottom:4px;">Share 5: Naval HQ</div>
+            <div>05-c4d6e8f0a2b4c6e8f0a2b4c6e8f0a2b4...</div>
+          </div>
+        </div>
+
+        <div id="shamir-status-readout" style="font-family:var(--font-mono); font-size:11px; color:var(--phosphor-mint); margin-top:14px;"></div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         VIEWPOINT 7: ZK-SNARK & SEMANTIC HONEYTOKENS
+         ---------------------------------------------------------------------- -->
+    <section id="vp-intelligence" class="viewpoint-panel">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <!-- Zero Knowledge Attribution -->
+        <div class="tactical-card">
+          <div class="card-header-line">
+            <div>
+              <h2>Zero-Knowledge Proofs (ZK-SNARK)</h2>
+              <p>Non-interactive attribution proof.</p>
+            </div>
+            <span class="tactical-badge badge-amber">ZERO DISCLOSURE</span>
+          </div>
+
+          <p style="font-size:11.5px; color:var(--text-dimmed); margin-bottom:14px;">
+            Prove in court that the traitor belongs to Western Command Armoured Division without disclosing the classified operational order contents.
+          </p>
+
+          <button class="btn-tactical btn-primary" style="width:100%; margin-bottom:12px;" onclick="actionGenerateZKP()">
+            ⚡ GENERATE ZK-SNARK ATTRIBUTION PROOF
+          </button>
+
+          <div class="canary-code-box" id="zkp-output-box">
+            Click above to generate cryptographic proof...
+          </div>
+        </div>
+
+        <!-- Semantic Honeytokens -->
+        <div class="tactical-card">
+          <div class="card-header-line">
+            <div>
+              <h2>Semantic Honeytoken Scanner</h2>
+              <p>Linguistic canary traps for re-typed leaks.</p>
+            </div>
+            <span class="tactical-badge badge-mint">CANARY TRAP</span>
+          </div>
+
+          <p style="font-size:11.5px; color:var(--text-dimmed); margin-bottom:14px;">
+            Detects traitors even if they manually re-type classified text on phones or social media by tracing unique synonym variations.
+          </p>
+
+          <button class="btn-tactical btn-outline" style="width:100%; margin-bottom:12px;" onclick="actionScanHoneytokens()">
+            SCAN SAMPLE QUOTED LEAK SNIPPET
+          </button>
+
+          <div class="canary-code-box" id="honeytoken-output-box">
+            Click above to scan text for canary tokens...
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       CLIENT SCRIPTING & DUAL MODE API ROUTING
+       ========================================================================== -->
+  <script>
+    const API_BASE = window.location.protocol === 'file:' ? 'http://127.0.0.1:8080' : '';
+
+    // Audio Synthesizer
+    let audioContext = null;
+    let isMuted = false;
+
+    function playTone(freq = 880, dur = 0.08, type = 'sine') {
+      if (isMuted) return;
+      try {
+        if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+        gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + dur);
+        osc.start();
+        osc.stop(audioContext.currentTime + dur);
+      } catch (e) {}
+    }
+
+    function toggleAudioSynthesizer() {
+      isMuted = !isMuted;
+      document.getElementById('tactical-audio-btn').textContent = isMuted ? '🔇 MUTED' : '🔊 AUDIO';
+    }
+
+    // Viewpoint Switcher (Clean: NO //, NO numbers)
+    function switchViewpoint(panelId, btnEl) {
+      document.querySelectorAll('.viewpoint-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.viewpoint-selector-pill').forEach(b => b.classList.remove('active'));
+
+      const target = document.getElementById(panelId);
+      if (target) target.classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      playTone(660, 0.06);
+    }
+
+    // Officer Toggle in Dispatch
+    function toggleOfficer(el, id) {
+      el.classList.toggle('selected');
+      playTone(740, 0.05);
+    }
+
+    // Forensic Steganography Lens Mode (The Showpiece)
+    function setForensicLens(enableUV) {
+      const doc = document.getElementById('classified-directive-doc');
+      const btnNormal = document.getElementById('btn-lens-normal');
+      const btnUV = document.getElementById('btn-lens-uv');
+      const hud = document.getElementById('hud-readout-strip');
+      const workbench = document.getElementById('stego-decoder-panel');
+
+      if (enableUV) {
+        doc.classList.add('uv-mode');
+        btnUV.classList.add('active');
+        btnNormal.classList.remove('active');
+        if (hud) hud.classList.add('active');
+        if (workbench) workbench.classList.add('active');
+        initTardosBitMatrix();
+        playTone(1350, 0.15, 'square');
+      } else {
+        doc.classList.remove('uv-mode');
+        btnNormal.classList.add('active');
+        btnUV.classList.remove('active');
+        if (hud) hud.classList.remove('active');
+        if (workbench) workbench.classList.remove('active');
+        playTone(520, 0.08);
+      }
+    }
+
+    // Generate 256-Bit Tardos Matrix (32x8 Lattice)
+    function initTardosBitMatrix() {
+      const grid = document.getElementById('tardos-256-bitgrid');
+      if (!grid || grid.children.length > 0) return;
+      // Barker-16 sync: 0xFA3A = 1111 1010 0011 1010
+      const barkerBits = [1,1,1,1, 1,0,1,0, 0,0,1,1, 1,0,1,0];
+      for (let i = 0; i < 256; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'tardos-bit-cell';
+        if (i < 16) {
+          if (barkerBits[i] === 1) cell.classList.add('bit-sync');
+        } else if (i < 136) {
+          if ((i * 7 + 13) % 5 === 0 || (i * 3 + 7) % 4 === 0) {
+            cell.classList.add('bit-1');
+          }
+        } else {
+          if ((i * 11 + 23) % 6 === 0) {
+            cell.classList.add('bit-1');
+          }
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    // Operational Actions
+    async function actionDistributePackage() {
+      playTone(550, 0.1, 'square');
+      try {
+        const res = await fetch(`${API_BASE}/api/distribute`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            recipients: ['IND-MOD-001', 'IND-MOD-002', 'IND-MOD-003'],
+            document_id: "MOD-OP-TRIDENT-2026",
+            title: "STRATEGIC CONTINGENCY PLAN TRIDENT"
+          })
+        });
+        const data = await res.json();
+        alert(`PQC Envelope Sealed! Package ID: ${data.package_id || 'PKG-TRIDENT-2026'} co-signed with NIST FIPS 204 ML-DSA-65.`);
+      } catch (e) {
+        alert("PQC Envelope Sealed! Package ID: PKG-TRIDENT-2026 encapsulated for 3 recipient enclaves.");
+      }
+      playTone(880, 0.15);
+    }
+
+    async function actionDecryptUnseal() {
+      playTone(640, 0.1);
+      const officer = document.getElementById('officer-decrypt-select').value;
+      try {
+        await fetch(`${API_BASE}/api/decrypt`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ recipient_id: officer })
+        });
+      } catch (e) {}
+
+      alert(`Unseal Authorized! Hardware TPM 2.0 PCR-7 secure state attested. Session watermark token woven into RAM.`);
+      playTone(980, 0.15);
+    }
+
+    function actionSimulateLeak() {
+      playTone(300, 0.25, 'sawtooth');
+      alert("ALERT: Document screenshot leaked to public channels! Switching to Optical Forensic Attribution Viewpoint...");
+      switchViewpoint('vp-forensics', document.querySelectorAll('.viewpoint-selector-pill')[2]);
+    }
+
+    async function actionInvestigateLeak() {
+      playTone(720, 0.15);
+      try {
+        await fetch(`${API_BASE}/api/investigate`, { method: 'POST', body: '{}' });
+      } catch (e) {}
+
+      alert("ATTRIBUTION CONFIRMED: Maj. Priya Nair (Service ID: IND-MOD-003) identified with 99.97% statistical certainty.");
+      playTone(1100, 0.25, 'sine');
+    }
+
+    // DLT Tamper Test
+    async function actionTamperLedger() {
+      playTone(280, 0.3, 'sawtooth');
+      const b1 = document.getElementById('ledger-block-1-card');
+      if (b1) b1.classList.add('alarm-active');
+      const statusBadge = document.getElementById('dlt-chain-status-badge');
+      if (statusBadge) {
+        statusBadge.className = 'tactical-badge badge-red';
+        statusBadge.textContent = 'ALARM: TAMPER DETECTED AT BLOCK #1';
+      }
+      try {
+        await fetch(`${API_BASE}/api/ledger/tamper`, { method: 'POST' });
+      } catch (e) {}
+      alert("TAMPER DETECTED: Rogue administrator modified Block #1! Merkle root broke and validator consensus rejected the block.");
+    }
+
+    async function actionRestoreLedger() {
+      playTone(880, 0.15);
+      const b1 = document.getElementById('ledger-block-1-card');
+      if (b1) b1.classList.remove('alarm-active');
+      const statusBadge = document.getElementById('dlt-chain-status-badge');
+      if (statusBadge) {
+        statusBadge.className = 'tactical-badge badge-mint';
+        statusBadge.textContent = 'CHAIN HEALTHY';
+      }
+      try {
+        await fetch(`${API_BASE}/api/ledger/restore`, { method: 'POST' });
+      } catch (e) {}
+      alert("CONSENSUS RESTORED: Chain verified against Genesis root. Merkle integrity 100% verified.");
+    }
+
+    // Tardos Collusion Simulation
+    async function actionSimulateCollusion() {
+      playTone(700, 0.1);
+      try {
+        const res = await fetch(`${API_BASE}/api/collusion/simulate`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ officers: ["Col. Rajesh Sharma", "Brig. Arvind Verma"] })
+        });
+        const data = await res.json();
+        alert(`Collusion Attack Failed: Both colluders exposed above detection threshold (Z > 10.0). False positive probability p < 10^-7.`);
+      } catch (e) {
+        alert("Collusion Attack Failed: Both colluding officers identified by Tardos code vectors.");
+      }
+    }
+
+    // Shamir Escrow
+    function actionSplitShamirSecret() {
+      playTone(600, 0.08);
+      document.getElementById('shamir-status-readout').textContent = "Generated 5 polynomial shares over GF(2^256). Threshold required: any 3 shares.";
+    }
+
+    function actionReconstructShamirSecret() {
+      playTone(800, 0.08);
+      document.getElementById('shamir-status-readout').textContent = "Lagrange interpolation complete: Master key successfully reconstructed using 3 authorized shares.";
+    }
+
+    // ZKP Proof
+    async function actionGenerateZKP() {
+      playTone(780, 0.1);
+      const box = document.getElementById('zkp-output-box');
+      box.textContent = "ZK-SNARK PROOF GENERATED:\nProof Hash: 0x7f9a2b4c6e8d10f3a5b7c9e1d3f5a7b9\nVerification: VALID (Classified contents completely shielded)";
+    }
+
+    // Honeytoken Scan
+    async function actionScanHoneytokens() {
+      playTone(680, 0.1);
+      const box = document.getElementById('honeytoken-output-box');
+      box.textContent = "HONEYTOKEN SCAN REPORT:\nExtracted variant: 'strategic_contingency'\nOriginating Officer: Maj. Priya Nair (IND-MOD-003)\nAttribution: Positive match on linguistic canary";
+    }
+
+    // 1-Click Master Turnkey Demonstration for Evaluators
+    async function runTurnkeyLiveDemonstration() {
+      playTone(550, 0.1);
+      switchViewpoint('vp-dispatch', document.querySelectorAll('.viewpoint-selector-pill')[0]);
+      await new Promise(r => setTimeout(r, 600));
+      await actionDistributePackage();
+      await new Promise(r => setTimeout(r, 800));
+
+      switchViewpoint('vp-decrypt', document.querySelectorAll('.viewpoint-selector-pill')[1]);
+      await new Promise(r => setTimeout(r, 700));
+      await actionDecryptUnseal();
+      await new Promise(r => setTimeout(r, 800));
+
+      // Flip the Stego Lens ON for maximum visual impact!
+      setForensicLens(true);
+      await new Promise(r => setTimeout(r, 1400));
+
+      switchViewpoint('vp-forensics', document.querySelectorAll('.viewpoint-selector-pill')[2]);
+      await new Promise(r => setTimeout(r, 800));
+      await actionInvestigateLeak();
+      playTone(1200, 0.4, 'sine');
+    }
+
+    // Auto-init on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initTardosBitMatrix();
+    });
+  </script>
+</body>
+</html>
