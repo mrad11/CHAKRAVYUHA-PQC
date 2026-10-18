@@ -360,78 +360,162 @@
     }
 
     /* ==========================================================================
-       4D KINETIC SIGNATURE HERO: CONCENTRIC CHAKRAVYUHA VAULT MECHANISM
+       CONCENTRIC CHAKRAVYUHA DEFENSE ROTOR & HARDWARE SILICON ENCLAVE
        ========================================================================== */
     .vault-hero-strip {
-      background: linear-gradient(180deg, rgba(28, 18, 48, 0.96) 0%, rgba(13, 8, 25, 0.98) 100%);
+      background: linear-gradient(180deg, rgba(26, 17, 44, 0.98) 0%, rgba(13, 8, 25, 0.99) 100%);
       border-bottom: 1.5px solid var(--border-tactical);
       padding: 16px 28px;
       position: relative;
       z-index: 950;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
     }
 
     .vault-hero-container {
       max-width: 1440px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 290px 1fr 250px;
+      grid-template-columns: 350px 1fr 340px;
       gap: 20px;
-      align-items: center;
+      align-items: stretch;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .vault-hero-container {
         grid-template-columns: 1fr;
       }
     }
 
-    .vault-canvas-box {
-      background: var(--canvas-sunken);
-      border: 1px solid var(--border-tactical);
-      border-radius: var(--r-lg);
-      padding: 10px;
+    /* Common Card Header in Hero */
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-title-group {
       display: flex;
       flex-direction: column;
-      align-items: center;
+    }
+
+    .hero-card-kicker {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-dimmed);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-card-title {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-pure);
+      letter-spacing: 0.03em;
+    }
+
+    /* Left Card: Concentric Rotor Box */
+    .vault-canvas-box {
+      background: var(--canvas-surface);
+      border: 1.5px solid var(--border-tactical);
+      border-radius: var(--r-xl);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: relative;
-      box-shadow: inset 0 0 28px rgba(0, 215, 168, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 24px rgba(0, 215, 168, 0.05);
       clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    .canvas-interactive-wrapper {
+      position: relative;
+      width: 100%;
+      height: 125px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: crosshair;
     }
 
     #vault-webgl-canvas {
       width: 100%;
-      height: 110px;
+      height: 100%;
       display: block;
     }
 
-    .vault-ring-label {
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      color: var(--accent-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
+    .canvas-corner {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-color: var(--accent-primary);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .corner-tl { top: 4px; left: 4px; border-top: 1.5px solid; border-left: 1.5px solid; }
+    .corner-tr { top: 4px; right: 4px; border-top: 1.5px solid; border-right: 1.5px solid; }
+    .corner-bl { bottom: 4px; left: 4px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+    .corner-br { bottom: 4px; right: 4px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+    .vault-rotor-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .rotor-status-item {
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
+    .rotor-status-text {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--accent-primary);
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    .rotor-metric-tag {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--text-dimmed);
+      background: var(--canvas-sunken);
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--border-hairline);
+    }
+
+    /* Center Card: Scrubber */
     .vault-scrubber-center {
       background: var(--canvas-surface);
-      border: 1px solid var(--border-tactical);
-      border-radius: var(--r-lg);
-      padding: 14px 20px;
+      border: 1.5px solid var(--border-tactical);
+      border-radius: var(--r-xl);
+      padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
     }
 
     .scrubber-header-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 8px;
     }
 
     .scrubber-title {
@@ -447,21 +531,22 @@
 
     .scrubber-stats-chips {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .mini-stat-chip {
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: 9px;
       background: var(--canvas-sunken);
       border: 1px solid var(--border-hairline);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: var(--r-sm);
       color: var(--text-medium);
     }
 
     .scrubber-track-box {
       width: 100%;
+      margin: 4px 0;
     }
 
     #time-travel-scrubber {
@@ -482,7 +567,7 @@
       border-radius: 50%;
       background: var(--accent-primary);
       cursor: pointer;
-      box-shadow: 0 0 12px var(--accent-primary);
+      box-shadow: 0 0 14px var(--accent-primary);
       border: 2px solid #FFF;
       transition: all 0.15s;
     }
@@ -495,7 +580,7 @@
       display: flex;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 8.5px;
       color: var(--text-dimmed);
       margin-top: 4px;
     }
@@ -509,65 +594,150 @@
       border-radius: var(--r-sm);
       padding: 6px 12px;
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: 10px;
       color: var(--text-pure);
+      margin-top: 6px;
     }
 
-    .talisman-box {
-      background: var(--canvas-sunken);
-      border: 1px solid var(--border-tactical);
-      border-radius: var(--r-lg);
-      padding: 12px 16px;
+    /* Right Card: Officer Hardware Silicon Enclave */
+    .officer-enclave-card {
+      background: var(--canvas-surface);
+      border: 1.5px solid var(--border-tactical);
+      border-radius: var(--r-xl);
+      padding: 14px 18px;
       display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: inset 0 0 20px rgba(251, 64, 173, 0.08);
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 24px rgba(251, 64, 173, 0.05);
       clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
     }
 
-    .talisman-svg-frame {
-      width: 48px;
-      height: 48px;
+    .officer-identity-body {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 4px 0 6px;
+    }
+
+    .holographic-medallion-frame {
+      width: 72px;
+      height: 72px;
       flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      border-radius: 50%;
+      box-shadow: 0 0 18px rgba(0, 215, 168, 0.2);
     }
 
-    .rotating-talisman-svg {
-      animation: spinTalisman 18s linear infinite;
+    .holographic-vector-insignia {
+      width: 64px;
+      height: 64px;
     }
 
-    @keyframes spinTalisman {
+    .spin-clockwise {
+      transform-origin: center;
+      animation: spinCW 22s linear infinite;
+    }
+
+    .spin-counter {
+      transform-origin: center;
+      animation: spinCCW 15s linear infinite;
+    }
+
+    @keyframes spinCW {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    .talisman-info {
+    @keyframes spinCCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    .officer-telemetry-meta {
       display: flex;
       flex-direction: column;
+      gap: 2px;
+      min-width: 0;
     }
 
-    .talisman-lbl {
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      color: var(--text-dimmed);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .officer-callsign-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .talisman-val {
+    .officer-name {
       font-family: var(--font-display);
-      font-size: 13px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-pure);
+      white-space: nowrap;
+    }
+
+    .officer-id-pill {
+      font-family: var(--font-mono);
+      font-size: 9px;
       font-weight: 700;
       color: var(--accent-primary);
-      margin: 2px 0;
+      background: rgba(0, 215, 168, 0.12);
+      border: 1px solid var(--accent-primary);
+      padding: 1px 5px;
+      border-radius: 3px;
     }
 
-    .talisman-sub {
+    .officer-unit-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dimmed);
+      letter-spacing: 0.04em;
+    }
+
+    .silicon-binding-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      padding: 3px 6px;
+      margin-top: 4px;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+    }
+
+    .binding-lbl {
+      color: var(--text-dimmed);
+    }
+
+    .binding-hash {
+      color: var(--phosphor-mint);
+      font-weight: 700;
+    }
+
+    .officer-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .anti-phish-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-family: var(--font-mono);
       font-size: 8.5px;
       color: var(--uv-violet);
+      font-weight: 700;
     }
-
-    /* ==========================================================================
+/* ==========================================================================
        MAIN VIEWPORT CONTAINER & VIEWPOINT PANELS
        ========================================================================== */
     .main-workspace-body {
@@ -1223,16 +1393,34 @@
   </nav>
 
   <!-- ==========================================================================
-       4D KINETIC SIGNATURE HERO: CONCENTRIC CHAKRAVYUHA VAULT MECHANISM
+       CONCENTRIC CHAKRAVYUHA DEFENSE ROTOR & HARDWARE SILICON ENCLAVE
        ========================================================================== -->
   <div class="vault-hero-strip">
     <div class="vault-hero-container">
-      <!-- Left: Interactive 3D Concentric Vault Mechanism Canvas -->
+      <!-- Left: Chakravyuha Concentric Defense Vault Rotor -->
       <div class="vault-canvas-box">
-        <canvas id="vault-webgl-canvas" width="280" height="110"></canvas>
-        <div class="vault-ring-label">
-          <span class="live-pulse-dot"></span>
-          <span>4D CHAKRAVYUHA KINETIC VAULT CORE &bull; ROTOR LOCK</span>
+        <div class="hero-card-header">
+          <div class="hero-card-title-group">
+            <span class="hero-card-kicker">LATTICE DEFENSE CORE</span>
+            <div class="hero-card-title">Chakravyuha Vault Rotor</div>
+          </div>
+          <span class="tactical-badge badge-mint" style="font-size:9px; padding:2px 7px;">FIPS 203 READY</span>
+        </div>
+
+        <div class="canvas-interactive-wrapper" id="vault-canvas-interactive-frame">
+          <canvas id="vault-webgl-canvas" width="340" height="125"></canvas>
+          <div class="canvas-corner corner-tl"></div>
+          <div class="canvas-corner corner-tr"></div>
+          <div class="canvas-corner corner-bl"></div>
+          <div class="canvas-corner corner-br"></div>
+        </div>
+
+        <div class="vault-rotor-footer">
+          <div class="rotor-status-item">
+            <span class="live-pulse-dot"></span>
+            <span class="rotor-status-text">7-TIERED CONCENTRIC ROTOR &bull; GYRO-STABILIZED</span>
+          </div>
+          <div class="rotor-metric-tag">ML-KEM-768</div>
         </div>
       </div>
 
@@ -1268,21 +1456,56 @@
         </div>
       </div>
 
-      <!-- Right: Personal Security Talisman (Generative 12-Segment SVG) -->
-      <div class="talisman-box">
-        <div class="talisman-svg-frame" id="talisman-frame">
-          <svg width="48" height="48" viewBox="0 0 48 48" class="rotating-talisman-svg">
-            <polygon points="24,6 30,12 36,10 38,18 45,21 42,28 46,35 39,39 36,46 28,44 24,47 20,44 12,46 9,39 2,35 6,28 3,21 10,18 12,10 18,12" fill="none" stroke="#00d7a8" stroke-width="1.5" stroke-dasharray="3 2" />
-            <circle cx="24" cy="24" r="8" fill="none" stroke="#fb40ad" stroke-width="1.5" />
-            <circle cx="24" cy="24" r="3" fill="#00d7a8" />
-          </svg>
+      <!-- Right: Officer Enclave Hardware Silicon Identity -->
+      <div class="officer-enclave-card">
+        <div class="hero-card-header">
+          <div class="hero-card-title-group">
+            <span class="hero-card-kicker">HARDWARE SILICON IDENTITY</span>
+            <div class="hero-card-title">Enclave Attestation</div>
+          </div>
+          <span class="tactical-badge badge-orchid" style="font-size:9px; padding:2px 7px;">PCR-7 SEALED</span>
         </div>
-        <div class="talisman-info">
-          <div class="talisman-lbl">ENCLAVE TALISMAN</div>
-          <div class="talisman-val" id="talisman-officer-id">IND-MOD-003</div>
-          <div class="talisman-sub">PCR-7 ANTI-PHISH SEAL</div>
+
+        <div class="officer-identity-body">
+          <!-- Holographic Rotating Security Medallion -->
+          <div class="holographic-medallion-frame">
+            <svg width="68" height="68" viewBox="0 0 68 68" class="holographic-vector-insignia">
+              <!-- Outer Degree Ring with Micro-Ticks -->
+              <circle cx="34" cy="34" r="32" fill="none" stroke="rgba(0, 215, 168, 0.25)" stroke-width="1" />
+              <circle cx="34" cy="34" r="30" fill="none" stroke="#00d7a8" stroke-width="1.5" stroke-dasharray="4 6" class="spin-clockwise" />
+              <!-- Middle Cryptographic Hash Ring -->
+              <circle cx="34" cy="34" r="23" fill="none" stroke="#fb40ad" stroke-width="1.2" stroke-dasharray="8 4 2 4" class="spin-counter" />
+              <!-- Vedic 12-Spoke Star Geometry (Chakravyuha Seal) -->
+              <polygon points="34,16 38,26 48,22 42,31 51,36 41,39 46,49 36,44 34,54 30,44 20,49 25,39 15,36 24,31 18,22 28,26" fill="rgba(0, 215, 168, 0.12)" stroke="#00d7a8" stroke-width="1.2" />
+              <!-- Central Enclave Silicon Core -->
+              <circle cx="34" cy="34" r="7" fill="#181028" stroke="#fb40ad" stroke-width="1.8" />
+              <circle cx="34" cy="34" r="3" fill="#00f0b5" />
+            </svg>
+          </div>
+
+          <!-- Cryptographic Metadata & Binding -->
+          <div class="officer-telemetry-meta">
+            <div class="officer-callsign-row">
+              <span class="officer-name">Maj. Priya Nair</span>
+              <span class="officer-id-pill" id="talisman-officer-id">IND-MOD-003</span>
+            </div>
+            <div class="officer-unit-label">MILITARY INTELLIGENCE &bull; MI-8</div>
+            <div class="silicon-binding-box">
+              <span class="binding-lbl">TPM 2.0 PCR-7:</span>
+              <span class="binding-hash">0x7E31D9A4...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="officer-card-footer">
+          <div class="anti-phish-indicator">
+            <span style="font-size:10px;">🔒</span>
+            <span>SECURE SILICON ATTESTED &bull; ZERO-LEAK RAM</span>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -2110,73 +2333,212 @@
       showTacticalToast('DEMO COMPLETE', 'Full Post-Quantum attestation cycle executed successfully', 'success');
     }
 
-    // 4D Vault Mechanism Hardware-Accelerated 3D Canvas
+    // Concentric Chakravyuha Gyroscope Canvas with 3D Perspective & Cursor Tracking
     function initVaultCanvas() {
       const canvas = document.getElementById('vault-webgl-canvas');
+      const container = document.getElementById('vault-canvas-interactive-frame');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
+      
       let angle = 0;
+      let targetTiltX = 0;
+      let targetTiltY = 0;
+      let currentTiltX = 0;
+      let currentTiltY = 0;
+
+      // Cursor interaction listener
+      if (container) {
+        container.addEventListener('mousemove', (e) => {
+          const rect = container.getBoundingClientRect();
+          const normX = (e.clientX - rect.left) / rect.width - 0.5;
+          const normY = (e.clientY - rect.top) / rect.height - 0.5;
+          targetTiltX = normY * 0.35;
+          targetTiltY = normX * 0.45;
+        });
+
+        container.addEventListener('mouseleave', () => {
+          targetTiltX = 0;
+          targetTiltY = 0;
+        });
+      }
+
+      // Orbital Satellites
+      const satellites = [
+        { ring: 80, speed: 0.04, color: '#00f0b5', size: 3.5, offset: 0 },
+        { ring: 64, speed: -0.06, color: '#fb40ad', size: 3.0, offset: 1.5 },
+        { ring: 50, speed: 0.08, color: '#00d7a8', size: 2.5, offset: 3.2 },
+        { ring: 36, speed: -0.05, color: '#ff60bf', size: 2.0, offset: 4.8 },
+      ];
 
       function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
 
-        // Outer Rotor Ring (Seafoam dashed)
+        // Smooth damping on 3D tilt
+        currentTiltX += (targetTiltX - currentTiltX) * 0.08;
+        currentTiltY += (targetTiltY - currentTiltY) * 0.08;
+
         ctx.save();
         ctx.translate(cx, cy);
-        ctx.scale(1, 0.44); // Perspective 3D tilt
-        ctx.rotate(angle * 0.35);
+
+        // Perspective Transformation
+        const scaleY = 0.46 + currentTiltX;
+        ctx.scale(1, Math.max(0.2, scaleY));
+        ctx.rotate(currentTiltY);
+
+        // Outer Degree Compass Ring with 24 Micro-Ticks
+        ctx.save();
+        ctx.rotate(angle * 0.1);
         ctx.beginPath();
-        ctx.arc(0, 0, 48, 0, Math.PI * 2);
-        ctx.strokeStyle = '#00d7a8';
-        ctx.lineWidth = 2;
+        ctx.arc(0, 0, 88, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0, 215, 168, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        for (let i = 0; i < 24; i++) {
+          const a = (i * Math.PI * 2) / 24;
+          const r1 = 86;
+          const r2 = i % 6 === 0 ? 92 : 89;
+          ctx.beginPath();
+          ctx.moveTo(r1 * Math.cos(a), r1 * Math.sin(a));
+          ctx.lineTo(r2 * Math.cos(a), r2 * Math.sin(a));
+          ctx.strokeStyle = i % 6 === 0 ? '#00f0b5' : 'rgba(0, 215, 168, 0.35)';
+          ctx.lineWidth = i % 6 === 0 ? 1.5 : 1;
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        // Layer 7: Outer Bastion Track (Dashed Seafoam)
+        ctx.save();
+        ctx.rotate(angle * 0.25);
+        ctx.beginPath();
+        ctx.arc(0, 0, 80, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0, 215, 168, 0.7)';
+        ctx.lineWidth = 1.8;
         ctx.setLineDash([8, 6]);
         ctx.stroke();
+        ctx.restore();
 
-        // Intermediate Rotor Ring (Electric Orchid dashed)
-        ctx.rotate(-angle * 0.7);
+        // Layer 6: Segmented Electric Orchid Gate
+        ctx.save();
+        ctx.rotate(-angle * 0.45);
         ctx.beginPath();
-        ctx.arc(0, 0, 34, 0, Math.PI * 2);
-        ctx.strokeStyle = '#fb40ad';
-        ctx.lineWidth = 1.8;
-        ctx.setLineDash([6, 5]);
+        ctx.arc(0, 0, 68, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(251, 64, 173, 0.65)';
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([16, 12, 4, 12]);
         ctx.stroke();
+        ctx.restore();
 
-        // Inner Bastion Ring (Amethyst solid)
-        ctx.rotate(angle * 0.4);
+        // Layer 5: Fine Amethyst Resonator Ring
+        ctx.save();
+        ctx.rotate(angle * 0.3);
         ctx.beginPath();
-        ctx.arc(0, 0, 22, 0, Math.PI * 2);
-        ctx.strokeStyle = '#756c8b';
-        ctx.lineWidth = 1.5;
+        ctx.arc(0, 0, 56, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(124, 114, 149, 0.55)';
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([3, 5]);
+        ctx.stroke();
+        ctx.restore();
+
+        // Layer 4: Jade Cryptographic Rotor
+        ctx.save();
+        ctx.rotate(-angle * 0.65);
+        ctx.beginPath();
+        ctx.arc(0, 0, 44, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(46, 201, 122, 0.8)';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([12, 6]);
+        ctx.stroke();
+        ctx.restore();
+
+        // Layer 3: Solid Inner Defense Perimeter
+        ctx.save();
+        ctx.rotate(angle * 0.5);
+        ctx.beginPath();
+        ctx.arc(0, 0, 32, 0, Math.PI * 2);
+        ctx.strokeStyle = '#00d7a8';
+        ctx.lineWidth = 1.4;
         ctx.setLineDash([]);
         ctx.stroke();
+        ctx.restore();
 
-        // Core Inner-Lit Octahedron (Seafoam/Orchid core)
+        // Layer 2: Innermost Quantum Vault Gate
+        ctx.save();
+        ctx.rotate(-angle * 0.85);
+        ctx.beginPath();
+        ctx.arc(0, 0, 22, 0, Math.PI * 2);
+        ctx.strokeStyle = '#fb40ad';
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.restore();
+
+        // Orbiting Satellites with Light Trails
+        satellites.forEach((sat) => {
+          const satAngle = angle * sat.speed * 8 + sat.offset;
+          const sx = sat.ring * Math.cos(satAngle);
+          const sy = sat.ring * Math.sin(satAngle);
+
+          // Glow halo
+          ctx.beginPath();
+          ctx.arc(sx, sy, sat.size * 2, 0, Math.PI * 2);
+          ctx.fillStyle = sat.color === '#00f0b5' ? 'rgba(0, 240, 181, 0.25)' : 'rgba(251, 64, 173, 0.25)';
+          ctx.fill();
+
+          // Satellite Body
+          ctx.beginPath();
+          ctx.arc(sx, sy, sat.size, 0, Math.PI * 2);
+          ctx.fillStyle = sat.color;
+          ctx.fill();
+        });
+
+        // Layer 1 (Center Core): Glowing Wireframe Hyper-Diamond
         ctx.restore();
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(angle * 0.5);
-        ctx.fillStyle = 'rgba(0, 215, 168, 0.28)';
-        ctx.strokeStyle = '#00d7a8';
-        ctx.lineWidth = 1.5;
+
+        // Core Gradient Glow
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, 16);
+        grad.addColorStop(0, 'rgba(0, 240, 181, 0.55)');
+        grad.addColorStop(0.6, 'rgba(251, 64, 173, 0.35)');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.moveTo(0, -11);
-        ctx.lineTo(10, 0);
-        ctx.lineTo(0, 11);
-        ctx.lineTo(-10, 0);
-        ctx.closePath();
+        ctx.arc(0, 0, 16, 0, Math.PI * 2);
         ctx.fill();
+
+        // Rotating Wireframe Octahedron
+        ctx.strokeStyle = '#00f0b5';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(0, -12);
+        ctx.lineTo(11, 0);
+        ctx.lineTo(0, 12);
+        ctx.lineTo(-11, 0);
+        ctx.closePath();
         ctx.stroke();
+
+        ctx.strokeStyle = '#fb40ad';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(0, -7);
+        ctx.lineTo(7, 0);
+        ctx.lineTo(0, 7);
+        ctx.lineTo(-7, 0);
+        ctx.closePath();
+        ctx.stroke();
+
         ctx.restore();
 
-        angle += 0.035;
+        angle += 0.022;
         requestAnimationFrame(render);
       }
       render();
     }
-
-    // Merkle Block Time-Travel Scrubber
+// Merkle Block Time-Travel Scrubber
     function handleTimeScrub(val) {
       const sec = parseInt(val);
       const timeLabel = document.getElementById('scrubber-time-label');
