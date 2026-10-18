@@ -18,50 +18,57 @@
        ========================================================================== */
 
     :root {
-      /* Mineral Basalt & Titanium Charcoal Canvas (Completely Neutral, Zero Navy Blue) */
-      --canvas-ground: #0A0C0E;
-      --canvas-surface: #111418;
-      --canvas-card: #181C22;
-      --canvas-elevated: #212630;
-      --canvas-sunken: #0E1014;
+      /* ------------------------------------------------------------------------
+         IDENTITY: Ultraviolet Dusk [D] | Velvet Matte | Inner-Lit (Seed #796)
+         Strict: Zero forbidden bands (35-125 & 205-283). Zero grey. Tinted pearl.
+         ------------------------------------------------------------------------ */
+      --canvas-ground: #10091c;     /* Deep Amethyst Dusk Void (oklch 0.160 0.040 298) */
+      --canvas-surface: #1e1332;    /* Velvet Matte Tactical HUD (oklch 0.220 0.060 298) */
+      --canvas-card: #271a41;       /* Raised Floating Instrument (oklch 0.260 0.070 298) */
+      --canvas-elevated: #31234f;   /* Floating Dialog Well */
+      --canvas-sunken: #090512;     /* Data Matrix Void Well (oklch 0.130 0.030 298) */
 
-      /* Precision Hairlines */
-      --border-hairline: rgba(255, 255, 255, 0.08);
-      --border-tactical: rgba(255, 255, 255, 0.16);
-      --border-focus: #F59E0B;
+      /* Precision Hairlines & Guilloche Borders */
+      --border-hairline: rgba(236, 233, 247, 0.08);
+      --border-tactical: #2c233e;   /* Tinted Amethyst Hairline (oklch 0.280 0.050 298) */
+      --border-focus: #00d19c;      /* Luminous Seafoam Focus Ring (oklch 0.750 0.180 170) */
 
-      /* Sovereign Identity Tones */
-      --ochre-amber: #F59E0B;
-      --ochre-glow: rgba(245, 158, 11, 0.22);
-      --ochre-subtle: rgba(245, 158, 11, 0.08);
+      /* Sovereign Identity Accents (Seafoam & Electric Orchid) */
+      --accent-primary: #00d7a8;    /* Luminous Seafoam Emerald (oklch 0.780 0.160 170) */
+      --accent-glow: rgba(0, 215, 168, 0.32);
+      --accent-subtle: rgba(0, 215, 168, 0.08);
 
-      --phosphor-mint: #10B981;
-      --phosphor-glow: rgba(16, 185, 129, 0.22);
-      --phosphor-subtle: rgba(16, 185, 129, 0.08);
+      --ochre-amber: #00d7a8;       /* Primary Action Mapped to Seafoam */
+      --ochre-glow: rgba(0, 215, 168, 0.28);
+      --ochre-subtle: rgba(0, 215, 168, 0.08);
 
-      --cinnabar-red: #EF4444;
-      --cinnabar-glow: rgba(239, 68, 68, 0.25);
-      --cinnabar-subtle: rgba(239, 68, 68, 0.08);
+      --phosphor-mint: #2ec97a;     /* Tactical Jade Attested (oklch 0.740 0.170 155) */
+      --phosphor-glow: rgba(46, 201, 122, 0.28);
+      --phosphor-subtle: rgba(46, 201, 122, 0.08);
 
-      --uv-violet: #A855F7;
-      --uv-glow: rgba(168, 85, 247, 0.28);
-      --uv-subtle: rgba(168, 85, 247, 0.10);
+      --cinnabar-red: #e60031;      /* Crimson Intrusion Alert (oklch 0.580 0.240 22) */
+      --cinnabar-glow: rgba(230, 0, 49, 0.32);
+      --cinnabar-subtle: rgba(230, 0, 49, 0.08);
 
-      /* Typography & Text */
-      --text-pure: #F8FAFC;
-      --text-medium: #CBD5E1;
-      --text-dimmed: #7E8B9B;
-      --text-ghost: #4B5563;
+      --uv-violet: #fb40ad;         /* Rare Electric Orchid Highlight (oklch 0.680 0.240 350) */
+      --uv-glow: rgba(251, 64, 173, 0.38);
+      --uv-subtle: rgba(251, 64, 173, 0.12);
 
-      --font-display: 'Space Grotesk', -apple-system, sans-serif;
-      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', Consolas, monospace;
+      /* Typography & Text Hierarchy (Tinted Pearl-Lilac - Zero Pure White) */
+      --text-pure: #ece9f7;         /* High-Clearance Pearl-Lilac (14.4:1 AAA) */
+      --text-medium: #b1a9c5;       /* Mid Pearl-Lilac (7.6:1 AAA) */
+      --text-dimmed: #756c8b;       /* Deep Muted Violet (3.8:1) */
+      --text-ghost: #4e4663;
 
-      /* Radii */
+      --font-display: 'Fraunces', 'Space Grotesk', Georgia, serif;
+      --font-ui: 'Figtree', 'Inter', -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', 'JetBrains Mono', Consolas, monospace;
+
+      /* Magnetic Spring & Precision Chamfers */
       --r-sm: 4px;
       --r-md: 8px;
       --r-lg: 12px;
-      --r-xl: 16px;
+      --r-xl: 18px;
     }
 
     * {
@@ -344,6 +351,211 @@
     .viewpoint-selector-pill.active .viewpoint-icon-dot {
       background: var(--ochre-amber);
       box-shadow: 0 0 8px var(--ochre-amber);
+    /* ==========================================================================
+       4D KINETIC SIGNATURE HERO: CONCENTRIC CHAKRAVYUHA VAULT MECHANISM
+       ========================================================================== */
+    .vault-hero-strip {
+      background: linear-gradient(180deg, rgba(30, 19, 50, 0.95) 0%, rgba(16, 9, 28, 0.98) 100%);
+      border-bottom: 1.5px solid var(--border-tactical);
+      padding: 14px 24px;
+      position: relative;
+      z-index: 950;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .vault-hero-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr 240px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 1050px) {
+      .vault-hero-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vault-canvas-box {
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: inset 0 0 24px rgba(0, 215, 168, 0.08);
+      clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
+    }
+
+    #vault-webgl-canvas {
+      width: 100%;
+      height: 110px;
+      display: block;
+    }
+
+    .vault-ring-label {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vault-scrubber-center {
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .scrubber-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scrubber-title {
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scrubber-stats-chips {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mini-stat-chip {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-hairline);
+      padding: 2px 7px;
+      border-radius: var(--r-sm);
+      color: var(--text-medium);
+    }
+
+    .scrubber-track-box {
+      width: 100%;
+    }
+
+    #time-travel-scrubber {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      outline: none;
+      cursor: pointer;
+    }
+
+    #time-travel-scrubber::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent-primary);
+      border: 2px solid #FFF;
+      transition: all 0.15s;
+    }
+
+    #time-travel-scrubber::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .scrubber-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dimmed);
+      margin-top: 4px;
+    }
+
+    .scrubber-replay-event {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 215, 168, 0.06);
+      border: 1px dashed rgba(0, 215, 168, 0.3);
+      border-radius: var(--r-sm);
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-pure);
+    }
+
+    .talisman-box {
+      background: var(--canvas-sunken);
+      border: 1px solid var(--border-tactical);
+      border-radius: var(--r-lg);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: inset 0 0 16px rgba(251, 64, 173, 0.08);
+      clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
+    }
+
+    .talisman-svg-frame {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .rotating-talisman-svg {
+      animation: spinTalisman 16s linear infinite;
+    }
+
+    @keyframes spinTalisman {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .talisman-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .talisman-lbl {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--text-dimmed);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .talisman-val {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin: 1px 0;
+    }
+
+    .talisman-sub {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--uv-violet);
     }
 
     /* ==========================================================================
@@ -1032,6 +1244,70 @@
       <span>ZK-SNARK &amp; Semantic Honeytokens</span>
     </div>
   </nav>
+
+  <!-- ==========================================================================
+       4D KINETIC SIGNATURE HERO: CONCENTRIC CHAKRAVYUHA VAULT MECHANISM
+       ========================================================================== -->
+  <div class="vault-hero-strip">
+    <div class="vault-hero-container">
+      <!-- Left: Interactive 3D Concentric Vault Mechanism Canvas -->
+      <div class="vault-canvas-box">
+        <canvas id="vault-webgl-canvas" width="280" height="110"></canvas>
+        <div class="vault-ring-label">
+          <span class="live-pulse-dot"></span>
+          <span>4D CHAKRAVYUHA KINETIC VAULT CORE &bull; ROTOR LOCK</span>
+        </div>
+      </div>
+
+      <!-- Center: Time-Travel Scrubber & Enclave Telemetry -->
+      <div class="vault-scrubber-center">
+        <div class="scrubber-header-row">
+          <div class="scrubber-title">
+            <span style="color:var(--accent-primary);">⚡ MERKLE BLOCK TIME-TRAVEL SCRUBBER</span>
+            <span id="scrubber-time-label" style="color:var(--text-dimmed); font-family:var(--font-mono); font-size:10px;">LIVE &bull; 00:00:00 (NOW)</span>
+          </div>
+          <div class="scrubber-stats-chips">
+            <span class="mini-stat-chip">BLOCK <strong>#8,492,019</strong></span>
+            <span class="mini-stat-chip">TPS <strong>4,820</strong></span>
+            <span class="mini-stat-chip" style="color:var(--accent-primary);">HEARTBEAT <strong>1.2s</strong></span>
+          </div>
+        </div>
+
+        <!-- The Interactive Scrubber Bar -->
+        <div class="scrubber-track-box">
+          <input type="range" id="time-travel-scrubber" min="-86400" max="0" value="0" step="60" oninput="handleTimeScrub(this.value)">
+          <div class="scrubber-ticks">
+            <span>-24h (Genesis)</span>
+            <span>-18h</span>
+            <span>-12h (Lattice Shift)</span>
+            <span>-6h</span>
+            <span style="color:var(--accent-primary);">LIVE (Now)</span>
+          </div>
+        </div>
+
+        <div class="scrubber-replay-event" id="scrubber-event-box">
+          <span class="viewpoint-icon-dot" style="background:var(--accent-primary);"></span>
+          <span id="scrubber-event-text">Active State: Tri-Service Merkle consensus validated. Hardware TPM 2.0 PCR-7 secure state attested.</span>
+        </div>
+      </div>
+
+      <!-- Right: Personal Security Talisman (Generative 12-Segment SVG) -->
+      <div class="talisman-box">
+        <div class="talisman-svg-frame" id="talisman-frame">
+          <svg width="48" height="48" viewBox="0 0 48 48" class="rotating-talisman-svg">
+            <polygon points="24,6 30,12 36,10 38,18 45,21 42,28 46,35 39,39 36,46 28,44 24,47 20,44 12,46 9,39 2,35 6,28 3,21 10,18 12,10 18,12" fill="none" stroke="#00d7a8" stroke-width="1.5" stroke-dasharray="3 2" />
+            <circle cx="24" cy="24" r="8" fill="none" stroke="#fb40ad" stroke-width="1.5" />
+            <circle cx="24" cy="24" r="3" fill="#00d7a8" />
+          </svg>
+        </div>
+        <div class="talisman-info">
+          <div class="talisman-lbl">ENCLAVE TALISMAN</div>
+          <div class="talisman-val" id="talisman-officer-id">IND-MOD-003</div>
+          <div class="talisman-sub">PCR-7 ANTI-PHISH SEAL</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        MAIN VIEWPORT CONTAINER (ALL 7 VIEWPOINTS)
@@ -1929,9 +2205,92 @@
       playTone(1200, 0.4, 'sine');
     }
 
+    // 4D Vault Mechanism Hardware-Accelerated 3D Canvas
+    function initVaultCanvas() {
+      const canvas = document.getElementById('vault-webgl-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let angle = 0;
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        // Outer Rotor Ring (Seafoam dashed)
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(1, 0.44); // Perspective 3D tilt
+        ctx.rotate(angle * 0.35);
+        ctx.beginPath();
+        ctx.arc(0, 0, 48, 0, Math.PI * 2);
+        ctx.strokeStyle = '#00d7a8';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 6]);
+        ctx.stroke();
+
+        // Intermediate Rotor Ring (Electric Orchid dashed)
+        ctx.rotate(-angle * 0.7);
+        ctx.beginPath();
+        ctx.arc(0, 0, 34, 0, Math.PI * 2);
+        ctx.strokeStyle = '#fb40ad';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([6, 5]);
+        ctx.stroke();
+
+        // Inner Bastion Ring (Amethyst solid)
+        ctx.rotate(angle * 0.4);
+        ctx.beginPath();
+        ctx.arc(0, 0, 22, 0, Math.PI * 2);
+        ctx.strokeStyle = '#756c8b';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([]);
+        ctx.stroke();
+
+        // Core Inner-Lit Octahedron (Seafoam/Orchid core)
+        ctx.restore();
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(angle * 0.5);
+        ctx.fillStyle = 'rgba(0, 215, 168, 0.28)';
+        ctx.strokeStyle = '#00d7a8';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(0, -11);
+        ctx.lineTo(10, 0);
+        ctx.lineTo(0, 11);
+        ctx.lineTo(-10, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+
+        angle += 0.035;
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    // Merkle Block Time-Travel Scrubber
+    function handleTimeScrub(val) {
+      const sec = parseInt(val);
+      const timeLabel = document.getElementById('scrubber-time-label');
+      const eventText = document.getElementById('scrubber-event-text');
+      if (sec === 0) {
+        if (timeLabel) timeLabel.innerHTML = 'LIVE &bull; 00:00:00 (NOW)';
+        if (eventText) eventText.textContent = 'Active State: Tri-Service Merkle consensus validated. Hardware TPM 2.0 PCR-7 secure state attested.';
+      } else {
+        const hours = Math.abs(Math.round(sec / 3600));
+        const mins = Math.abs(Math.round((sec % 3600) / 60));
+        if (timeLabel) timeLabel.innerHTML = `HISTORICAL REPLAY &bull; -${hours}h ${mins}m`;
+        if (eventText) eventText.textContent = `Replaying Block #${8492019 - Math.round(Math.abs(sec) / 10)}: Quantum ciphertext envelope state locked at ${hours}h ago.`;
+      }
+    }
+
     // Auto-init on page load
     window.addEventListener('DOMContentLoaded', () => {
       initTardosBitMatrix();
+      initVaultCanvas();
     });
   </script>
 </body>

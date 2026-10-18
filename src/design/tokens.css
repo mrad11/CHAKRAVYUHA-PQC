@@ -1,0 +1,100 @@
+/* ==========================================================================
+   CHAKRAVYUHA PQC - DESIGN TOKENS
+   Theme: Ultraviolet Dusk [D] | Material: Velvet Matte | Light: Inner-Lit
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* ------------------------------------------------------------------------
+       OKLCH Semantic Palette (Strict: No forbidden bands 35-125 & 205-283)
+       ------------------------------------------------------------------------ */
+    --canvas-base: oklch(0.160 0.040 298);      /* #10091c Deep Amethyst Dusk Ground */
+    --canvas-surface: oklch(0.220 0.060 298);   /* #1e1332 Velvet Matte HUD Surface */
+    --canvas-sunken: oklch(0.130 0.030 298);    /* #090512 Data Matrix Void Well */
+    --canvas-elevated: oklch(0.260 0.070 298);  /* #271a41 Raised Floating Instrument */
+
+    --border-subtle: oklch(0.280 0.050 298);    /* #2c233e Tinted Amethyst Hairline */
+    --border-default: oklch(0.380 0.080 298);   /* #41325c Tactile Partition */
+    --border-focus: oklch(0.750 0.180 170);     /* #00d19c Luminous Seafoam Focus */
+
+    /* Accents & Highlights */
+    --accent-seafoam: oklch(0.780 0.160 170);   /* #00d7a8 Primary Quantum Kinetic Action */
+    --accent-seafoam-hover: oklch(0.840 0.180 170); /* #00efb8 Luminous Overdrive */
+    --accent-glow: rgba(0, 215, 168, 0.28);
+
+    --highlight-rose: oklch(0.680 0.240 350);   /* #fb40ad Rare Electric Orchid Highlight */
+    --highlight-glow: rgba(251, 64, 173, 0.35);
+
+    /* Text Hierarchy (Tinted Pearl - Zero Pure White) */
+    --text-primary: oklch(0.940 0.020 298);     /* #ece9f7 Tinted Pearl-Lilac (14.4:1 AAA) */
+    --text-secondary: oklch(0.750 0.040 298);   /* #b1a9c5 Mid Pearl-Lilac (7.6:1 AAA) */
+    --text-muted: oklch(0.550 0.050 298);       /* #756c8b Deep Violet Metadata (3.8:1) */
+
+    /* Semantic Security States */
+    --status-verified: oklch(0.740 0.170 155);  /* #2ec97a Jade Seal Valid */
+    --status-threat: oklch(0.580 0.240 22);     /* #e60031 Crimson Intrusion Alert */
+    --status-warning: oklch(0.720 0.180 325);   /* Orchid Anomaly Warning */
+
+    /* ------------------------------------------------------------------------
+       Typography & Metrics
+       ------------------------------------------------------------------------ */
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-ui: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+
+    /* ------------------------------------------------------------------------
+       Motion Timing Tokens (Magnetic Personality)
+       ------------------------------------------------------------------------ */
+    --ease-magnetic: cubic-bezier(0.16, 1.0, 0.30, 1.0);
+    --duration-instant: 90ms;
+    --duration-fast: 140ms;
+    --duration-base: 220ms;
+    --duration-deliberate: 360ms;
+    --duration-ceremony: 900ms;
+
+    /* Chamfer & Radius */
+    --r-chamfer: 6px;
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 14px;
+    --r-xl: 20px;
+  }
+}
+
+/* Guilloche Micro-Texture Overlay */
+.guilloche-watermark {
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 215, 168, 0.03) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(44, 35, 62, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px, 12px 12px;
+}
+
+/* Velvet Matte Inset Box */
+.velvet-matte-panel {
+  background: var(--canvas-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 16px 40px -12px rgba(9, 5, 18, 0.8),
+              inset 0 1px 0 rgba(236, 233, 247, 0.05);
+  backdrop-filter: blur(12px);
+  clip-path: polygon(
+    0 8px, 8px 0,
+    calc(100% - 8px) 0, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 8px) 100%,
+    8px 100%, 0 calc(100% - 8px)
+  );
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas-sunken);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-seafoam);
+}
